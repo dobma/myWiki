@@ -1,0 +1,217 @@
+"set the sdcv shift+k
+set keywordprg=sdcv
+" "\s" to save the buff file
+func! SaveFile()
+    exec "w"
+endfunc
+map  <leader>s :call SaveFile()<CR>
+vmap <leader>s :call SaveFile()<CR>
+" "ctrl+l" is "esc"
+imap <C-l> <Esc>
+" the setting
+set nu
+set fileencoding=utf-8
+set fileencodings=utf-8,gb18030,gb2312,gbk,big5
+set tabstop=4 
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+set cindent
+set cursorline
+" The Vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
+	" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+	" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+	" Plugins
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'kien/rainbow_parentheses.vim'
+"Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'nicoraffo/conque'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'Raimondi/delimitMate'
+Plugin 'godlygeek/tabular'
+Plugin 'scrooloose/syntastic'
+Plugin 'sjl/gundo.vim'
+Plugin 'vimwiki/vimwiki'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'hdima/python-syntax'
+	" Color schemes
+Plugin 'altercation/vim-colors-solarized'
+	" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" theme setting solarized
+syntax on
+set t_Co=256
+set background=dark
+let g:solarized_termcolors=256 
+colorscheme solarized
+" The NERDTree
+nmap <leader>file :NERDTree<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+let g:netrw_home='~/bak'
+let g:NERDTreeWinSize=25
+	" m.......Display the NERD tree menu
+	" and so on
+" The tagbar
+nmap <leader>tag :TagbarToggle<CR>
+let g:tagbar_width=25
+let g:tagbar_autofocus = 1
+" The minibufexpl
+let g:miniBufExplMapWindowNavVim    = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs  = 1
+let g:miniBufExplModSelTarget       = 1
+let g:miniBufExplForceSyntaxEnable = 1
+let g:miniBufExplorerMoreThanOne=2
+let g:miniBufExplCycleArround=1
+" The ctrlp
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
+    \ }
+let g:ctrlp_map = '<leader>find'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+" The powerline
+let g:Powerline_symbols = 'unicode'
+" The rainbow_parentheses
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 40
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+" The whitespace
+map <leader><space> :FixWhitespace<cr>	" \+space
+" The easymotion
+	" f<char> 可以实现定位到一行中的某个字符
+	" <leader><leader>f<char> 则该行及该行以下所有的char都将被高亮
+	" <leader><leader>s 然后输入要搜索的字母, 这个跳转是双向的
+	" <leader><leader>w 向后搜索，单词首字母高亮<leader><leader>b 向前搜索，单词首字母高亮
+	" <leader><leader>j和<leader><leader>k 行级跳转
+	" <leader><leader>h和<leader><leader>l 行内跳转
+" The matchit
+	" %
+" The youcomplete me
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+set completeopt=longest,menu
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+let g:ycm_error_symbol = '✗'
+let g:ycm_warning_symbol = '⚠'
+let g:ycm_confirm_extra_conf=0
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_min_num_of_chars_for_completion= 2
+let g:ycm_cache_omnifunc=0
+let g:ycm_seed_identifiers_with_syntax= 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_filetype_blacklist = {
+\ 'tagbar' : 1,
+\ 'nerdtree' : 1,
+\}
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap <F4> :YcmDiags<CR>
+" The conque
+let g:ConqueTerm_StartMessages = 0
+let g:ConqueTerm_TERM ='xterm'
+let g:ConqueTerm_CWInsert = 0
+nmap <Leader>sh :ConqueTermSplit bash<CR>
+" The nerdcommenter
+let NERDSpaceDelims = 1 
+	"<leader>cc to note <leader>cu cancel note
+" The vim-surround
+	" cs" ' change string " to '
+	" ds"   delete string "
+	" and so on
+" The delimitMate 
+" The tabular
+nmap <leader>bb :Tab /=<CR>		" \bb
+nmap <leader>bn :Tab /			" \bn
+" The syntastic
+let g:syntastic_error_symbol = '✗'	"set error or warning signs
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_highlighting = 0
+	"let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
+let g:syntastic_python_checkers=['pyflakes']
+	"highlight SyntasticErrorSign guifg=white guibg=black
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+let g:syntastic_enable_balloons = 1	"whether to show balloons
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" The gundo
+nnoremap <F5> :GundoToggle<CR>
+" The vimwiki 个人wiki
+	" <leader>ww 将会在~/vimwiki/index.wiki生成一个文件
+	" :Vimwiki2HTML将会在~/vimwiki_html文件下生成html文件
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+    \ 'path_html': '~/vimwiki/html/',
+    \ 'template_path': '~/vimwiki/template/',
+    \ 'template_default': 'default',
+    \ 'template_ext': '.tpl'}]
+let g:vimwiki_camel_case = 0
+" The vim-multiple-cursors
+	" Default mapping
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+" 按下 <C-n> 选中光标下的单词
+" 继续按下 <C-n> 两次选中另外两个相同的单词
+" 按下c进行修改
+" 键入修改
+" 按下 <Esc> 退出
+" V 进入visual模式,选中一行
+" G 调到最后一行
+" ctrl e 调到行末 
+" The python syntax highlight
+let python_highlight_all = 1

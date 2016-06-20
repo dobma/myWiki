@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>DobMa's hat</title>
+<link href="./image/logo.ico" rel="shortcut icon"/>
+<link rel="stylesheet" type="text/css" href="style/main.css" />
+<link type="text/css" rel="stylesheet" href="style/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="style/shCoreRDark.css"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--For code highlighting-->
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shBrushPlain.js"></script>
+<script type="text/javascript" src="js/shBrushVim.js"></script>
+<script type="text/javascript" src="js/shBrushBash.js"></script>
+<script type="text/javascript" src="js/shBrushCss.js"></script>
+<script type="text/javascript" src="js/shBrushJava.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushPython.js"></script>
+<script type="text/javascript" src="js/shBrushSql.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+		SyntaxHighlighter.all();
+		if (window.innerWidth >= 460) {
+		var toggler = $('<div class="toggler" title="Toggle Table Of Content">Table Of Content</div>');
+		toc = $('.toc');
+		toc.wrap('<div class="tocWrap">');
+
+		$('.tocWrap').prepend(toggler)
+		.delay(500)
+		.fadeTo(500, '0.7')
+		.hover(function() {
+			$(this).stop().fadeTo(300, '0.9');
+			}, function() {
+			$(this).stop().fadeTo(300, '0.7');
+			});
+
+		$('html').keypress(function(e) {
+			if (e.shiftKey && (e.charCode || e.keyCode) == '90') {
+			e.preventDefault();
+			$('div.tocWrap').toggle(200);
+			}
+			});
+
+		toggler.click(function() {
+				$('div.toc').slideToggle(300);
+				});
+		}
+
+		$("a,h1,h2,h3,h4,h5,h6").filter(function(index){
+			return $(this).text()=='!Important!';
+				}).addClass("importantMarker");
+
+		
+
+});
+
+
+
+</script>
+</head>
+<body >
+<header id="header">
+<div id="logo" style="font-size: 22pt;text-align:center;">
+<a href="index.html">DobMa's Personal Page</a>
+</div>
+</header>
+<div id="wrap">
+<div id="content">
+
+<div id="Contents" class="toc"><h1 id="Contents">Contents</h1>
+<ul>
+<li>
+<a href="my_hat.html#Hat">Hat</a>
+
+<ul>
+<li>
+<a href="my_hat.html#Hat-arpspoof &amp; driftnet">arpspoof &amp; driftnet</a>
+
+<li>
+<a href="my_hat.html#Hat-baidu or google">baidu or google</a>
+
+<li>
+<a href="my_hat.html#Hat-Hidden text">Hidden text</a>
+
+</ul>
+</ul>
+</div>
+<div id="Hat"><h1 id="Hat">Hat</h1></div>
+<div id="Hat-arpspoof &amp; driftnet"><h2 id="arpspoof &amp; driftnet">arpspoof &amp; driftnet</h2></div>
+<ol>
+<li>
+配置允许数据包转发：
+
+<ul>
+<li>
+查看其中的值
+<pre>
+cat /proc/sys/net/ipv4/ip_forward
+</pre>
+
+<li>
+如果不为1，则执行
+<pre>
+echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+</pre>
+
+</ul>
+<li>
+设置热点
+
+<ul>
+<li>
+安装plasma-nm
+<pre>
+$ sudo apt-get install plasma-nm
+$ kde-nm-connection-editor
+</pre>
+
+</ul>
+<li>
+使用arpspoof:
+
+<ul>
+<li>
+Usage: arpspoof [-i interface] [-c own|host|both] [-t target] [-r] host
+<pre>
+$ arpspoof -i wlan0 -t 192.168.1.XX 192.168.1.1
+</pre>
+
+</ul>
+<li>
+使用driftnet：
+<pre>
+$ driftnet -i wlan0
+</pre>
+
+<li>
+使用ettercap：
+<pre>
+$ sudo ettercap -G
+</pre>
+
+</ol>
+<div id="Hat-baidu or google"><h2 id="baidu or google">baidu or google</h2></div>
+<ul>
+<li>
+inurl
+
+<li>
+intitle
+
+<li>
+intext
+
+<li>
+filetype
+
+<li>
+site
+
+</ul>
+<div id="Hat-Hidden text"><h2 id="Hidden text">Hidden text</h2></div>
+<ul>
+<li>
+At windows:
+<pre>
+copy /b a.png + b.rar c.png //将b.rar和a.png隐藏到c.png
+</pre>
+
+<li>
+At linux:
+<pre>
+cat a.zip &gt;&gt; b.jpg			//将a.zip隐藏到b.jpg
+</pre>
+
+</ul>
+
+</div>
+</div>
+<div id="footer">
+<p>
+Copyright © 2016 DobMa
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+%title DobMa-I'm a boy
+= DobMa's github =
+* [[https://github.com/dobma]]
+= Notebook =
+== [[my_linux|GNU]] ==
+== [[my_git|Git]] ==
+== [[my_python|Python]]==
+== [[my_unix|Unix]] ==
+== [[my_html|Web]] ==
+== [[my_hat|Hat]] ==
+== [[my_window|Window]] ==
+声明：以上笔记为作者自学习经历，或学习自网络，或学习自书籍等。如有侵权，请及时联系作者。

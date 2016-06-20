@@ -1,0 +1,52 @@
+= Contents =
+    - [[#Hat|Hat]]
+        - [[#Hat#arpspoof & driftnet|arpspoof & driftnet]]
+        - [[#Hat#baidu or google|baidu or google]]
+        - [[#Hat#Hidden text|Hidden text]]
+
+%title DobMa's hat
+= Hat =
+== arpspoof & driftnet ==
+# 配置允许数据包转发：
+	* 查看其中的值
+{{{
+cat /proc/sys/net/ipv4/ip_forward
+}}}
+	* 如果不为1，则执行
+{{{
+echo 1 > /proc/sys/net/ipv4/ip_forward
+}}}
+# 设置热点
+	* 安装plasma-nm
+{{{
+$ sudo apt-get install plasma-nm
+$ kde-nm-connection-editor
+}}}
+# 使用arpspoof:
+	* Usage: arpspoof [-i interface] [-c own|host|both] [-t target] [-r] host
+{{{
+$ arpspoof -i wlan0 -t 192.168.1.XX 192.168.1.1
+}}}
+# 使用driftnet：
+{{{
+$ driftnet -i wlan0
+}}}
+# 使用ettercap：
+{{{
+$ sudo ettercap -G
+}}}
+== baidu or google ==
+	* inurl
+	* intitle
+	* intext
+	* filetype
+	* site
+== Hidden text ==
+	* At windows:
+{{{
+copy /b a.png + b.rar c.png //将b.rar和a.png隐藏到c.png
+}}}
+	* At linux:
+{{{
+cat a.zip >> b.jpg			//将a.zip隐藏到b.jpg
+}}}

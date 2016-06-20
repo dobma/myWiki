@@ -1,0 +1,1904 @@
+×VIM/VI编程工具
+VI有三种基本的工作模式：命令模式、插入模式、末行命令模式。
+命令模式--插入模式：i、a、o；插入模式--命令模式：Esc
+命令模式--末行命令模式：输入冒号(:)；末行命令模式--命令模式：Esc
+1.命令模式
+	启动vi编辑器后的初始模式。
+	使用隐式命令的形式来对文档的内容进行编辑、移动光标和滚动屏幕，不接收键盘输入编辑文档。
+	h光标左移，同行中移动；backspace光标左移，同段中移动
+	l光标右移，同行中移动；space光标右移，同段中移动
+	k光标上移一行
+    	j光标下移一行；或者enter
+	w光标右移至下一个字字首；或者e
+    	b光标左移至下一个字字首
+    	(光标移至句首
+    	)光标移至句尾
+    	{光标移至段首
+    	}光标移至段尾
+    	nG光标移至第n行行首
+    	H光标移至屏幕顶行   M光标移至屏幕中间   L光标移至屏幕最后行
+    	dd删除当前光标所在行
+    	x删除当前光标前字符
+    	yy复制当前光标所在行到缓冲区
+    	p将缓冲区字符粘贴到光标所在位置
+    	/pattern从光标所在位置向文件尾搜索第一个pattern
+	?pattern从光标所在位置向文件首搜索第一个pattern
+2.插入模式
+	只有在插入模式下才可以进行文字的输入操作。
+	从命令向插入模式切换的命令：
+	i从光标所在位置前插入新的字符；I从光标所在行的行首开始插入新的字符
+	a从光标坐在位置的下一个字符前插入新的字符；A从光标所在行的行尾开始插入新的字符
+	o新增加一行，并将光标移动到上一行的开头插入字符；O在当前行上面增加一行,并将光标移动到上一行的开头处
+3.末行命令模式
+	:n1,n2 co n3将n1行到n2行之间的内容复制到n3行下
+	:n1,n2 m n3将n1行到n2行之间的内容移动到n3行下
+	:n1,n2 d将n1行到n2行之间的内容删除
+	:w保存当前文件
+	:w!强行保存当前文件
+	:e!将文件还原到最原始的状态
+	:x保存当前文件并退出或者：wq
+	:q退出VIM/VI
+	:q!不保存并强制退出VIM/VI
+	:r[filename]将filename文件内容加到光标所在行的后面
+	:set nu在文件中显示行号
+	:%!xxd   ---->切换到十六进制显示
+	:%!xxd -r ---->切回文本方式显示
+4.VIM/VI命令
+	vim/vi [选项] [文件列表]
+	+num打开时将光标移动到num行，第一个文件
+	-oN打开N个窗口；多窗口之间切换ctrl+w+j组合键
+
+
+
+×常用C库函数
+c语言库函数分为两类：c语言标准规定的库函数；编译器特定的库函数。
+在Linux系统中，GNU的C函数库即glibc，它定义了ISO C标准指定的所有的库函数。
+1.内存操作相关
+1.1.编译器将C/C++程序的内存空间划分为：栈区(stack)在需要是分配、不需要时释放的存储区，如函数参数、局部变量、函数返回值；
+	堆区(heap)由程序员负责分配和释放；全局区(static)程序中的全局变量和静态变量存放在该区域；
+	常量区存放的是常量；代码区存放源程序编译后的二进制代码
+1.2.malloc函数stdlib.h
+	在内存的动态存储区中分配一块长度为size字节的连续区域
+	void *malloc(unsigned size); 
+	p = (char*)malloc(100*sizeof(char));申请分配100个以char数据类型的字节长度为单位的连续内存空间
+1.3.calloc函数stdlib.h
+	在内存动态存储区中分配n块长度为size字节的连续区域
+	void *calloc(unsigned n,unsigned size);
+	p = (struct time*)calloc(10,sizeof(struct time));按time结构体的长度分配10块连续内存区域
+	malloc和calloc函数分配的内存区域在堆(heap)中。
+1.4.free函数stdlib.h
+	函数功能：释放内存空间。最后还应回收指针变量p = NULL；防止生成野指针
+	void free(void *ptr);
+1.5.memset函数string.h
+	由指针变量source指向内存区域的值设置为ch，内存区域的长度为size字节
+	void *memset(void *source,char ch,unsigned size);
+1.6.memcpy函数string.h
+	从source指向的源内存地址中复制n字节到destin指向的目标内存地址
+	void *memcpy(void *destin,void *source,unsigned n);
+	strcpy函数同样也用于数据的复制：string.h
+	char *strcpy(const char *destin,char *source)
+	将字符串source复制到字符数组destin中
+1.7.memmove函数
+	由source指向的源内存地址复制n字节到destin指向的目标内存地址
+	void *memmove(void *destin,void *source,unsigned n);
+2.数字与字符串间的转换stdlib.h
+2.1.int atoi(const char *nptr);nptr指向将要转换的字符串，函数返回转化后的整型数。
+2.2.long atol(const char *nptr);nptr指向将要转换的字符串，函数返回转化后的长整型数。
+2.3.long int strtol(const char *nptr,char **endptr,int base);将字符串转换成长整型。
+	nptr指向将要转换的字符串，base为转换的基数，若参数endptr不为NULL，则会将遇到不合理条件而种植的nptr中的字符指针由endptr返回。
+	strtol(nptr,(char **)NULL,10);
+2.4.unsigned long int strtoul(const char *nptr,char **endptr,int base);将字符串转换成无符号长整型数。
+2.1.double atof(const char *nptr);将字符串转换成浮点数
+2.2.double strtod(const char *nptr,char **endptr);将字符串转换成浮点数
+2.1.int sprintf(char *buffer,const char *format [,argument] ... );
+	将整型转化为字符串；
+	buffer指向转换后的内存地址，format是以%开头的格式说明符
+	sprintf(buffer,"%d",123456);
+2.1.char *ecvt(double value,int ndigit,int *decpt,int *sign);将双精度浮点数转换为字符串。
+	value表示待转换的双精度浮点数，
+	ndigit表示存储的有效数字位数，
+	decpt指针所指向的变量会返回数值中小数点的位置，在开头从左至右计算
+	sign表示待转换数的符号，0表示正数，1表示负数
+2.2.char *fcvt(double value,int ndigit,int *decpt,int);将双精度浮点数转换为字符串。
+	ndigit表示的是小数点后面的位数
+2.3.char *gcvt(double value,int ndigit,char *buf);将双精度浮点数转换为字符串。
+	value表示待转换的双精度浮点数
+	ndigit表示存储的有效数字位数
+	buf为指向转换后的字符串的指针
+3.日期和事件time.h
+3.1.time_t time(time_t *timer);打印当前的系统时间。time_t即时long。
+	当timer = NULL时，得到从1970.1.1日零时算起值当前的时间，换算成秒之后的数值；
+	当timer为一个时间数值时，该函数用于设置机器的日历时间。
+3.2.unsigned sleep(unsigned seconds);将程序休眠一段时间，以秒为单位。
+	void delay(unsigned milliseconds);将程序休眠一段时间，以毫秒为单位。
+3.3.struct tm *localtime(const time_t *timer);localtime函数将time获得的时间转换为以tm结构表达的机器时间信息。
+	timer指向有time函数获得的机器时间
+3.4.char *asctime(struct tm *ptr);将时间转换为字符串的格式。
+	结构指针ptr应通过函数localtime和time得到
+3.5.char *ctime(long time);将时间转换为字符串的格式。
+	参数time是由time函数获得的系统时间
+	time_t timer;
+	struct tm *tblock;
+
+	timer = time(NULL);
+	tblock = localtime(&timer);
+
+	printf("%d\n",tblock->tm_sec);
+
+	printf("asctime:%s\n",asctime(tblock));
+	printf("ctime:%s\n",ctime(&timer));
+4.随机函数stdlib.h
+4.1.int rand(void);返回一个伪随机数，范围在0到RAND_MAX之间。
+	每次产生的伪随机数都一样。在调用rand函数前，要先利用srand函数设好随机数种子，不设置默认为1。
+	rand()%(Y-X+1) + x;产生X-Y之间的数。
+4.2.void srand(unsigned int seed);设置随机数种子。
+	参数seed必须是一个证书，通常利用getpid或time函数的返回值
+4.3.long int random(int num);与rand函数类似
+	void srandom(unsigned int seed);产生随机数种子
+4.4.double drand48(void);函数返回0.0-1.0之间的双精度浮点型伪随机数。
+4.5.double erand48(unsigned short int xsubi[3]);
+	长度为3的xsubi数组，可以为随机数生成函数提供初始值。
+
+
+
+×进程管理
+	不同的进程时相互隔离的，每个进程都有自己独立的地址空间，它是一个程序的一次执行的过程。
+	进程是在自身的虚拟地址空间运行的一个单独的程序。进程不是程序，它是由程序产生。
+	程序是进程的一种静态描述，系统中运行的每一个程序都是在其进程中运行的。
+	程序只是一个静态的命令集合，不占用系统的运行资源；
+	而进程是一个随时都可能发生变化的、动态的、使用系统运行资源的程序，一个程序可以启动多个进程。
+	Linux用分时管理方法使所有的任务共同分享系统资源。
+	Linux系统中所有的进程都是由一个进程号为1的init进程衍生而来的。在shell下执行程序启动的进程是shell进程的子进程。
+	Linux操作系统包括三种不同类型的进程：
+	交互进程--由一个shell启动的进程
+	批处理进程--是一个进程序列
+	监控进程(守护进程)--Linux启动时启动的进程，在后台运行
+1.task_struct数据结构
+	内核为每个进程都分配一个task_struct数据结构，也称之为进程控制块(Process Control Block,PCB).
+	系统利用PCB来控制和管理进程。
+	变量state表示进程当前的运行状态，六种进程运行状态：
+	TASK_RUNNING：可执行状态，或就绪状态。表示这个进程可以被调度执行而成为当前进程。
+		内核将该进程的task_struct结构通过其队列头list_head挂入一个“运行队列”。
+	TASK_INTERRUPTIBLE:可中断的睡眠状态，或浅度睡眠。可以因某个信号的到来而被唤醒。
+	TASK_UNINTERRUPTIBLE:不可中断的睡眠状态，或深度睡眠。不会因信号或软中断而被唤醒。
+	TASK_STOPPED:挂起状态。主要用于调试目的。
+	TASK_ZOMBIE:僵死状态。表示进程已经"去世"exit或return，但"户口"task_struct尚未注销。
+	TASK_DEAD：死亡状态。进程所占用的资源已经全部被操作系统回收而彻底消亡。
+	进程的执行队列链表run_list是一个执行list_head结构体的指针。
+2.进程标识符pid也成为进程号。每个进程都有一个唯一的标识符。是一个int整型数字。
+	实际用户标识符pid和组标识符gid用来标识进程属于哪个用户和用户组；
+	有效用户标识符euid和有效组标识符egid用来决定对文件的访问权限。
+	pid 0 是调度进程，常被称为交换进程(swapper)，该进程不执行任何磁盘上的程序，因此被成为系统进程。
+	pid 1 通常属于init进程，在自举过程结束时由内核调用，此进程负责在内核自举后启动一个UNIX系统。
+	init进程不会终止，他是一个普通的用户进程，但是它以超级用户特权运行。
+	一个或多个进程可以合起来构成一个进程组process group
+	一个或多个进程组可以合起来构成一个回话session
+	“ps”命令查看自己的系统中目前有多少进程正在运行。
+	“ps -aux”命令可以列出当前系统中每一个进程的详细信息。
+3.进程编程
+3.1.获得进程ID
+	#include<sys/types.h>
+	#include<unistd.h>
+	pid_t getpid(void);
+	typedef int __kernel_pid_t;
+	typedef __kernel_pid_t pid_t;
+	函数返回当前进程的ID；
+3.2.创建进程
+3.2.1.一个新的进程是由一个已经存在的进程“复制”出来的。
+	创建一个进程，需要为进程分配基本的资源，还要设置其系统空间堆栈。
+	创建一个进程分为两步：
+		1.从已经存在的父进程中复制出一个子进程。
+        实际上，子进程已经有了自己的task_struct结构和系统空间堆栈，但与父进程共享其他所有的资源。
+      	2.目标程序的执行。
+        让其独立运行一段全新的程序。
+3.2.2.fork函数
+	全部复制父进程，创建的父子进程并不是数据共享的。
+	#include<sys/types.h>
+	#include<unistd.h>
+	pid_t fork(void);复制一个进程。
+	若创建成功，父进程中返回子进程id，子进程中返回0；出错返回-1。
+	子进程从父进程处的到了数据段和堆栈段的复制，这些需要分配新的内存；对于只读的代码段，通常使用共享内存的方式访问。
+	在fork函数之前，只有一个进程在执行这段代码，函数以后，就变成两个进程在执行了，这两个进程的代码部分完全相同。
+3.2.3.vfork函数
+	#include<sys/types.h>
+	#include<unistd.h>
+	pid_t vfork(void);函数的返回与fork函数相同。
+	fork要复制父进程的数据段；
+	而vfork则不需要完全复制父进程的数据段，在子进程没有调用exec或exit时，子进程与父进程共享数据段。
+	在vfork调用中，子进程先运行，父进程挂起。
+	vfork创建出来的并不是真正意义上的进程，而是一个线程。
+	vfork创建出来的子进程还会导致父进程挂起，除非子进程执行了exit或execve才会唤起父进程。
+3.2.4.clone函数
+	int clone(int (*fn)(void *arg),void *chile_stack,int flags,void *arg);
+3.3.进程执行
+	多数情况下，新的进程复制出来以后一定会和父进程分道扬镳，执行自己的程序。
+	Linux使用exec函数族来执行新的程序，以使新的子进程完全代替原有的进程。
+	exec函数族有6个函数：
+	#include<unistd.h>
+	int execl(const char *pathname,const char *arg,...);
+	int execlp(const char *filename,const char *arg,...);
+	int execle(const char *pathname,const char *arg,...,char *const envp[]);
+
+	int execv(const char *pathname,char *const argv[]);
+	int execvp(const char *filename,char *const argv[]);
+	int execve(const char *pathname,char *const argv[],char *const envp[]);
+	函数名中含有字母l的，参数个数不定，参数由所调用程序的命令行参数列表组成，最后一个NULL表示结束。
+	函数名中含有字母v的，使用一个字符串数组指针argv指向参数列表。相当于将参数列表放到数组中。
+	函数名中含有字母p的，函数可以自动在环境变量PATH指定的路径中搜索要执行的程序。第一个参数是一个文件名。
+	函数名中含有字母e的，第一个参数是程序路径，第三个参数指定环境变量。环境变量存放在envp所指向的字符串数组中，必须以NULL结束。
+	事实上只有execve才是真正意义上的系统调用，其他的都是在此基础上经过包装的库函数。
+	exec函数族的函数执行成功后不会返回。只有调用失败了才会返回-1，从原程序的调用点接着向下执行。
+	在Linux执行新程序：每当有进程认为自己不能为系统和用户做出任何贡献了，他就可以发挥最后一点余热，调用任何一个exec，让自己以新的面貌重生；
+	或者，如果一个进程想执行另一个程序，它就可以fork出一个新进程，然后调用任何一个exec。
+	#include<unistd.h>
+	#include<stdio.h>
+	int main(void)
+	{
+		char *envp[] = {"PATH=/home","USER=biaomd","STATUS=testing",NULL};
+		char *argv_execv[] = {"echo","excuted by enecv",NULL};
+		char *argv_execvp[] = {"echo","excuted by enecvp",NULL};
+		char *argv_execve[] = {"env",NULL};
+		int ret = 0;
+		if(fork() == 0)
+		{
+			if((ret = execl("/bin/echo","echo","excuted by execl",NULL)) == -1)
+				perror("error on execl");
+		}
+		if(fork() == 0)
+		{
+			if((ret = execlp("echo","echo","excuted by execlp",NULL)) == -1)
+				perror("error on execlp");
+		}
+		if(fork() == 0)
+		{
+			if((ret = execle("/usr/bin/env","env",NULL,envp)) == -1);
+				perror("error on execle");
+		}
+		if(fork() == 0)
+		{
+			if((ret = execv("/bin/echo",argv_execv)) == -1)
+				perror("error on execv");
+		}
+		if(fork() == 0)			
+		{
+			if((ret = execvp("echo",argv_execvp)) == -1)
+				perror("error on execvp");
+		}
+		if(fork() == 0)
+		{
+			if((ret = execve("/usr/bin/env",argv_execve,envp)) == -1)
+				perror("error on execve");
+		}
+		return 0;
+	}
+
+	#include<stdio.h>
+	void perror(const char *s);将上一个函数发生错误的原因输出到标准错误。
+	在编程过程中如果用到了exec函数族，一定要记得使用错误判断语句。
+3.4.进程消亡
+3.4.1.进程执行完自己的任务后，要释放所占有的系统资源。
+	进程结束自己的生命有两种方式：自然退出，exit(),_exit()函数；异常终止，abort()函数。
+3.4.2.exit和_exit函数
+	#include<stdlib.h>
+	void exit(int status);
+	无论在程序中的什么位置，只要执行到exit系统调用，进程就会停止剩下的所有操作，清除PCB并终止本进程的运行。
+	#include<unistd.h>
+	void _exit(int status);
+	status参数：0表示没有意外的正常结束；非0值表示出现了错误。
+	_exit立即进入内核；exit则先执行一些清除处理，然后进入内核。
+	如果想保证数据的完整性，就一定要使用exit函数。
+3.4.3.abort函数
+	#include<stdlib.h>
+	void abort(void);导致进程的异常终止。
+3.5.进程等待
+3.5.1.进程调用exit以后，并非立即消失，而是留下一个僵尸进程。
+	进程一旦调用了wait，就立即阻塞自己，由wait自动分析是否当前进程的某个子进程已经退出，
+	如果找到一个僵尸进程，wait就会收集这个子进程的信息，并把它彻底销毁后返回；
+	如果没有找到一个这样的子进程，wait会一直阻塞在这里，直到有一个出现为止。
+	#inlcude<sys/types.h>
+	#include<sys/wait.h>
+	pid_t wait(int *status);
+	如果成功，wait会返回被收集子进程的进程ID；如果调用进程没有子进程，调用就会失败，wait返回-1。
+3.5.2.waitpid函数
+	#include<sys/types.h>
+	#include<sys/wait.h>
+	pid_t waitpid(pid_t pid,int *status,int options);
+	可以用来等待指定的进程，也可以使进程不挂起而立刻返回。
+	pid用来指定所等待的进程：
+	pid > 0 只等待进程ID为pid的子进程；
+	pid = -1 等待任何一个子进程退出，此时，等价与wait；
+	pid = 0 等待同一个进程组中的任何子进程
+	pid < -1 等待一个指定进程组中的任何子进程，这个进程组ID等于pid的绝对值。
+	options提供一些额外的选项：
+	WNOHANG 即使没有子进程退出，它也会立即返回，不会永远的等下去
+	WUNTRACED 会涉及一些跟踪调试方面的知识。
+	waitpid返回值：
+	正常返回时，waitpid返回收集到的子进程的进程ID；
+	如果设置了WNOHANG，而调用中waitpid发现没有已退出的子进程可收集，则返回0；
+	如果调用中出错，则返回-1.
+3.5.3.wait3和wait4函数
+	#include<sys/types.h>
+	#inlcude<sys/wait.h>
+	pid_t wait3(int *status,int options,struct rusage *rusage);
+	pid_t wait4(pid_t pid,int *status,int options,struct rusage *rusage);
+	增加了可以获取进程及其子进程所占用resources的情况功能。
+	如果rusage为NULL,则关于子进程执行时的相关信息将被写入该指针指向的缓冲区。
+3.6.system函数
+	在shell命令行中执行linux命令，其实也是调用程序通过创建一个进程来实现的。
+	用户可以使用它在自己的程序中调用系统提供的各种命令。
+	#inlcude<stdlib.h>
+	int system(const char *cmdstring);
+	system函数的实现通过调用fork、exec、waitpid函数来完成的。
+	如果fork失败或者waitpid出错，则system返回-1；
+	如果exec失败，表示不能执行shell，则返回值如同shell执行了“exit(127)”，即返回值为127；
+	如果都执行成功，system返回值是shell的终止状态。
+	system(NULL);返回值为1表示当前Linux系统下system是可用的。
+4.进程组与会话
+	#include<sys/types.h>
+	#include<unistd.h>
+	pid_t getpgrp(void);返回调用进程的进程组ID
+
+	每个进程组都有一个组长进程leader，组长进程的进程id等于其进程组id。
+	组长进程可以创建一个进程组，也可以创建该组中的进程，然后终止。
+	只要在某个进程组中有一个进程存在，则该进程组就存在。
+
+	#include<sys/types.h>
+	#include<unistd.h>
+	int setpgid(pid_t pid,pid_t pgid);
+	函数将进程pid所在的进程组id设置为pgid。
+	如果这两个参数相等，则由pid指定的进程变成进程组组长。
+	如果pid为0，则使用调用者的进程id
+	成功返回0，出错返回-1.
+
+	#include<sys/types.h>
+	#include<unistd.h>
+	pid_t setsid(void);
+	进程调用setsid函数可以建立一个新的会话。若成功则返回进程组ID，出错返回-1.
+	若调用此函数的进程不是一个组长进程：
+		此进程变成新会话的首进程；
+		此进程成为一个新进程组的组长进程
+	若此调用进程已经是一个进程组的组长，则此函数返回出错。
+5.进程调度机制
+5.1.Linux系统采用抢占调度方式
+	对于当前运行的进程而言，当有更紧急的进程到来时，系统将剥夺当前进程使用处理机的权利。
+	Linux还采用时间片轮转的调度算法
+5.2.两种优先级
+	静态优先级static priority
+		由用户赋给实时进程，范围是1--99.调度程序从不改变他
+	动态优先级dynamic priority
+		只应用与普通进程，实质上他是基本时间片与当前时期内的剩余时间片之和。
+5.3.将进程分为两种类型：
+	I/O消耗型和CPU消耗型
+5.4.另一种分类
+5.4.1.交互式进程：这些进程经常与用户进行交互，需要花很多时间等待操作
+	批处理进程：这些进程不必与用户交互，因此他们经常在后台运行
+	实时进程：这些进程有很强的调度需要，觉不会被低优先级的进程阻塞。
+5.4.2.在每个进程的进程描述符（task_struct结构）中有四项：
+	policy			
+	priority		代表了进程的基本时间片（或基本优先级）
+	counter			代表进程的时间片用完之前剩余的CPU时间的节拍
+	rt_priority		代表进程的实时优先级
+5.4.3.对于普通进程，采用动态优先调度。
+		进程创建时，priority被赋予一个初值，在0--70之间，同时counter的值也是这个数字。
+		在进程运行时，counter不断减小，priority不变。
+		当counter变为0的时候，只有所有处于可运行状态的普通进程的时间片都用完时，counter才会被重新赋值。
+		linux的时间单位是“时钟滴答”，linux为20ms。priority为20即20*10ms=200ms。
+	对于实时进程，采用两种调度策略，先来先服务调度和时间片轮转调度。
+		实时进程的counter只是用来表示该程序的剩余时间片，并不作为衡量它是否值得运行的标准。
+		rt_priority是用来衡量实时进程是否应该被运行的。
+	三种调度策略
+		SCHED_FIFO:先入先出的实时调度策略。调度程序将CPU指定给某个进程，除非有更高优先级的进程，否则该进程将一直占用CPU。
+		SCHED_RR:循环轮转的调度策略。调度程序将CPU指定给某个进程，时间片运行完在选择其他进程调度。
+		SCHED_NORMAL:普通的基于运行时间和等待时间。
+
+
+
+×线程管理
+线程是进程内独立的一条运行路线，是处理器调度的最小单元，也成为轻量级进程。
+线程可以对进程的内存空间和资源进行访问，并与同一进程中的其他线程共享这些资源。
+目前Linux中最流行的线程机制是POSIX 1003.1C “pthread”标准接口；按照其标准编写的程序与LinuxThreads库链接可支持多线程。
+在编译链接时要使用 "-lpthread" 选项；要链接库目录下的libpthread.a或libpthread.so文件。
+Linux内核的源码中并不包含pthread的定义
+1.创建线程
+1.1.线程创建函数
+	int pthread_create(pthread_t *thread,const pthread_attr_t *attr,
+						void *(*start_routine)(void*),void *arg);
+	typedef unsigned long int pthread_t;
+	第一个参数：指向线程标识符的指针。返回新创建的线程的ID。
+	第二个参数：用来设置线程的属性，这个参数通常被设为空指针。
+	第三个参数：线程运行函数的起始地址
+	第四个参数：传递给运行函数的参数，arg可以作为任意类型的参数传递给start_routine()函数
+	当线程创建成功时，函数返回0，若不为0说明创建失败。
+	新创建的线程运行由第三、四个参数确定的函数，原来的线程则继续运行下一行代码。
+	pthread_create()创建的线程并不具备与主线程相同的执行序列，而是使其运行参数start_routine(arg)所指向的函数。
+1.2.获取线程ID函数
+	pthread_t pthread_self(void);一个线程可以在创建后使用pthread_self函数调用来获取自己的线程ID。
+	#include<stdio.h>
+	#include<stdlib.h>
+	#include<unistd.h>
+	#include<pthread.h>
+	int *thread_function(void *arg)
+	{
+		    pthread_t newthid;
+		    newthid = pthread_self();
+		    printf("new thread,id: %lu\n",newthid);
+		    return NULL;
+	}
+
+
+	int main(void)
+	{
+		    int ret;
+		    pthread_t thid;
+		    printf("main thread,id: %lu\n",pthread_self());
+		    ret = pthread_create(&thid,NULL,(void *)thread_function,NULL);
+		    if(ret!=0)
+		    {
+		            printf("create thread error\n");
+		            exit(1);
+		    }
+		    printf("return new thread id:%lu\n",thid);
+			sleep(1);	//主线程非常简单，占用cpu的时间非常简单，使用sleep使主线程休眠，新的线程才可能被调度执行
+			return 0;
+	}
+	使用命令进行编译	gcc x.c -lpthread -o x
+2.线程等待
+	int pthread_join(pthread_t thread,void **thread_return);
+	将调用pthread_join的线程挂起，直到参数thread所代表的线程终止；相当于进程用来等待子进程的wait函数。
+	第一个参数指定了将要等待的线程，他就是pthread_creat函数返回的线程标识符；
+	第二个参数是一个指针，它指向另外一个指针，之后再指向线程的返回值。
+	一个线程不能被多个线程等待。
+3.线程终止
+3.1.三种途径
+	第一种：线程执行完毕后，通过return()或exit()从线程函数主动返回
+	第二种：通过thread_exit()函数使线程退出
+	第三种：被其他线程调用pthread_cancel()函数终止
+3.2.1.第一种
+	主线程中如果从main函数返回或是调用了return()函数退出主线程，则整个进程终止
+3.2.2.第二种
+	void pthread_exit(void *retval);
+	函数用来终止某个线程。
+	参数是函数的返回代码，只要pthread_join()中的第二个参数thread_return不是NULL，pthread_exit函数中的参数的值就会传给thread_return。
+3.2.3.线程的编程
+	pthread_create函数、pthread_join函数、pthread_exit函数
+	#include<stdio.h>
+	#include<unistd.h>
+	#include<string.h>
+	#include<stdlib.h>
+	#include<pthread.h>
+	char buffer[] = "hello world";
+	void thread_function(void *arg)
+	{
+		    printf("new thread is running,argument is %s\n",(char *)arg);
+		    strcpy(buffer,"bye");
+		    pthread_exit("i like linux c program");
+	}
+	int main(void)
+	{
+		    pthread_t thread_id;
+		    int ret;
+		    void *thread_result;
+		    ret = pthread_create(&thread_id,NULL,(void *)thread_function,(void *)buffer);
+		    if(ret != 0)
+		    {
+		            printf("thread create is error\n");
+		            exit(1);
+		    }
+		    printf("main thread is running\n");
+		    printf("before new thread running,the buffer content is %s\n",buffer);
+		    ret = pthread_join(thread_id,&thread_result);
+		    if(ret != 0)
+		    {
+		            printf("thread join is error\n");
+		            exit(1);
+		    }
+		    printf("main waiting new thread,it returns %s\n",(char *)thread_result);
+		    printf("new thread returned,now the buffer is %s\n",buffer);
+		    return 0;
+	}
+4.线程属性
+4.1.在pthread_create()函数中，第二个参数是用来设置线程属性。
+(?)....线程。。。
+
+5.线程同步
+5.1.所谓同步，指线程等待某个事件的发生，只有当等待的事件发生后线程才能继续执行，否则线程被挂起并放弃处理器。
+	常用的机制：互斥锁、条件变量、信号量。
+5.2.互斥锁
+	用简单的加锁方法控制对共享资源的原子操作。
+	原子操作：该操作绝不会在执行完毕前被任何其他任务或事件打断。他是最小的执行单位。
+	互斥锁用来保证一段时间内只有一个线程在执行一段代码。
+	这种共享资源或对象也称为临界资源。
+5.2.1.创建和销毁
+	Linux Threads中有两种方式创建互斥锁：静态方式、动态方式。
+(?)....线程。。。
+
+
+
+×基于文件描述符的I/O操作
+1.文件系统
+	文件提供了简单且一致的接口来处理系统服务与设备。
+	在Linux中所有的内容都被看成文件，所有的操作都归结为对文件的操作，操作系统可以像处理普通文件一样来使用磁盘文件、串口、键盘、显示器及其他设备。
+1.1.LINUX目录采用多级树形结构。根目录  / 
+	内核、shell、和文件结构一起构成了Linux的基本操作系统结构。他们使得用户可以运行程序、管理文件和使用系统。
+1.1.1文件类型
+	- 普通文件		d 目录文件		l 链接文件		b 块设备文件	
+	c 字符设备文件	p 管道文件		s 套接口文件
+	普通文件：计算机用户和操作系统用户存放数据、程序等信息的文件。
+	目录文件：文件系统中一个目录所包含的目录项组成的文件。
+	设备文件：为操作系统与I/O设备提供链接的一种特殊文件。分为字符设备文件、块设备文件。
+		/dev/console:代表系统控制台，出错和诊断信息通常会被发送到这个设备；
+		/dev/tty:远程控制中断的一个假名，允许程序直接向用户输出信息。
+		/dev/null:空设备，写向这个设备的数据都将被丢弃。
+		字符设备：顺序的数据流设备，读/写是按字符进行的。
+		块设备：随机存取设备，读/写是按块进行的。使用缓存区来存放暂时的数据。
+	链接文件：提供了共享文件的一种方法。使用链接文件可以访问普通文件、目录文件、
+	管道文件：主要用于在进程间传递数据。
+	套接口文件：用于不同计算机进程间的通信。
+2.文件I/O操作
+	对于内核而言，所有打开的文件都由一个非负整数进行描述，称为文件描述符。
+	文件描述符的有效范围是0--OPEN_MAX.一般，每个进程最多可以打开0--63个文件。
+	0与标准输入，1与标准输出，2与标准出错相结合。
+	STDIN_FILENO	STDOUT_FILENO	STDERR_FILENO
+2.1.open()函数
+	#include<sys/type.h>
+	#include<sys/stat.h>
+	#include<fcntl.h>
+	int open(const char *pathname,int flags);
+	int open(const char *pathname,int flags,mode_t mode);
+	成功返回被打开文件的文件描述符，出错返回-1
+	若不指定mode则，被打开文件必须存在；若指定mode，并且要打开文件不存在，则先创建它，在打开，mode表示所创建文件的权限。
+	第一个参数：字符串指针，指向需要打开或创建文件的绝对路径名或相对路径名；
+	第二个参数：描述文件的打开方式。
+	第三个参数：用于指定所创建文件的权限。
+	flags的取值：fcntl.h
+		O_RDONLY	只读方式打开文件
+		O_WRONLY	只写
+		O_RDWR		读写
+		以上三个值，应当只指定其中一个，其他常数可选。
+		O_CREAT		若所打开文件不存在则创建，使用该项，需要使用第三个参数
+		O_TRUNC		若文件存在，为只读或只写方式打开，将其长度节短为0
+	mode的取值：fcntl.h
+		S_IRWXU = S_IRUSR | S_IWUSR | S_IXUSR,文件所有者的读、写、执行权限，各个相应权限位的逻辑和。
+		S_IRWXG = S_IRGRP | S_IWGRP | S_IXGRP,文件所有者同组用户
+		S_IRWXO = S_IROTH | S_IWOTH | S_IWOTH,其他组用户
+2.2.creat()函数
+	#include<sys/types.h>
+	#include<sys/stat.h>
+	#include<fcntl.h>
+	int creat(const char *pathname,mode_t mode);
+	creat函数是以只写方式打开所创建的文件。
+2.3.close()函数
+	#include<unistd.h>
+	int close(int fd);
+	函数调用将终止一个文件描述符fd与文件之间的关联。
+	成功返回0，失败返回-1.
+3.文件的定位
+	每个已打开的文件都有一个与其相关的“当前文件位移量”，是一个非负整数，度量从文件开始处计算的字节数。
+	读、写操作都是从当前文件位移量处开始。
+	当打开一个文件时，除非指定O_APPEND，否则位移量都设置为0.
+3.1.lseek()函数
+	#include<sys/types.h>
+	#include<unistd.h>
+	off_t lseek(int fd,off_t offset,int whence);
+	typedef long __kernel_off_t;
+	typedef __kernel_off_t off_t;
+	若成功，函数返回新的文件位移量，失败返回-1.
+	参数fd表示已打开文件的描述符；
+	参数offset表示位移量的大小，单位为字节；
+	参数whence表示对参数offset的解释。
+	whence的取值：
+		SEEK_SET	将该文件的位移量设置为距文件开始处offset字节
+		SEEK_CUR	当前字节加offset字节
+		SEEK_END	文件长度加offset字节
+	测试lseek的返回值时应当谨慎，不要测试它是否小于0.
+4.文件的读/写
+4.1.read()函数
+	#include<unistd.h>
+	ssize_t read(int fd,void *buf,size_t count);
+	typedef int __kernel_ssize_t;
+	typedef __kernel_ssize_t ssize_t;
+	若成功，返回读取到的字节数，出错返回-1；
+4.2.write()函数
+	#include<unistd.h>
+	ssize_t write(int fd,void *buf,size_t count);
+	成功，函数返回已写入的字节数，出错返回-1.
+5.文件属性操作
+5.1.改变文件访问权限
+	#include<sys/types.h>
+	#include<sys/stat.h>
+	int chmod(const char *pathname,mode_t mode);
+	int fchmod(int fd,mode_t mode);
+	成功返回0，失败返回-1.
+	chmod()函数在指定的文件上操作；	
+	fchmod()函数对已打开的文件进行操作。
+	为了改变一个文件的访问许可权限，该进程必须具有超级用户root许可权。
+5.2.改变文件所有者
+	#include<sys/types.h>
+	#include<unistd.h>
+	int chown(const char *pathname,uid_t owner,gid_t group);
+	int fchown(int fd,uid_t owner,gid_group);
+	int lchown(const char *pathname,uid_t owner,gid_t group);
+	typedef unsigned short __kernel_uid_t;
+	typedef __kernel_uid_t uid_t;
+	typedef unsigned short __kernel_gid_t;
+	typedef __kernel_gid_t gid_t;
+	chown函数：修改指定文件的所有者
+		参数pathname指定要修改文件的绝对路径名或相对路径名；
+		参数owner表示新赋予该文件的所有者标识号；
+		参数group表示新赋予该文件的组标号。
+	fchown函数：修改已打开文件的所有者
+		参数fd为文件描述符
+	lchown函数：针对符号链接文件
+		lchown更改符号链接文件本身的所有者，而不是该符号链接所指向的文件。
+	调用这三个函数需要有超级用户权限。
+5.3.重命名
+	#include<stdio.h>
+	int rename(const char *oldname,const char *newname);
+	成功返回0，失败返回-1.
+	将oldname所指定的文件名称改为newname所指定的文件名称。
+	当oldname和newname指向同一个文件时，rename不做任何操作。
+	oldname指向普通文件时：
+		newname所示文件不存在：文件被成功重命名；
+		newname所示文件存在：newname指向普通文件才能成功，并且newname被删除；
+	oldname指向目录文件：
+		newname所示文件不存在：文件被成功重命名；
+		newname所示文件存在：newname指向目录文件才能成功，并且newname被删除；
+6.文件的其他操作
+6.1.返回文件信息函数
+	Linux系统中所有文件都有一个与之对应的索引节点，该节点中包含了文件的相关信息。
+	这些信息保存在stat结构体中。
+	#include<sys/types.h>
+	#include<sys/stat.h>
+	int stat(const char *pathname,struct stat *sbuf);
+	int fstat(int fd,struct stat *sbuf);
+	int lstat(const char *pathname,struct stat *sbuf);
+	成功返回0，失败返回-1.
+	参数sbuf是一个指针，指向stat结构，这些函数填写由sbuf指向的结构。
+	struct stat
+	{
+		mode_t st_mode;	//文件类型
+		nlink_t st_nlink;	//链接数		
+	}
+6.2.复制一个现存的文件描述符函数
+	#include<unistd.h>
+	int dup(int fd);
+	int dup2(int fd,int fd2);
+	成功返回新的文件描述符，失败返回-1.
+	使用户能够通过两个或者更多个不同的描述符来访问同一个文件。
+	通过管道在多个进程间进行通信时，这些函数将会很有用。
+6.3.改变已经打开文件的性质函数
+	#include<sys/types.h>
+	#include<unistd.h>
+	#include<fcntl.h>
+	int fcntl(int fd,int cmd);
+	int fcntl(int fd,int cmd,long arg);
+	成功，返回值依赖于参数cmd；失败返回-1.
+	很少用。
+6.4.更新文件内容函数
+	内核中设有缓冲存储器，当将数据写入文件时，通常该数据先由内核复制到缓存中；
+	如果缓存未满，则不将其排入输出队列；待其到达队首时，才进行实际的I/O操作；
+	这种方式叫“延迟写”。
+	减少了磁盘读/写次数，但却降低了文件内容的更新速度。
+	#include<unistd.h>
+	void sync(void);
+	int fsync(int fd);
+	成功返回0，失败返回-1.
+	sync函数将所有修改过的块的缓存排入写队列，然后就返回，不等待实际的I/O操作结束；
+	fsync函数只引用单个文件，等待I/O结束，然后返回。
+7.特殊文件的操作
+7.1.目录文件
+7.1.1.创建、删除目录
+	#include<sys/types.h>
+	#include<sys/stat.h>
+	int mkdir(const char *pathname,mode_t mode);
+	成功返回0，失败返回-1.
+	mkdir函数相当于shell命令“mkdir”，参数pathname作为新建子目录的名称。
+	对于目录文件通常至少设置一个执行许可权位，以允许存取该目录中的文件名。
+	#include<unistd.h>
+	int rmdir(const char *pathname);
+	成功返回0，失败返回-1.
+	用于删除一个空目录。
+	rmdir函数相当于shell命令“rmdir”;
+	参数pathname指定了将要删除的目录名。
+7.1.2.目录操作
+	在Linux中，与子目录操作有关的函数使用一个名为DIR的结构作为子目录处理操作的基础，
+	一个称为“子目录流”的指向这种结构的指针（DIR *）被用来完成各种普通的子目录操作。
+	#include<sys/types.h>
+	#include<dirent.h>
+	DIR *opendir(const char *pathname);
+	打开一个指定的目录。
+	成功返回一个指向DIR结构类型的指针，出错返回NULL.
+	#include<sys/types.h>
+	#include<dirent.h>
+	int closedir(DIR *dp);
+	关闭指定的目录。
+	成功返回0，失败返回-1.
+	参数dp指向要关闭的目录文件，由opendir调用时返回。
+	#include<sys/types.h>
+	#include<dirent.h>
+	struct dirent *readdir(DIR *dp);
+	读取指定的目录。
+	成功返回指向dirent结构的指针，若已在目录尾或出错则返回NULL.
+	参数dp指向要读取的目录。
+7.1.3.目录切换
+	每个进程都有一个当前工作目录，此目录是搜索所有相对路径名的起点。
+	当前工作目录是进程的一个属性，起始目录是登录名的一个属性。
+	#include<unistd.h>
+	int chdir(const char *pathname);
+	int fchdir(int fd);
+	更改当前工作目录。
+	成功返回0，失败返回-1.
+	#include<unistd.h>
+	char *getcwd(char *buf,size_t size);
+	获得当前工作目录的绝对用户名。
+	成功返回buf，失败返回NULL.
+	参数size为缓存的长度；
+	函数作用是把当前目录的名字写到给定的缓冲区buf中，
+	此缓冲区必须有足够的长度以容纳绝对路径名在加上一个null终止字符。
+	当一个应用程序需要在文件系统中返回其工作的起点时，
+	可以先调用getcwd函数先将当前工作目录保存起来，
+	在完成了处理之后，在将保存起来的路径名作为调用参数传递给chdir
+7.2.链接文件
+7.2.1.链接文件是指向一个现实存在的文件的链接。
+	链接文件分为硬链接hard link和符号链接symbolic link
+7.2.2.硬链接
+	#include<unistd.h>
+	int link(const char *pathname1,const char *pathname2);
+	为现存的文件创建一个硬链接文件。
+	成功返回0，失败返回-1.
+	函数将创建一个新的目录项pathname2，它指向现存文件pathname1.
+	若pathname2存在，则返回出错。
+	硬链接要求pathname1和pathname2所指向的路径名应在同一个文件系统中。
+	#include<unistd.h>
+	int unlink(const char *pathname);
+	删除一个现存文件的硬链接。
+	成功返回0，失败返回-1.
+	
+	关闭一个文件时，内核首先检查使该文件打开的进程计数，
+	如果计数达到0，则内核检查其链接计数，如果也是0，就删除该文件的内容。
+7.2.3.符号链接
+	符号链接是对一个文件的间接指针。
+	对符号链接及它指向什么没有文件系统限制，任何用户都可创建。与硬链接不同。
+	#include<unistd.h>
+	int symlink(const char *actualpath,const char *sympath);
+	成功返回0，失败返回-1。
+	函数创建了一个指向actualpath的新目录项sympath。
+	#include<unistd.h>
+	int readling(const char *pathname,char *buf,int bufsize);
+	打开一个链接并获取该链接的名字。
+	成功返回0，出错返回-1.
+	参数pathname为所要查看的链接；
+	获取的相关信息将存储在buf所指向的缓冲区中；
+	参数bufsize表示该缓冲区的大小。
+7.3.管道文件
+	管道文件用于不同进程间的数据和信息传递。
+	一个进程将要传递的数据或信息写入管道的一端，另一个进程从管道的另一端取得所需的数据或信息。
+	#include<stdio.h>
+	int pipe(int fd[2]);
+	创建一个管道文件。
+	成功返回0，失败返回-1.
+	参数fd是一个长度为2的文件描述符数组。
+	fd[0]是读出端的文件描述符；fd[1]是写入端的文件描述符。
+	管道的关闭使用的是基于文件描述符的close()函数；
+	管道的读/写使用也是基于文件描述符的read()和write()函数。
+7.4.设备文件
+	在Linux系统中，所有的外部设备都被看做目录/dev下的一个文件。
+
+
+
+×基于流的I/O操作
+1.流I/O是由C语言的标准函数库提供的，也成为标准I/O。
+	基于流的I/O操作是建立在流、缓存的概念之上的。
+	当标准I/O库打开或创建一个文件时，已使一个流与一个文件相结合。
+	即基于流的I/O操作使用文件指针(FILE *)来进行标识。
+	在使用I/O流时，有三个流会自动打开：标准输入、标准输出、标准出错(unistd.h)：
+		STDIN_FILENO	STDOUT_FILENO	STDERR_FILENO.
+	而在基于流的I/O操作中，通过预定义文件指针stdin、stdout、stderr来引用标准输入、输出、出错(stdio.h)。
+	这里的“流”是与底层的文件描述符相对应的事物，C++中的流（iostreams）是一个用于输入/输出操作的类。
+	FILE对象是在“stdio.h”头文件中定义的一个结构体；
+		struct _IO_FILE{};
+		typedef struct _IO_FILE FILE;
+2.标准I/O提供一下三种类型的缓存：
+	在"stdio.h"中
+	全缓存	_IO_FULL_BUF
+	行缓存	_IO_LINE_BUF
+	无缓存	_IO_UNBUFFERED
+	将文件流对象中的缓存标志与宏做逻辑与操作，可判断为何种缓存类型。
+	stdin->_flags & _IO_FULL_BUF	若为真则属于全缓存类型。
+	stdin->_IO_buf_end - stdin->_IO_buf_base	缓存的末尾地址减去起始地址，可得到相应缓存区的大小。
+2.1.全缓存：直到缓存区被填满，才调用系统I/O函数。
+2.2.行缓存：直到遇到换行符"\n"才调用系统I/O库函数。
+2.3.无缓存：没有缓冲区，数据会立即读入或者输出到外存文件和设备上。
+3.设置缓存
+3.1.缓存具有自己的属性
+	每当打开一个流时，就开辟了所需的缓冲区，系统通常会赋予其中一个默认的属性值。
+	#include<stdio.h>
+	void setbuf(FILE *fp,char *buf);
+		将缓冲区设置为全缓存或无缓存。
+		buf为指向缓冲区的指针，当buf指向一个真实的缓冲区地址时，函数将缓冲区设置为全缓存；
+		当buf为NULL时，设定为无缓存。
+	void setbuffer(FILE *fp,char *buf,size_t size);
+		与setbuf函数类似，可以自行指定缓冲区的大小。
+	void setlinebuf(FILE *fp);
+		将缓冲区设定为行缓存。
+	int setvbuf(FILE *fp,char *buf,int mode,size_t size);
+		参数mode指定缓冲区的类型。
+		_IOFBF全缓存
+		_IOLBF行缓存
+		_IONBF无缓存
+4.流的打开与关闭
+4.1.标准输入、输出、出错这三个流是由进程自动打开和关闭的。
+4.1.流的打开
+	#include<stdio.h>
+	FILE *fopen(const char *pathname,const char *type);
+	FILE *freopen(const char *pahtname,const char *type,FILE *fp);
+		fopen函数打开一个文件名由pathname指示的文件；
+		freopen函数在一个特定的流上打开一个指定的文件，若该流已经打开，则先关闭该流。
+	#include<sys/types.h>
+	#include<sys/stat.h>
+	#include<fcntl.h>
+	FILE *fdopen(int fd,const char *type);
+		取一个现存的文件描述符，并使一个标准的I/O流与该描述符相关联；
+		此函数常基于由创建管道或网络通信管道函数所获得的文件描述符。
+		以上函数成功返回文件指针，失败返回NULL。并将错误代码放到errno变量中。
+		#include<errno.h>
+		printf("errno is: %d\n",errno);//可以查看errno的值。
+		参数type指定了I/O流的读写方式，type取值：
+			r	文本文件		NO创建文件	NO清空文件	只读		读写开始位置：文件开头
+			r+	～			～			～			读写		～
+			w	～			～			～			只写		～
+			w+	～			YES			YES			读写		～
+			a	～			YES			YES			只写		文件结尾
+			a+	～			YES			YES			读写		文件结尾
+
+			rb	二进制文件	NO创建文件	NO清空文件	只读		读写开始位置：文件开头
+			rb+	～			～			～			读写		～
+			wb	～			～			～			只写		～
+			wb+	～			YES			YES			读写		～
+			ab	～			YES			YES			只写		文件结尾
+			ab+	～			YES			YES			读写		文件结尾
+
+			a表示追加写，即从文件结尾开始读写；
+			b表示流以二进制文件的形式打开，在Linux系统下二进制文件和文本文件都是普通文件，是字节流，内核不区分二者。
+4.2.流的关闭
+	#include<stdio.h>
+	int fclose(FILE *fp);
+		成功返回0，失败返回EOF。
+		EOF在stdio.h中的宏，值是-1.
+		fclose函数将缓冲区内最后剩余的数据输出到磁盘文件中，并释放文件指针和有关的缓冲区。
+		如果在本地关闭一个文件，fclose()函数可以不检查返回值；
+		但是如果在网络环境中关闭一个文件，则检查fclose()函数的返回值以判断文件是否关闭成功。
+5.流I/O操作
+5.四种不同的方式来进行流的I/O操作。
+	字符I/O：每次读写一个字符数据，如果流带缓存，由标准I/O函数处理所有缓存。
+	行I/O：当输入的内容遇到“\n”换行符时，将换行符之前的内容送到缓冲区。
+	直接I/O：输入输出操作以记录为单位进行读写，每个对象具有指定的长度。
+	格式化I/O：入printf()、scanf()。
+5.1.字符I/O
+5.1.1字符的输入
+	#include<stdio.h>
+	int getc(FILE *fp);
+	int fgetc(FILE *fp);
+	int getchar(void);
+	成功返回读入字符的值，若处于文件尾端或出错返回EOF。
+	getc()在头文件中是以宏定义的形式实现的。
+	fgetc()一定是一个函数，可以得到其地址。
+	无论是出错还是到达文件尾端，这三个函数都返回相同的值,因此调用以下函数：
+	#include<stdio.h>
+	int ferror(FILE *fp);
+	int feof(FILE *fp);
+	若条件为真返回非零；否则返回0.
+	当读入字符出错时，ferror()条件为真；
+	当位于文件尾时，feof()条件为真。
+	为每个流保持了两个标识：出错标志和文件结束标志；
+	#include<stdio.h>
+	void clearer(FILE *fp);
+	调用clearer函数可以清除这两个标志。
+	#include<stdio.h>
+	int ungetc(int c,FILE *fp);
+	成功返回要送入流中的字符的值，失败返回EOF。
+(?)	ungetc函数用于将读入的字符再推回流中，被推回的字符将在下一次执行读入操作时被读入。（？）
+5.1.2.字符的输出
+	#include<stdio.h>
+	int putc(int c,FILE *fp);
+	int fputc(int c,FILE *fp);
+	int putchar(int c);
+	成功返回c，失败返回EOF。
+	putc函数可被实现为宏，fputc函数不能实现为宏。
+	putchar(c);	等同于	putc(c,stdout);	或者	fputc(c,stdout);
+5.2.行I/O
+5.2.1.行的输入
+	#include<stdio.h>
+	char *fgets(char *buf,int n,FILE *fp);
+	char *gets(char *buf);
+	若成功返回缓冲区的首地址，若处于文件尾或出错返回NULL.
+	参数buf指向存放读入串的缓冲区。
+	fgets函数：如果在n-1个字符内未遇到换行符，则只读入n-1个字符，最后一个字节存放“\0”。
+	gets函数：从标准输入读取一行字符串并将其存入一个缓冲区，但不存"\n".
+		用户无法指定一次最多能输入多少字节的内容，因此，使用gets函数接收用户输入的字符串时会出现问题。
+5.2.2.行的输出
+	#include<stdio.h>
+	int fputs(const char *buf,FILE *fp);
+	int puts(const char *str);
+	成功返回输出的字节数，失败返回-1.
+	函数会输出“\n”；但不会输出字符串的结束符"\0".
+(?)	Segmentation fault (core dumped)
+5.3.直接I/O
+5.3.1.执行二进制I/O操作
+	如果输入数据中包含null字节或换行符"\n"，则fgets()不能正确工作，需使用直接I/O。
+	#include<stdio.h>
+	size_t fread(void *ptr,size_t size,size_t nmemb,FILE *fp);
+	size_t fwrite(const void *ptr,size_t size,size_t nmemb,FILE *fp);
+	参数ptr指向存放数据缓冲区的指针；
+	参数size表示一个记录块的大小；
+	nmemb表示读写记录块的个数；
+	若成功返回读写的记录块个数(不是字节数),出错返回-1，当接近文件尾时，函数的返回值可能会小于nmemb，可能是0.
+	记录块可以是一个字符，也可以是一个数组、一个结构体，还可以是用户指定的任意缓冲区。
+	使用直接I/O只能用于读写在同一系统上的数据。
+(?)	warning: no loadable sections found in added symbol-file system-supplied DSO at 0x7ffff7ffa000
+5.4.格式化I/O
+5.4.1.格式化输出
+	#include<stdio.h>
+	int printf(const char *format,...);
+		参数format是一个字符指针，使用描述输出格式；
+	int fprintf(FILE *fp,const char *format,...);
+		向指定的流中输出数据；
+		参数fp指向要进行输出的流；
+	以上两个函数若成功返回实际输出的字符数，失败返回负值。
+	int sprintf(char *str,const char *format,...);
+		向指定的流中输出一个字符串；
+		参数str是字符串指针，指向要输出的缓冲区；
+	int snprintf(char *str,size_t size,const char *format,...)
+		参数size设定缓冲区的大小；
+	以上两个函数若成功返回实际存入缓冲区的字符数，失败返回负值。
+5.4.2.格式化输入
+	#include<stdio.h>
+	int scanf(const char *format,...);
+		从标准输入流中输入数据；
+	int fscanf(FILE *fp,const char *format,...);
+		从一个指定的流中输入数据，参数fp指定该流；
+	int sscanf(char *str,const char *format,...);
+		从一个字符串中输入数据，参数str指定该字符串；
+	以上三个函数若成功返回指定的输入项数，出错或在任务变换前已至文件尾端则返回EOF。
+
+
+
+×套接字编程
+1.套接字Socket是一种支持跨网络的、运行于不同机器上的进程之间进行通信的手段。
+	套接字可以像其他普通文件一样由文件描述符来进行标识。
+	套接字主要有以下三种类型：
+		流套接字(SOCK_STREAM):也称为TCP套接字，它定义了一种可靠的面向链接的服务。
+		数据报套接字(SOCK_DGRAM):也称为UDP套接字，它定义了一种无连接的服务。
+		原始套接字(SOCK_RAW):是没有经过处理的IP数据包，可以根据自己程序的要求进行封装。
+	在一台计算机中，端口号和进程之间是一一对应的关系，所以，使用端口号和网络地址的组合就能唯一确定整个网络中的一个网络进程。
+		端口号的有16位。
+2.套接字数据结构
+	把网络地址和端口号信息放在一个结构体中，就是套接字地址结构。
+	每个协议族都定义了自己的套接字地址结构。
+2.1通用套接字<sys/socket.h>
+	struct sockaddr
+	{
+		sa_family_t sa_family;
+		char sa_data[14];
+	};
+	typedef unsigned short sa_family_t;
+	这个结构已不再使用。
+2.2.IPv4套接字<netinet/in.h>
+	struct sockaddr_in
+	{
+		unsigned short sin_len;			//ipv4地址长度
+		sa_family_t sin_family;			//通信地址类型
+		unisgned short int sin_port;	//16位tcp或udp端口号
+		struct in_addr sin_addr;		//要访问的ip地址
+		unsigned char sin_zero[8];		//未使用的字段，填充为0
+	};
+	struct in_addr
+	{
+		uint32_t s_addr;
+	};
+	POSIX.1 中的数据类型：
+		int8_t			带符号8位整数					<sys/types.h>
+		uint8_t			无符号8位
+		int16_t			带符号16位
+		uint16_t		无符号16位
+		int32_t			带符号32位
+		uint32_t		无符号32位
+		sa_family_t		地址结构的地址族
+		socklen_t		地址结构的长度，一般为uint32_t
+		in_port_t		端口号，一般为uint16_t			<netinet/in.h>
+		in_addr_t		v4地址，一般为uint32_t			<netinet/in.h>
+	套接字通信地址类型：AF	Address Family
+		include/linux/socket.h
+		ipv4对应的值为AF_INET
+		ipv6对应的值为AF_INET6
+2.3.ipv6套接字<netinet/in.h>
+	struct sockaddr_in6
+	{
+		unsigned short int sin6_len;	//ipv6地址长度
+		short int sin6_family;			//通信地址类型
+		in_port_t sin6_port;			//端口号
+		uint32_t sin6_flowinfo;			//低24位是流量标号，然后是4位的优先级标志，剩下4位保留
+		struct in6_addr sin6_addr;		//ipv6地址
+	};
+	struct in6_addr
+	{
+		unsigned long s6_add;
+	}
+3.基础函数
+3.1.主机字节序与网络字节序
+	小端模式：内存的低地址存储数据的低字节，高地址存储数据的高字节；
+	大端模式：内存的高地址存储数据的低字节，低地址存储数据的低地址。
+	在网络协议中，除了多字节数据之外采用的都是网络字节序。
+	网络字节序使用的是大端模式。
+3.1.1.排序函数
+	#include<netinet/in.h>
+	uint32_t htonl(uint32_t hostlong);		//host to network
+	uint16_t htons(uint16_t hostshort);
+	以上两个函数，返回网络字节序。
+	uint32_t ntohl(uint32_t netlong);
+	uint16_t ntohs(uint16_t netshort);
+	以上两个函数，返回主机字节序。
+3.2.字节操作函数
+	在套接字编程中，需要一起操作结构体中的某些字节。
+	#include<strings.h>
+	void bzero(void *dest,size_t nbytes);
+		将从dest指定的起始地址起，长度为nbytes字节的内存段设置为0;。
+	void bcopy(const void *src,void *dest,size_t nbytes);
+		复制内存的数据，src指向源地址，dest指向目的地址，nbytes表示复制的长度。
+	int bcmp(const void *ptr1,const void *ptr2,size_t nbytes);
+		比较内存数据的大小；函数的比较结果取决于第一个不想等的字节；
+		ptr1>ptr2，返回大于零的值；
+		ptr1=ptr2，返回零；
+		ptr1<ptr2，返回小于零的值。
+	以b开头的函数由任何支持套接字函数的系统提供。
+	void memset(void *dest,int c,size_t len);
+		给由dest指定的目标中的指定数目len的字节设置位值。
+	void memcpy(void *dest,const void *src,size_t nbytes);
+	int memcmp(const void *ptr1,const void *ptr2,size_t nbytes);
+	以mem开头的函数由ANSI C　提供。
+3.3.整数与ip地址转换
+	#include<arpa/inet.h>
+	int inet_aton(const char *straddr,struct in_addr *addrptr);
+		将点分十进制地址转换为网络字节序的32位二进制数值。
+		输入的点分十进制地址存放在straddr中，返回结果存放在addrptr中。
+		成功返回1，失败返回0。
+	char *inet_ntoa(struct in_addr inaddr);
+		将网络字节序的32位二进制数值转换成点分十进制地址。
+		若成功返回点分十进制数串的指针，失败返回NULL。
+	in_addr_t inet_addr(const char *straddr);
+		将点分十进制地址转换为网络字节序的32位二进制数值。
+		若成功返回32位二进制的网络字节序地址，失败返回INADDR_NONE.
+3.4.域名与ip地址转换
+	#include<netdb.h>
+	struct hostent *gethostbyname(const char *hostname);
+	struct hostent *gethostbyaddr(const char *addr,size_t len,int family);
+	struct hostent
+	{
+		char *h_name;				//主机的正式名称
+		char **h_aliases;			//主机的别名
+		int h_addrtype;				//主机的地址类型
+		int h_length;				//地址长度
+		char **h_addr_list;			//主机的ip地址列表
+	};
+	#define h_addr h_addr_list[0];	//主机的第一个ip地址
+	以上两个函数，若成功返回一个指向hostent结构的指针，失败返回NULL，同时设置全局变量h_errno为相应的值。
+		hstrerror(h_errno);可以打印出错误原因。
+		HOST_NOT_FOUND	找不到主机
+		TRY_AGAIN		出错重试
+		NO_RECOVERY		不可修复性错误
+		NO_DATA			指定的名字有效，但没有记录
+4.tcp套接字编程
+4.1.原理
+	服务器先用socke()函数建立一个套接字，用这个套接字完成通信的监听及数据的收发；
+	服务器用bind()函数绑定一个端口号和ip地址，使套接字与指定的端口号和ip地址相关联；
+	服务器用listen()函数，使服务器的这个端口和ip处于监听状态，等待网络中某一客户端的链接请求；
+	客户端用socket()函数建立一个套接字，设定远程ip和端口；
+	客户端用connect()函数链接远程计算机指定的端口；
+	服务器调用accept()函数接收远程计算机的连接请求，建立起与客户端之间的通信连接；
+	建立连接以后，客户端用write()或send()函数向Socket中写入数据，
+		也可以用read()函数或recv()函数读取服务器发送来的数据；
+	服务器用read()函数或recv()函数读取客户端发送来的数据，
+		也可以用write()函数或send()函数发送数据；
+	完成通信以后，使用close()函数关闭Socket连接。
+4.2.tcp套接字函数
+4.2.1创建套接字
+	套接字l也属于一种文件类型，内核用文件描述符来唯一标识一个Socket。
+	#include<sys/socket.h>
+	int socket(int family,int type,int ptotocol);
+	生成一个套接字描述符。
+	socket()函数为套接字在sockfs文件系统中分配一个新的文件和dentry对象，并通过文件描述符把他们与调用进程联系起来。
+		进程可以向访问一个已经打开的文件一样访问套接字在sockfs中的对应文件。
+		当套接字关闭时，内核会自动删除sockfs中的inodes
+	若成功返回套接字描述符，失败返回-1.
+	参数family指明协议族：PF	Protocl Family
+		AF与PF是等同的。
+		PF_UNIX		UNIX协议族
+		PF_INET		ipv4协议
+		PF_INET6	ipv6协议
+		AF_ROUTE	路由套接字
+	参数type指明通信字节流类型：
+		SOCK_STREAM		TCP方式
+		SOCK_DGRAM		udp方式
+		SOCK_RAW		原始套接字
+		SOCK_PACKET		支持数据链路访问
+	参数protocol设置为0即可。
+	创建完套接字后，需要对一个指向套接字结构的指针进行设置：
+	bzero(&my_addr,addr_len);
+	my_addr.sin_family = AF_INET;
+	my_addr.sin_port = htons(PORT);
+	my_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	以便下一步，将创建的套接字描述符与这个指向套接字结构的指针进行绑定。
+4.2.2.绑定端口
+	#include<sys/socket.h>
+	int bind(int sockfd,const struct sockaddr *my_addr,socklen_t addrlen);
+	参数sockfd表示已经建立的Socket描述符；
+	参数my_addr是一个指向通用套接字结构的指针；(必要的时候需要将参数强制转换)
+	参数addrlen表示该结构的长度。
+	若成功返回0，失败返回-1；可通过errno捕获发生的错误。
+4.2.3.等待监听
+	#include<sys/socket.h>
+	int listen(int sockfd,int backlog);
+	参数sockfd代表将要监听的套接字；
+	参数backlog表示能同时处理的最大连接请求数目。
+	若成功返回0，失败返回-1.可通过errno捕获发生的错误。
+	listen函数只是设置Socket的状态为监听模式。
+4.2.4.接收连接
+	#include<sys/socket.h>
+	int accept(int sockfd,struct sockaddr *addr,socketlen_t *addrlen);
+	参数sockfd表示处于监听状态的Socket，
+	参数addr是一个sockaddr结构体即通用套接字结构类型的指针，系统会把远程主机的信息保存到这个指针所指向的结构体中；
+	参数addrlen表示sockaddr的内存长度；
+	若成功返回新的套接字描述符，失败返回-1.可通过errno捕获发生的错误。
+	返回新的Socket描述符，以后的数据传输与读取就通过这个新的Socket来处理，原来参数中Socket也可以继续使用。
+4.2.5.请求连接
+	#include<sys/socket.h>
+	int connect(int sockfd,const struct sockaddr *serv_addr,int addrlen);
+	若成功返回0，失败返回-1.
+	参数serv_addr指向通用套接字结构体，存储着远程服务器的ip与端口号信息。可通过errno捕获发生的错误。
+	参数addrlen是sockaddr结构体的内存长度。
+	connect()函数属于客户端进程的函数。
+4.2.6.数据发送与接收
+	建立套接字并完成通信连接以后；
+	#include<sys/socket.h>
+	int send(int sockfd,const void *buf,int len,unsigned int flags);
+		可以将信息传送到远程主机上；
+	int recv(int sockfd,void *buf,int len,unsigned int flags);
+		对于远程主机发送来的信息，本地主机需要进行接收处理；
+	若成功返回已发送或已几首的字节数，若失败返回-1.可通过errno捕获发生的错误。
+		printf("%s",strerror(errno));	打印错误；
+	服务器和客户端都可以通过这两个函数来发送与接收数据
+	参数sockfd代表用来发送或接收数据的Socket；
+	参数buf用来存放发送或接收的数据；
+	参数len表示发送或接收数据的长度；
+	参数flags一般设置为0。
+4.2.7.write与read函数
+	在网路编程中，当套接字建立连接后，向这个套接字中写入数据即表示向远程主机发送数据，
+		从套接字中读取数据相当于接收远程主机发送过来的数据；
+		作用与send和recv函数类似。
+	#include<unistd.h>
+	ssize_t write(int fd,const void *buf,size_t count);
+	ssize_t read(int fd,void *buf,size_t count);
+4.3.udp套接字编程
+4.3.1.udp套接字原理
+	udp套接字在调用socket()函数生成一个套接字后,
+	在服务器调用bind()绑定一个端口,
+	然后服务器进程挂起于recvfrom()调用,等待并接收网络中某一客户端的数据请求,
+	客户端调用sendto()发送数据请求,同样也挂起recvfrom()调用,等待并接收服务器的应答信号,
+	当数据传送完毕后,客户端调用close()释放通信链路,但不再发送"断开连接通知"通知服务器释放通信线路.
+4.3.2.udp数据发送与接收
+	#include<sys/socket.h>
+	int sendto(int sockfd,const void *buf,int len,unsigned int flags,struct sockaddr *toaddr,int *addrlen);
+	int recvfrom(int sockfd,void *buf,int len,unsigned int flags,struct sockaddr *fromaddr,int *addrlen);
+	若成功返回实际发送或接收的字节数,失败返回-1.
+	参数toaddr指向数据发送的套接字地址数据结构;
+	参数fromaddr指向数据接收的套接字地址结构.
+5.多客户模型
+5.1.服务器的模型
+	循环服务器--在同一个时刻只可以响应一个客户端的请求
+	并发服务器--在同一个时刻可以响应多个客户端的请求
+5.2.循环服务器
+5.2.1.tcp循环服务器
+	socket(...);
+	bind(...);
+	listen(...);
+	while(1)
+	{
+		accept(...);
+		while(1)
+		{
+			read(...);
+			process(...);
+			write(...);
+		}
+		close(...);
+	}
+5.2.2.udp循环服务器
+	socket(...);
+	bind(...);
+	while(1)
+	{
+		recvfrom(...);
+		process(...);
+		sendto(...);
+	}
+5.3.并发服务器
+	并发服务器的思想是每个客户端的请求不由服务器直接处理,而是由服务器创建一个子进程来处理,原来父进程中的套接字继续监听网络中的客户端连接请求.
+	socket(...);
+	bind(...);
+	listen(...);
+	while(1)
+	{
+		accept(...);
+		if(fork(...) == 0)
+		{
+			while(1)
+			{
+				read(...);
+				process(...);
+				write(...);
+			}
+			close(...);
+			exit(...);
+		}
+		close(...);
+	}
+5.4.多路复用I/O
+	创建子进程会带来很大的系统资源消耗.
+	通过调用select(),服务器能一次监听、等待多个套接字就绪，然后对每一个就绪的套接字进行处理；
+		当处理完一批就绪的套接字后，接着在select()调用处等待，准备接收下一批客户端的连接请求。
+		用这种方法只需要单个进程，不必为每一个客户派生一个子进程。
+	在对文件进行读写操作时，进程可能在读写处阻塞，
+		如果不希望阻塞，可以使用select()系统调用，设置好selsct()的各个参数，当文件可以读写时，select()就会通知我们进行读写。
+	#include<sys/select.h>
+	#include<sys/time.h>
+	int select(int nfds,fd_set *readfds,fd_set *writefds,fd_set *exceptfds,struct timeval *timeout);
+	struct timeval
+	{
+		long tv_sec;	//代表秒数
+		long tv_usec;	//代表微秒数
+	}					//二者之和便是定时器的时间长度
+	select()允许进程指示内核等待多个事件中的任意一个发生，并仅在一个或多个事件发生或定时器超时后才唤醒进程。
+	参数nfds是需要监控的所有文件描述符中的最大值加1；
+	参数readfds所有需要检测的可读文件描述符的集合,集合中有一个文件可读，select就会返回一个大于0的值，超时返回0，错误返回负值。
+		writefds所有需要检测的可写文件描述符的集合。。。。。。
+		exceptfds所有需要检测的异常文件描述符的集合。。。。。。
+	参数timeout为监控定时器；
+		如果将timeout设置为0，相当于非阻塞I/O模式，select()不用等待，在检查描述符集合后立即返回；
+		如果将timeout设置为NULL，属于完全阻塞模式，select()会一直等待下去，直到有一个描述符准备好I/O才返回调用。
+	如果在timeout时间内需要监控的所有描述符中没有任何事件发生，函数直接返回0.
+	文件描述符集是一个整数数组，数组中每一个元素对应一个描述符
+	宏定义
+	#include<sys/select.h>
+	void FD_SET(int fd,fd_set *fdset);
+	void FD_CLR(int fd,fd_set *fdset);
+	void FD_ZERO(fd_set *fdset);
+	int FD_ISSET(int fd,fd_set *fdset);
+	FD_SET	将描述符fd加入描述符集fdset中；
+	FD_CLR	将fd从fdset中清除；
+	FD_ZERO	清除fdset中的所有文件描述符；
+	FD_ISSET判断fd是否在fdset集合中；
+	就绪套接字集合readfds中的套接字有的是因为新到达了连接请求而就绪(即侦听套接字listenfd)；
+		有的是在已链接的套接字上到达了新的数据而就绪(即连接套接字connfd)。
+	对于连接请求就绪的情形，调用accept()接收新的连接，并将这个新的套接字加入客户端数组client[]和select()的等待描述符集合readfds中。
+	对于新的数据到达而就绪的情形，有可能是多个套接字就绪，所以要逐一查看。只需查看client[]数组。
+	服务器的多路复用I/O程序：
+
+
+
+×数据库编程
+	mysql的库安装：
+	sudo apt-get install libmysqlclient-dev
+1.数据库是存储在计算机内有组织的、可共享的数据集合。
+	数据库是一个为了能无约束且快速检索而排列起来的数据集合。
+	其数据结构独立于使用它的应用程序，对数据的增删改查由统一的软件进行管理和控制。
+	“相关数据”、“一定的组织方式”、“共享”是关系数据库的三个基本要素。
+	数据库的逻辑模型包括层次模型、网状模型、关系模型和面向对象模型。
+2.关系型数据库
+2.1.采用关系模型作为数据的组织方式。
+	模型中的所有的数据被组织成表格的形式，这种“表”在数学上成为关系。
+	关系模型是对关系的结构性描述。
+	表中存放着两类数据：实体本身的数据和实体间的联系；
+	表中每一行成为记录，每个记录由若干字段组成；
+	一个记录描述一个事物，各字段是该事物各种性质的描述，称为属性。
+2.2.模型中的相关概念
+	关系实例：关系模型中具体的取值
+	关系名称：每一个关系实例都有一个名称，成为关系名称，即用户名称；
+	属性：关系表中的列；第一行成为表名；
+	元组：即记录；元组的个数称为主体的基数；
+	超键：能够唯一标识一个关系中各个元组的属性集合；
+	候选键:不包含多余属性的、能够唯一标识各个元组的属性集合；
+	主键：当一个关系有多个候选键时，可从中选定一个候选键作为主键；
+	外键：如果关系R1的一个属性组合S是另一个关系R2的主键，称S是关系R1的外键。
+3.mysql数据库
+3.1.常用操作
+	在mysql中，每条语句的后面都要以分号“;”结尾
+	登录与退出
+		$ mysql -u root -p
+		Enter password:
+		mysql> quit或mysql> \q
+	显示mysql下的现有数据库
+		mysql> show databases;
+	选中一个数据库“use 数据库名”
+		mysql> use mysql;
+	显示数据库中的所有表“show tables”
+		mysql> show tables;
+	创建数据库和表“create database 数据库名”
+		mysql> create database test_1;
+	在选定的数据库中创建一个新表“create table 表名(字段设定列表)”
+		create table stu_info(
+    	-> id int not null primary key,
+    	-> name varchar(20) not null,
+    	-> age int not null
+    	-> );
+	向表中添加记录
+		insert into stu_info values(
+    	-> 20130001,
+    	-> '李国辉',
+    	-> 20
+    	-> );
+	检索表中的若干记录
+		select * from stu_info;
+	修改(更新)表中的某一条记录
+		mysql> update stu_info set age=22 where id=20130001;
+		将stu_info中id为20130001的学生的age改为22.
+	删除表中的某一条记录
+		mysql> delete from stu_info where id=20130001;
+		删除stu_info表中id为20130001的记录。
+	删除整个表
+		mysql> drop table stu_info;
+		删除选定库中的stu_info表
+	删除数据库
+		mysql> drop database student;
+		删除student数据库
+4.数据库编程
+4.1.基于mysql的应用程序开发通常有C/S和B/S两种模式。
+	应用程序对数据库操作的一般步骤：
+	建立连接；
+	执行sql查询语句；
+	关闭连接。
+4.2.数据结构
+	mysql的c函数库设计定义了在与服务器会话期间所处理的各种实体(数据结构)；
+	这些结构体被定义在mysql源码目录下的<mysql.h>头文件中。
+	MYSQL结构代表一个数据库连接的句柄，包含有关服务器连接状态的信息。
+	typedef struct st_mysql
+	{
+		...
+	}MYSQL;
+	MYSQL_RES结构代表返回航的sql查询；
+	在数据库中将查询操作返回的信息成为“结果集”，
+	从MYSQL_RES结构中读取数据，实际上就是从数据库读取数据；
+	typedef struct st_mysql_res
+	{
+		...
+	}MYSQL_RES;
+	MYSQL_FIELD结构是MYSQL的字段结构体，包括字段名、类型、大小。
+	在MYSQL和MYSQL_RES结构中，均有一个域fields指向MYSQL_FIELD结构。
+	typedef struct st_mysql_field
+	{
+		...
+	}MYSQL_FIELD;
+	MYSQL_ROW结构表示结果集中的一行记录
+	typedef char **MYSQL_ROW;
+	MYSQL_DATA结构用于表征数据库表中的统计信息。
+	typedef struct st_mysql_data
+	{
+		...
+	}MYSQL_DATA;
+	mysql_status是一个枚举类型
+	enum mysql_status
+	{
+		MYSQL_STATUS_READY,
+		MYSQL_STATUS_GET_RESULT,
+		MYSQL_STATUS_USE_RESULT,
+		MYSQL_STATUS_STATEMENT_GET_RESULT
+	};
+	MYSQL_FIELD_OFFSET数据类型，表示当前字段的偏移量
+	typedef unsigned int MYSQL_FIELD_OFFSET;
+4.3.与mysql交互时，应用程序处理的一般步骤：
+	调用mysql_library_init()或mysql_server_init(),初始化mysql的c函数库；
+		c函数库可以是mysqlclient C客户端库（调用mysql_library_init()）
+				也可以是mysqld嵌入式服务器库（调用mysql_server_init()）
+		取决于应用程序编译时使用的是	-libmysqlclient		-libmysqld
+	调用mysql_init()初始化一个连接句柄
+	调用mysql_real_connect()连接到mysql服务器
+	发出sql语句并处理，得到返回结果
+	调用mysql_close()关闭与mysql服务器的连接
+	调用mysql_library_end()或mysql_server_end()，结束mysql C函数库的使用。
+4.4.函数API
+	一下的API都是在头文件<mysql/mysql.h>中定义和声明的。
+4.4.1.初始化一个MYSQL结构
+	MYSQL *mysql_init(MYSQL *mysql);
+	成功返回一个被初始化的MYSQL连接句柄，失败返回NULL。
+	传递一个空指针，他会返回一个指向新分配的连续句柄结构的指针；
+	传递一个已有的结构，它将被重新初始化。
+4.4.2.连接mysql服务器(X)
+	MYSQL *mysql_connect(MYSQL *mysql,const char *host,const char *user,const char *passwd);
+	成功返回一个连接句柄，失败返回NULL。
+	参数mysql表示一个已经初始化成功的连接句柄结构；
+	参数host表示mysql服务器主机名或IP地址；NULL表示连接到本地主机上的mysql；
+	参数user、passwd是mysql登录用户名和密码。
+	不推荐使用mysql_connect()函数
+4.4.3.连接mysql服务器
+	MYSQL *mysql_real_connect(MYSQL *mysql,const char *host,const char *user,
+								const char *passwd,const char *db,unsigned int port,
+								const char *unix_socket,unsigned int clientflag);
+	成功返回一个连接句柄，失败返回NULL。可以通过mysql_error()获得出错原因。
+	参数db是将要连接的数据库名称，如果为NULL将会连接到默认的数据库；
+	参数port表示与服务器连接的端口号，一般设置为0即可；
+	参数unix_socket表示连接的类型；
+	参数clientflag表示mysql运行ODBC数据库的标记。通常为0.
+4.4.4.创建数据库(X)
+	int mysql_create_db(MYSQL *mysql,const char *db);
+	成功返回0，失败返回非0.
+	参数db表示将要创建的数据库名称。
+	不推荐使用mysql_create_db()函数
+4.4.5.选择数据库
+	int mysql_select_db(MYSQL *mysql,const char *db);
+	成功返回0，失败返回非0；
+	一般通过mysql_real_connect()函数连接一个默认的数据库，
+		在通过mysql_select_db()选择一个数据库。
+4.4.6.发送sql命令
+	int mysql_query(MYSQL *mysql,const char *query);
+	int mysql_real_query(MYSQL *mysql,const char *query,unsigned int length);
+	参数query表示将要执行的sql语句；
+	参数length表示sql语句(字符串)的长度；
+	查询成功返回0，失败返回非0；
+	对于包含二进制数据的sql查询语句，必须使用mysql_real_query()函数。
+4.4.7.返回最新的sql查询
+	int mysql_affected_rows(MYSQL *mysql);
+	返回正整数表示受到影响或检索出来的行数；
+	返回0表示没有匹配查询语句中WHERE子句的记录，或目前还没有查询被执行；
+	返回-1表示查询返回一个错误。
+4.4.8.处理结果集的方法
+4.4.8.1.调用mysql_store_result()
+	一次性的检索出整个结果集，该函数能从服务器获得查询并返回所有的行，并且将他们保存在本地
+	MYSQL_RES *mysql_store_result(MYSQL *mysql);
+	成功返回一个指向MYSQL_RES结构的指针，出错返回NULL。
+	当函数返回成功时：(函数参数为上面函数返回的指向MYSQL_RES结构的指针)
+	mysql_num_rows()来获得结果集中的行数；
+	mysql_fetch_row()来获取结果集中的行；
+	mysql_row_seek() mysql_row_tell()获取或设置结果集中当前行的位置；
+	一旦完成了对结果集的操作，就必须用mysql_free_result()来释放结果集使用的内存空间。
+	#define SELECT_QUERY "select name from stu_info where id=%d;"
+	sprintf(query_buf,SELECT_QUERY,atoi(argv[1]));
+	mysql_query(&mysql,query_buf);
+4.4.8.2.调用mysql_use_result()
+	对每一行分别进行检索。
+	直接从服务器获取结果，不会将其保存在临时表或本地缓冲区。
+	MYSQL_RES *mysql_use_result(MYSQL *mysql);
+	若成功返回一个已经初始化成功的连接句柄结构，失败返回NULL.
+	必须执行mysql_fetch_row()来获取结果集中的行，并且直至...row()返回NULL为止。
+	提取了所有行后，mysql_num_rows()将准确返回提取的行数。
+	一旦完成了对结果集的操作，必须调用mysql_free_result()来释放结果集使用的内存空间。
+	res = mysql_use_result(&mysql);
+	for(field_count = 0;field_count <= mysql_field_count(&mysql);field_count++)
+	{
+		if((row = mysql_fetch_row(res)) == NULL)
+			break;
+		for(field_num = 0;field_num <= mysql_num_fields(res);field_num++)
+		{
+			printf("%s",row[field_num]);
+		}
+		printf("\n");
+	}
+4.4.9.关闭与服务器的连接
+	void mysql_close(MYSQL *mysql);
+
+
+
+×GTK+图形界面开发
+	apt-get install libgtk2.0-dev
+		安装gtk开发库
+	gcc -o x x.c `pkg-config --libs --cflags gtk+-2.0`
+		gcc编译
+	gtk_main()
+		进入消息处理循环
+1.1GUI
+	图形用户界面Graphical User Interface，图形用户接口。
+	GUI工具包，GUI库，程序猿用来进行图形用户界面编程的工具(或库)。
+1.2.Linux GUI
+	linux系统中的图形用户界面使用的是 X Window 系统。
+	linxu系统最常用的两款 X Window客户端是 KDE 和 GNOME。
+1.3.GTK+
+	基于LGPL，GNOME建立在GTK+的基础上的。
+	GIMP GUN Image Minipulation Program
+	GDK GIMP Drawing Kit
+	GTK+在GDK的基础上创建。
+	GTK GIMP Toolkit
+	当GTK工具包获得了面向对象特性和可扩展性之后，即为GTK+
+1.4.GTK+预定义的函数
+	前缀					含义
+	G				glib定义的数据结构
+	g				glib声明的数据类型
+	g_				glib定义的函数
+	gtk_			GTK+定义的函数
+	Gtk				GTK+库的对象或数据结构
+	GTK				GTK+定义的宏或常量
+2.基本控件
+2.1.窗口
+2.1.1.创建窗口
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_window_new(GtkWindowType type);
+	typedef struct
+	{
+		GtkStyle *style;				//控件风格
+		GtkRequisition requisition;		//位置
+		GtkAllocation allocation;		//允许使用的空间
+		GtkWindow *window;				//所在的窗口或父窗口
+		GtkWidget *parent;				//父窗口
+	}GtkWidget;
+		若成功，返回一个指向GtkWidget类型的指针，失败返回NULL
+		参数type是一个表示窗口状态的常量，取值：
+			GTK_WINDOW_TOPLEVEL 一个正常的窗口
+			GTK_WINDOW_POPUP 弹出式窗口
+2.1.2.显示窗口
+	#include<gtk/gtk.h>
+	void gtk_widget_show(GtkWidget *widget);
+		一次只能显示某一个特定的控件。
+		参数widget指向需要显示的窗口。
+	#include<gtk/gtk.h>
+	void gtk_widget_show_all(GtkWidget *widget);
+		显示窗口中的所有控件。
+2.1.3.为窗口添加标题
+	#include<gtk/gtk.h>
+	void gtk_window_set_title(GtkWindow *window,gchar *title);
+		参数window指定将要添加标题的窗口；
+		参数title表示需要设置的标题内容；
+2.1.4.设置窗口大小与位置
+	#include<gtk/gtk.h>
+	void gtk_widget_set_usize(GtkWiget *widget,gint width,gint height);
+	void gtk_widget_set_uposition(GtkWidget *widget,gint x,gint y);
+		参数x表示窗口的左边距，也就是窗口左上顶点的x坐标；
+		参数y表示窗口的上边距，也就是窗口左上顶点的y坐标；
+	void gtk_window_set_position(GtkWindow *window,GtkWindowPosition position);
+		参数position表示位置属性参数，取值：
+			GTK_WIN_POS_NONE,无边距放置，即桌面的最左上角；
+			GTK_WIN_POS_CENTER,居中放置，位于桌面的中央位置；
+			GTK_WIN_POS_MOUSE,放置在当前鼠标位置；
+			GTK_WIN_POS_CENTER_ALWAYS,始终居中位置。
+		gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);//窗口window初始化在屏幕正中央
+2.1.5.为窗口添加图标
+	gboolean gtk_window_set_icon_from_file(GtkWindow *window,const gchar *filename,GError **err);
+		参数err指向函数执行失败的错误原因。
+		函数的返回值为布尔类型。成功返回非0值，失败返回0，并将失败原因存放与err中。
+2.1.6.使窗口支持中文
+	在GTK+中，所有字符的默认编码方式采用UTF—8
+	但在国内的中文字符一般使用GB码
+	需要将中文转换成UTF—8在传递给GTK+显示
+	gchar *g_locale_to_utf8(const gchar *opsysstring,gssize len,gsize *bytes_read,gsize *bytes_written,GError **error);
+	可以用一个子函数进行封装
+	char *_N(char *string)
+	{
+		return(g_locale_to_utf8(string,-1,NULL,NULL,NULL));
+	}
+		定义为宏
+	#define _N(str) g_locale_to_utf8(str,-1,NULL,NULL,NULL)
+2.2.标签
+	标签是程序中的一个文本，这个文本可以显示一定的信息，用户不能改变和输入标签的内容
+2.2.1.创建标签
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_label_new(gchar *text);
+		参数text表示标签中需要显示的内容。
+		若成功返回一个GtkWidget类型的指针，指向该标签，失败返回NULL.
+2.2.2.将标签添加到窗口中
+	除了窗口以外，其他的任何控件都必须放置在一个容器中。
+	#include<gtk/gtk.h>
+	void gtk_container_add(GtkContainer *container,GtkWidget *widget);
+		把一个控件放置在另一个控件窗口(容器)中；
+		参数container是一个父级容器指针；
+		参数widget是需要放置的控件的指针；
+2.2.3.设置和获取标签的文本
+	#include<gtk/gtk.h>
+	const char *gtk_label_get_text(GtkLabel *label);
+		参数label是一个指向标签的指针；
+		若成功返回标签文本的字符串指针，失败返回NULL.
+	void gtk_label_set_text(GtkLabel *label,gchar *text);
+		参数label是一个指向标签的指针；
+		参数text表示标签要设置的文本；
+2.2.4.设置标签大小
+	gtk_widget_set_size_request(label,30,15);
+2.3.按钮
+	按钮常用于发送一个信号，这个信号会引起相应事件的相应。
+2.3.1.创建按钮
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_button_new_with_label(gchar *label);
+		参数label指向的字符串会显示在按钮上，成为按钮的标签；
+		若成功返回一个GtkWidget类型的指针，指向该按钮，失败返回NULL.
+	创建成功后，需要调用gtk_container_add()函数将其添加到一个父窗口容器中，
+		并调用gtk_widget_show()来显示它。
+2.3.2.设置和获取按钮的标签
+	#include<gtk/gtk.h>
+	const gchar *gtk_button_get_label(GtkButton *button);
+		参数button是一个指向按钮的指针；
+		若成功返回按钮标签内容的字符串指针，失败返回NULL.
+	void gtk_button_set_label(GtkButton *button,const gchar *label);
+		参数button是一个指向按钮的指针；
+		参数label表示按钮的标签内容；
+2.4.文本框
+	文本框是图形界面中的输入区域
+2.4.1.单行文本框
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_entry_new(void);
+		若成功返回一个GtkWidget类型的指针，失败返回NULL.
+	void gtk_entry_set_max_length(GrkEntry *entry,gint max_length);
+		若创建单行文本框时没有设定最多可以输入的字符数，可使用函数设定；
+		参数entry是一个指向文本框的指针；
+	GtkWidget *gtk_entry_new_with_max_length(gint max);
+		参数max表示这个文本框最多可以输入的字符数；
+		若成功返回一个GtkWidget类型的指针，失败返回NULL.
+	单行文本框可以派生出很多其他的控件，密码框、微调框
+	密码框
+	#include<gtk/gtk.h>
+	void gtk_entry_set_visibility(GtkEntry *entry,gboolean visible);
+		将单行文本框entry中输入文本，设置为不可见。
+		visible为FALSE.
+	void gtk_entry_set_invisible_char(GtkEntry *entry,gunichar inv_char);
+		设置entry中的文本统一以字符inv_char来显示
+		gtk_entry_set_invisible_char(GTK_ENTRY(entry),'*');//以*显示
+	设置和获取单行文本框数据
+	#include<gtk/gtk.h>
+	const gchar *gtk_entry_get_text(GtkEntry *entry);
+		若成功返回指向文本框中字符串的指针，失败返回NULL.
+	void gtk_entry_set_text(GtkEntry *entry,const gchar *text);
+2.4.2.多行文本框
+	用户在该文本框中可以输入多行数据，可以使用回车换行。
+2.4.2.1.使用默认的缓冲区创建文本框
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_text_view_new(void);
+		系统自动创建一个新的缓冲区
+2.4.2.2.使用用户指定的缓冲区创建文本框
+	GtkWidget *gtk_text_view_new_with_buffer(GtkTextBuffer *buffer);
+		使用自己的缓冲区来创建文本框
+		参数buffer指定这个缓冲区，当为NULL时，与gtk_text_view_new()功能相同。
+2.4.2.3.获取多行文本框数据
+	#include<gtk/gtk.h>
+	void gtk_text_view_set_buffer(GtkTextView *text_view,GtkTextBuffer *buffer);
+		为多行文本框设置一个缓冲区；
+		参数text_view指向要设置的多行文本框控件；
+		参数buffer指向他的缓冲区；
+	GtkTextBuffer *gtk_text_view_get_buffer(GtkTextView *text_view);
+		获取gtk_text_view_new()创建的默认缓冲区
+	void gtk_text_buffer_get_bounds(GtkTextBuffer *buffer,GtkTextIter *start,GtkTextIter *end);
+		在对正文内容进行操作之前，需要获取缓冲区的开始位置、结束位置；
+		参数buffer代表文本框的缓冲区，
+		参数start指向文本框中文字的开始位置；
+		参数end为结束位置；
+	gchar *gtk_text_buffer_get_text(GtkTextBuffer *buffer,const GtkTextIter *start,
+							const GtkTextIter *end,gboolean include_hidden_chars);
+		参数buffer表示文本框的缓冲区；
+		参数start指向文本框中文字的开始位置；
+		参数end为结束位置；
+		参数include_hidden_chars用于设置是否包含不可见的文本。
+2.5.为按钮注册相应的回调函数
+	用户单击按钮时产生了相应的信号，系统变回自动调用相应的信号处理函数（回调函数）。
+	g_signal_connect(G_OBJECT(ok_button),"clicked",G_CALLBACK(ok_clicked),window);
+		ok_button为点击的按钮；
+		ok_clicked为点击按钮后触发的函数；
+3.布局控件
+3.1.表格
+3.1.1.创建表格
+	表格的作用指示将窗口划分成不同的区域，并不能显示这个表格；
+		表格只是作为一个容纳其他控件的容器使用的。
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_table_new(guint rows,guint columns,gboolean homogeneous);
+		参数rows表示表格的行数；
+		参数columns表示表格的列数；都是无符号整型；
+		参数homogeneous是一个布尔值，
+			若设置为TRUE，每一个单元格的大小相同，所有单元格的高度与宽度和表各种最大一个控件的高度与宽度相同；
+			若设置为FALSE，则表格的单元格大小会根据单元格中控件的大小自动调整。
+		若成功返回GtkWidget类型的指针，指向该表格控件，失败返回NULL.
+		表格的行和列的编号是从左边和上边的边开始计算的，并且从0开始计算。
+	void gtk_table_attach(GtkTable *table,GtkWidget *child,guint left_attach,
+						guint right_attach,guint top_attach,guint bottom_attach,
+						GtkAttachOptions xoptions,GtkAttachOptions yoptions,
+						guint xpadding,guint ypadding);
+		将一个控件添加到表格中，并且设置在表格中的位置和填充的选项；
+		参数table表示容器表格的指针；
+		参数child表示需要添加的控件的指针；
+		参数left_attach,right_attach表示控件的左边是表格的第几条边，右边是表格的第几条边；
+		参数top_attach,bottom_attach表示控件的上边是表格的第几条边，下边是表格的第几条边；
+		参数xoptions,yoptions表示控件在表格中的水平方向、垂直方向的对其方式
+			GTK_EXPAND控件以实际设置的大小显示,若大于容器，则容器自动变大；
+			GTK_SHRINK如果控件大于容器，则自动缩小控件；
+			GTK_FILL控件填充整个单元格
+		参数xpadding，ypadding分别表示控件与边框水平方向，垂直方向的边距。
+	表格中的控件添加完毕后，需要使用gtk_container_add()函数将表格添加到窗口中。
+3.1.2.合并单元格
+	gtk_table_attach(GTK_TABLE(table),textview,0,2,1,3,(GtkAttachOptions)(0),(GtkAttachOptions)(0),10,10);
+		让控件textview占据了表格table中的第0列至第2列，第1行至第3行，共四个单元格。
+3.1.3.嵌套表格
+	在表格的单元格中添加表格，通过表格的嵌套可以实现复杂的布局方式。
+3.2.框
+	框是一个不可见的容器，有水平框和垂直框两种。
+	水平框是指控件按放入窗口的顺序水平排列；
+	垂直框是指控件按放入窗口的顺序垂直排列。
+3.2.1.创建框
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_hbox_new(gboolean homogeneous,gint spacing);
+		创建一个水平框，控件按放入窗口的顺序水平排列；
+	GtkWidget *gtk_vbox_new(gboolean homogeneous,gint spacing);
+		创建一个垂直框，控件按放入窗口的顺序垂直排列；
+		参数homogeneous是一个布尔值，控制每个放入框中的控件是否有相同的高或宽；
+		参数spacing表示每一行控件之间的距离；
+		成功返回一个GtkWidget类型的指针，失败返回NULL.
+	#include<gtk/gtk.h>
+	void gtk_box_pack_start(GtkBox *box,GtkWidget *child,gboolean expand,
+							gboolean fill,guint padding);
+		由左向右 或 从上到下添加控件
+	void gtk_box_pack_end(GtkBox *box,GtkWidget *child,gboolean expand,
+							gboolean fill,guint padding);
+		由右向左 或 从下到上添加控件
+		参数box是一个指向框容器的指针；
+		参数child需要添加的控件的指针；
+		参数expand是一个布尔值，TRUE表示这个控件分配新的位置；
+		参数fill设置是否填充框的所有区域；
+		参数paddig表示控件之间的距离；
+	建立一个框后，需要调用gtk_container_add()函数将这个框添加到窗口中。
+3.3.窗格
+3.3.1.创建窗格
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_hpaned_new(void);
+	GtkWidget *gtk_vpaned_new(void);
+		成功返回一个GtkWidget类型的指针，失败返回NULL.
+	#include<gtk/gtk.h>
+	void gtk_paned_set_position(GtkPaned *paned,gint position);
+		设置窗格的第一区域的大小；
+		参数paned是一个表示窗格的指针；
+		参数position是一个整型数，表示这个窗格的分界线到边界的位置；
+	#include<gtk/gtk.h>
+	void gtk_paned_pack1(GtkPaned *paned,GtkWidget *child,
+						gboolean resize,gboolean shrink);
+		将控件添加到窗格的第一区域中；
+	void gtk_paned_pack2(GtkPaned *paned,GtkWidget *child,
+						gboolean resize,gboolean shrink);
+		将控件添加到窗格的第二区域中；
+		参数paned表示作为容器的容器；
+		参数child表示将要装入的控件；
+		参数resize是一个布尔值，TURE表示当窗格的大小改变时，装入的控件随之改变大小；
+		参数shrink设置为TURE时，如果窗格比这个控件小，控件会自动改变大小。
+3.4.其他高级控件
+3.4.1.进度条
+	创建进度条可使用GtkAdjustment控件，
+		GtkAdjustment用来存储初始值，上边界，下边界，步进值等信息。
+3.4.1.1.创建GtkAdjustment控件
+	#include<gtk/gtk.h>
+	GtkObject *gtk_adjustment_new(gfloat value,gfloat lower,gfloat upper,
+								gfloat step_increment,gfloat page_increment,gloat page_size);
+		若成功返回一个GtkObject类型的指针，指向GtkAdjustment控件，失败返回NULL.
+		参数value，控件的初始值；
+		参数lower控件允许的最小值；
+		参数upper控件允许的最大值；
+		参数step_increment当鼠标左键按下时控件一次增加/减小的值；
+		参数page_increment当鼠标右键按下时控件一次增加/减小的值；
+		参数page_size不用。
+3.4.1.2.创建进度条
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_progress_bar_new(void);
+	GtkWidget *gtk_progress_bar_new_with_adjustment(GtkAdjustment *adjustment);
+	成功返回一个GtkWidget类型的指针，指向进度条控件，失败返回NULL.
+3.4.1.3.设置进度条样式
+	#include<gtk/gtk.h>
+	void gtk_progress_bar_set_bar_style(GtkProgressBar *pbar,GtkProgressBarStyle style);
+		参数pbar是一个指向进度条的指针；
+		参数style表示进度条的样式，
+			GTK_PROGRESS_CONTINUOUS	连续进度条
+			GTK_PROGRESS_DISCRETE	条块进度条
+3.4.1.4.设置进度条的方向
+	#include<gtk/gtk.h>
+	void gtk_progress_bar_set_orientation(GtkProgressBar *pbar,GtkProgressBarOrientation orientation);
+		参数pbar是一个指向进度条的指针；
+		参数orientation表示进度条的方向，
+			GTK_PROGRESS_LIFT_TO_RIGHT	从左向右显示进度
+			GTK_PROGRESS_RIGHT_TO_LEFT	从右向左显示进度
+			GTK_PROGRESS_BOTTOM_TO_TOP	从下向上显示进度
+			GTK_PROGRESS_TOP_TO_BOTTOM	从上向下显示进度
+3.4.1.5.更新进度条的进度状态
+	#include<gtk/gtk.h>
+	void gtk_progress_bar_update(GtkProgressBar *pbar,gfloat percentage);
+		参数pbar是一个指向进度条的指针；
+		参数percentage表示进度条的进度状态，即所占整个进度条的百分比；
+3.4.2.微调按钮
+	创建微调按钮也要先使用GtkAdjustment控件
+3.4.2.1.创建微调按钮
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_spin_button_new(GtkAdjustment *adjustment,gfloat climb_rate,gfloat digits);
+		参数climb_rate表示微调按钮每步的增加/减小值；
+		参数digits代表数值中包含的小数位数；
+		若成功返回一个GtkWidget类型的指针，指向微调按钮控件，失败返回NULL.
+3.4.2.2.获取和设置微调按钮的值
+	#include<gtk/gtk.h>
+	gfloat gtk_spin_button_get_value_as_float(GtkSpinButton *spin_button);
+		获取微调按钮的值；
+		参数spin_button指向一个微调按钮的指针；
+		若成功返回值。
+	void gtk_spin_button_set_value(GtkSpinButton *spin_button,gfloat value);
+		设置微调按钮的值；
+		参数value表示要设置的微调按钮的值；
+3.4.3.组合框
+	也称为下拉列表；
+	组合框使用GList控件，用于保存列表框中将要显示的字符串。
+3.4.3.1.向GList中添加字符串
+	#include<gtk/gtk.h>
+	void g_list_append(GList *glist,char *string);
+		参数glist是一个指向列表框的指针；
+		参数string指向要添加至列表框中的字符串；
+	将列表框中的字符串添加到GList中以后，
+		再用创建组合框,
+		再将GList在创建的组合框中显示出来
+3.4.3.2.创建组合框
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_combo_new(void);
+		若成功返回一个GtkWidget类型的指针，失败返回NULL.
+3.4.3.3.设置组合框中显示的字符串
+	#include<gtk/gtk.h>
+	void gtk_combo_set_popdown_strings(GtkCombo *combo,GList *strings);
+		参数combo是一个指向组合框的指针；
+		参数strings表示组合框中将要显示的字符串。
+3.4.4.单选按钮，复选按钮
+3.4.4.1.创建复选按钮
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_check_button_new(void);
+		创建一个无标签按钮
+	GtkWidget *gtk_check_button_new_with_label(gchar *label)
+		创建带有文本标签的按钮，label指向按钮的标签文本
+		若成功返回一个GtkWidget类型的指针，失败返回NULL.
+3.4.4.2.创建单选按钮
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_radio_button_new(GSList *group);
+		创建一个无标签按钮
+	GtkWidget *gtk_radio_button_new_label(GSList *group,gchar *label);
+		创建带有文本标签的按钮，参数label指向按钮的标签文本
+		若成功返回一个GtkWidget类型的指针，失败返回NULL.
+	GSList *gtk_radio_button_group(GtkRadioButton *radio);
+		获取radio按钮的group
+		参数radio是一个指向radio按钮的指针；
+		若成功返回一个GSList类型的指针
+	生成第一个radio按钮时：
+		radio = gtk_radio_button_new_with_label(NULL,"the first button");
+		然后再获取group值，
+		再用获得的group值创建同组的radio按钮
+3.4.5.下拉菜单
+3.4.5.1.创建菜单
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_menu_new(void);
+		创建一个无标签的菜单
+	GtkWidget *gtk_menu_new_with_label(gchar *label);
+		创建带有标签的菜单，参数label指向菜单的标签文本；
+		若成功返回GtkWidget类型的指针，失败返回NULL.
+3.4.5.2.创建菜单项
+	#include<gtk/gtk.h>
+	GtkWidget *gtk_menu_item_new(void);
+	GtkWidget *gtk_menu_item_new_with_label(gchar *label);
+		若成功返回一个GtkWidget类型的指针，失败返回NULL.
+	创建完菜单项后，需要插入菜单项
+	void gtk_menu_append(GtkMenu *menu,GtkWidget *child);
+	void gtk_menu_set_submenu(GtkMenuItem *item,GtkMenu *menu);
+3.4.5.3.创建菜单条
+	GtkWidget *gtk_menu_bar_new(void);
+	需要将菜单添加到菜单条
+	void gtk_menu_bar_append(GtkMenuBar *bar,GtkWidget *child);
+4.GTK+信号与事件
+4.1.用户单击或选择界面中的某个控件，产生相应的信号，进而执行相应的响应事件。
+	程序进入gtk_main()函数后，就一直循环等待事件的发生。
+4.2.将回调函数添加到控件上
+	#include<gtk/gtk.h>
+	gulong g_signal_connect(GtkObject *object,gchar *name,
+							Gcallback callback_func,gpointer func_data);
+		参数object是一个控件的指针，指向即将产生信号的控件；
+		参数name表示消息或事件的类型：
+			activate激活时发生
+			clicked单击以后发生
+			enter鼠标指针进入这个按钮以后发生
+			leave鼠标离开按钮以后发生
+			pressed鼠标按下以后发生
+			released鼠标释放以后发生
+		参数callback_func表示信号产生后将要执行的回调函数；
+		参数func_data表示传递给回调函数的数据；
+		函数的返回值用于区分控件的一个事件对应的多个处理函数。
+			对于一个控件上的每个事件可以有0个，1个或多个处理函数。
+4.3.定义消息处理函数的原型
+	#include<gtk/gtk.h>
+	void callback_func(GtkWidget *widget,gpointer func_data);
+		参数widget指向要接受消息的控件；
+		参数func_data指向消息产生时传递给函数的数据。
+

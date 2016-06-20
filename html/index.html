@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>DobMa-I'm a boy</title>
+<link href="./image/logo.ico" rel="shortcut icon"/>
+<link rel="stylesheet" type="text/css" href="style/main.css" />
+<link type="text/css" rel="stylesheet" href="style/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="style/shCoreRDark.css"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--For code highlighting-->
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shBrushPlain.js"></script>
+<script type="text/javascript" src="js/shBrushVim.js"></script>
+<script type="text/javascript" src="js/shBrushBash.js"></script>
+<script type="text/javascript" src="js/shBrushCss.js"></script>
+<script type="text/javascript" src="js/shBrushJava.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushPython.js"></script>
+<script type="text/javascript" src="js/shBrushSql.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+		SyntaxHighlighter.all();
+		if (window.innerWidth >= 460) {
+		var toggler = $('<div class="toggler" title="Toggle Table Of Content">Table Of Content</div>');
+		toc = $('.toc');
+		toc.wrap('<div class="tocWrap">');
+
+		$('.tocWrap').prepend(toggler)
+		.delay(500)
+		.fadeTo(500, '0.7')
+		.hover(function() {
+			$(this).stop().fadeTo(300, '0.9');
+			}, function() {
+			$(this).stop().fadeTo(300, '0.7');
+			});
+
+		$('html').keypress(function(e) {
+			if (e.shiftKey && (e.charCode || e.keyCode) == '90') {
+			e.preventDefault();
+			$('div.tocWrap').toggle(200);
+			}
+			});
+
+		toggler.click(function() {
+				$('div.toc').slideToggle(300);
+				});
+		}
+
+		$("a,h1,h2,h3,h4,h5,h6").filter(function(index){
+			return $(this).text()=='!Important!';
+				}).addClass("importantMarker");
+
+		
+
+});
+
+
+
+</script>
+</head>
+<body >
+<header id="header">
+<div id="logo" style="font-size: 22pt;text-align:center;">
+<a href="index.html">DobMa's Personal Page</a>
+</div>
+</header>
+<div id="wrap">
+<div id="content">
+
+<div id="DobMa&#39;s github"><h1 id="DobMa&#39;s github">DobMa's github</h1></div>
+<ul>
+<li>
+<a href="https:&#47;&#47;github.com&#47;dobma">https://github.com/dobma</a>
+
+</ul>
+<div id="Notebook"><h1 id="Notebook">Notebook</h1></div>
+<div id="Notebook-[[my_linux|GNU]]"><h2 id="[[my_linux|GNU]]"><a href="my_linux.html">GNU</a></h2></div>
+<div id="Notebook-[[my_git|Git]]"><h2 id="[[my_git|Git]]"><a href="my_git.html">Git</a></h2></div>
+<div id="Notebook-[[my_python|Python]]"><h2 id="[[my_python|Python]]"><a href="my_python.html">Python</a></h2></div>
+<div id="Notebook-[[my_unix|Unix]]"><h2 id="[[my_unix|Unix]]"><a href="my_unix.html">Unix</a></h2></div>
+<div id="Notebook-[[my_html|Web]]"><h2 id="[[my_html|Web]]"><a href="my_html.html">Web</a></h2></div>
+<div id="Notebook-[[my_hat|Hat]]"><h2 id="[[my_hat|Hat]]"><a href="my_hat.html">Hat</a></h2></div>
+<div id="Notebook-[[my_window|Window]]"><h2 id="[[my_window|Window]]"><a href="my_window.html">Window</a></h2></div>
+<p>
+声明：以上笔记为作者自学习经历，或学习自网络，或学习自书籍等。如有侵权，请及时联系作者。
+</p>
+
+</div>
+</div>
+<div id="footer">
+<p>
+Copyright © 2016 DobMa
+</p>
+</div>
+</body>
+</html>

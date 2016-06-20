@@ -1,0 +1,1403 @@
+= Contents =
+    - [[#html|html]]
+        - [[#html#样式|样式]]
+        - [[#html#链接|链接]]
+        - [[#html#表|表]]
+        - [[#html#块|块]]
+        - [[#html#布局|布局]]
+        - [[#html#表单|表单]]
+        - [[#html#框架|框架]]
+        - [[#html#html5|html5]]
+    - [[#css|css]]
+            - [[#css#选择器|选择器]]
+            - [[#css#背景|背景]]
+            - [[#css#文本|文本]]
+            - [[#css#字体|字体]]
+            - [[#css#链接|链接]]
+            - [[#css#列表|列表]]
+            - [[#css#表格|表格]]
+            - [[#css#轮廓|轮廓]]
+            - [[#css#盒子模型|盒子模型]]
+            - [[#css#定位|定位]]
+            - [[#css#浮动|浮动]]
+            - [[#css#对齐|对齐]]
+            - [[#css#尺寸的操作|尺寸的操作]]
+            - [[#css#分类的操作|分类的操作]]
+            - [[#css#导航栏|导航栏]]
+            - [[#css#图片|图片]]
+            - [[#css#2D、3D转换|2D、3D转换]]
+            - [[#css#过渡|过渡]]
+            - [[#css#动画|动画]]
+            - [[#css#多列|多列]]
+            - [[#css#瀑布流|瀑布流]]
+    - [[#JavaScript|JavaScript]]
+        - [[#JavaScript#文档输出|文档输出]]
+        - [[#JavaScript#常识|常识]]
+        - [[#JavaScript#变量|变量]]
+        - [[#JavaScript#数据类型|数据类型]]
+        - [[#JavaScript#运算符|运算符]]
+        - [[#JavaScript#条件语句|条件语句]]
+        - [[#JavaScript#循环语句|循环语句]]
+        - [[#JavaScript#跳转语句|跳转语句]]
+        - [[#JavaScript#函数|函数]]
+        - [[#JavaScript#异常捕获|异常捕获]]
+        - [[#JavaScript#DOM|DOM]]
+        - [[#JavaScript#对象|对象]]
+        - [[#JavaScript#createjs应用|createjs应用]]
+
+%title DobMa's tml
+= html =
+# 基础标签
+{{{
+<head> </head>
+<body> </body>:bgcolor背景颜色:background背景图片
+<title> <title>设置当前标题
+}}}
+# 标题
+	* <h1>~~~<h6>
+	* :align对其方式
+# 段落
+	* 标签定义段落
+{{{
+<p> </p>
+}}}
+# 链接
+	* :href属性指定地址
+	* :target规定在何处打开链接。blank打开新的；self当前打开（默认）
+{{{
+<a> </a>
+}}}
+# 图像
+	* :src属性指定图片地址
+	* :width指定图片宽度200px
+	* :alt指定图片名字，在图片不能显示的时候，显示指定的名字
+{{{
+<img> </img>
+}}}
+# 换行标签
+	* 换行
+{{{
+\<br/\>
+}}}
+# 格式化
+	* 格式化字体
+{{{
+\<b\> \</b\>粗体文字                         
+\<i\> \</i\>斜体字
+<big> </big>大号字                         
+<small> </small>小号字
+\<em\> \</em\>着重字                          
+\<strong\> \</strong\>加重语气
+\<sub\> \</sub\>下表字                         
+\<sup\> \</sup\>上标字
+<ins> </ins>插入字                         
+<del> </del>删除字
+}}}
+== 样式 ==
+# 样式 style
+	* 外部样式表
+{{{
+<link rel=”stylesheet”type=”text/css” href=”style.css”>
+}}}
+		- rel:外部引用资源
+		- type:文档类型
+		- href:具体位置
+		- 在style.css中写入
+{{{
+p{
+	color:”XXX”;	
+}
+}}}
+	* 内部样式表
+		- 在<head>中写入
+{{{
+<style type =”text/css”>
+	p{color:XXX;}
+</style>
+}}}
+		- 在<body>中写入
+{{{
+<p>hello world</p>
+}}}
+	* 内联样式表
+{{{
+<p style=”color:XXX”>XXXX</p>
+}}}
+== 链接 ==
+# 链接
+	* a
+		- :herf指向另一个文档的链接
+		- :name创建文档内的链接
+	* 给文本hello world赋予一个名字为XX
+{{{
+<a name=”XX”>hello world</a>
+}}}
+	* 点击其中的文本可以跳转到XX
+{{{
+<a href=”#XX”>跳转到hello world</a>
+}}}
+== 表 ==
+# 表格 table
+	* 属性
+		- :border边框
+		- :cellpadding指定单元格边距
+		- :cellspacing指定单元格间距
+		- :bgcolor添加背景颜色
+		- :background添加背景图片
+	* 子标签
+		- <table>定义表格
+		- <caption>定义表格标题(包含在table中)
+		- <tr>定义表格的行
+		- <th>定义表格的表头(包含在tr中)
+		- <td>定义表格的单元(包含在tr中)
+{{{
+<table border="1">
+	<caption>Monthly savings</caption>
+    <tr>
+		<th>Month</th>
+		<th>Savings</th>
+	</tr>
+	<tr>
+		<td>January</td>
+		<td>$100</td>
+	</tr>
+</table>
+}}}
+		- <thead>定义表格的页眉
+		- <tbody>定义表格的主体
+		- <tfoot>定义表格的页脚
+{{{
+<table border="1">
+	<thead>
+		<tr>
+			<th>Month</th>
+			<th>Savings</th>
+		</tr>
+	</thead>
+
+	<tfoot>
+		<tr>
+			<td>Sum</td>
+			<td>$180</td>
+		</tr>
+	</tfoot>
+
+	<tbody>
+		<tr>
+			<td>January</td>
+			<td>$100</td>
+		</tr>
+		<tr>
+			<td>February</td>
+			<td>$80</td>
+		</tr>
+	</tbody>
+</table>
+}}}
+		- <col>定义表格的列属性
+		- 以下代码为表格中的三个列定义属性
+{{{
+<table width="100%" border="1">
+	<col align="right" />
+	<col align="left" />
+	<col align="left" />
+	...
+	...
+}}}
+# 列表
+	* 无序列表 <ul> </ul>
+		- :type属性
+	* 有序列表 <ol> </ol>
+		- :type属性
+		- :start属性，可以从某个数字开始
+# 嵌套列表
+	* <ul> <li> <ol>嵌套使用
+# 自定义列表
+{{{
+<dl>
+	<dt>XX</dt>
+		<dd>XXX</dd>
+	<dt>XX</dt>
+		<dd>XXX</dd>
+</dl>
+}}}
+== 块==
+# 块元素
+	* 通常以新行开始
+	* <h1> <p> <ul>
+# 内联元素
+	* 不会以新行开始
+	* \<b\> <a> <img> 
+# \<div\>元素
+	* 被成为块元素，组合HTML元素的容器
+	* 配合一些样式来使用
+# <span>元素
+	* 是内联元素，作为文本的容器，用在\<div\>内部
+== 布局 ==
+# \<div\>元素布局
+	* <body>中写入N个<..div id=”XX”>嵌套，并且对每个div设置一个ID
+	* <head>中对每个div进行设置
+{{{
+<style type=”text/css”>
+	body{
+		margin 0px;充满全屏，白边去掉
+	}
+	#XX{
+		width: 100%;
+		height: 950px;
+		background-color:
+		float: left;从左向右排列
+		clear: left;清除从左向右排列
+	}
+	……
+</style>
+}}}
+	* 对N个div进行布局。将style写入.css中也可以
+# <table>元素布局
+	* <td>:colspan合并单元格，其中数字为需要合并的单元格数目
+{{{
+<body marginheight="0px" marginwidth="0px">
+<table width="100%" height="950px" style="background-color: darkgrey">
+	<tr>
+		<td colspan="2" width="100%" height="10%" style="background-color:coral">这是头部</td>
+	</tr>
+	<tr>
+		<td height="80%" width="20%" style="background-color: chartreuse">这是索引</td>
+	<td height="80%" width="80%" style="background-color: cadetblue">这是内容</td>
+	</tr>
+	<tr>
+	<td colspan="2" width="100%" height="10%" style="background-color:crimson">这是底部</td>
+	</tr>
+</table>
+</body>
+}}}
+== 表单 ==
+# <form>表单
+	* <input>输入域
+	* <textarea>文本域
+	* <label>控制标签
+	* <fieldset>定义域
+	* <legend>域的标题
+	* <select>选择列表
+	* <optgroup>选项组
+	* <button>按钮
+	* <option>下拉列表中的项
+{{{
+<form> 表单
+
+	<input type="text"/> 输入域的文本类型
+	<input type="password"/> 输入域的密码类型
+
+	<input type="checkbox"/>1<..br/> 输入域的复选框类型
+	<input type="checkbox"/>2<..br/>
+	<input type="checkbox"/>3<..br/>
+
+	<input type="radio" name="name">1 输入域的单选框类型(name定义了组)
+	<input type="radio" name="name">2
+
+	<select> 下拉列表
+		<option>1</option> 下拉列表中的项
+		<option>2</option>
+		<option>3</option>
+	</select>
+
+	<textarea cols="30" rows="10">请输入信息</textarea>	文本域
+
+	<button>按钮</button> 按钮
+	<input type="button"> 默认按钮
+	<input type="button" value="按钮"> 按钮上有"按钮"两个字
+	<input type="submit" value="提交"> 按钮上有“提交"两个字
+</form>
+}}}
+# PHP与表单交互
+{{{
+<form action="http://localhost/sever/severice.php" method="post">
+	用户名：<input type="text" name="name"><..br/>
+	密  码：<input type="password" name="passward"><..br/>
+	<input type="submit" value="提交">
+</form>
+}}}
+== 框架 ==
+# <iframe>
+{{{
+<iframe src="framea.html" frameborder="0"></iframe>
+}}}
+# 内联框架<iframe>
+	* 对于使用内联框架时，<a>标签sref属性的使用
+	* _self在当前框架内打开链接(默认)
+	* _blank在另外一个新的网页打开链接
+	* _parent在承载当前框架的父框架内打开链接
+	* _top在承载当前框架的最高级框架内打开链接
+# 背景
+	* :background背景标签，可以添加一些图片
+	* :bgcolor背景颜色，设置背景的颜色
+# 实体
+	* 将关键字或者html语言中的符号展示到页面中，则需要用实体代替
+{{{
+结果
+描述
+实体名称
+实体编号
+"
+quotation mark
+&quot;
+"
+'
+apostrophe
+&apos;
+'
+&
+ampersand
+&amp;
+&
+<
+less-than
+&lt;
+<
+>
+greater-than
+&gt;
+>
+}}}
+== html5 ==
+# HTML5音频播放
+{{{
+audio音频
+control控制器，使用默認控件
+<audio id="au" src="audio/1.mp3" controls="controls">您的瀏覽器不支持音頻</audio>
+
+自己添加控件
+<button id="aubtn" onclick="aubt()">播放/暫停</button>
+<audio id="au" src="audio/1.mp3">您的瀏覽器不支持音頻</audio>
+<script>function aubt()
+{
+	var au = document.getElementById("au");
+	if(au.paused)
+	{
+		au.play();
+	}else
+	{
+		au.pause();
+	}
+}
+</script>
+}}}
+# 编解码工具
+	* ffmpeg.org转码工具
+	* firefox和safair支持ogg格式的视频文件
+# HTML5的视频播放
+{{{
+<video controls="controls">
+    <source src="1.mp4">
+	<source src="1.ogg">
+</video>
+添加多个视频源
+}}}
+# HTML5拖放
+	* 拖动开始
+		-ondragstart调用一个函数drag(event)规定了被拖动的数据
+	* 设置拖动数据
+		-setData()设置被拖动数据的类型和值
+	* 放入位置
+		- ondragover规定在何处防止被拖动的数据
+	* 放置
+		- ondrop当放置被拖数据时，会发生drop事件
+	* code
+{{{
+1.在一个区域拖动
+var boxdiv,img;
+window.onload = function(){
+	boxdiv = document.getElementById("box1");
+	msgdiv = document.getElementById("msg");
+	img = document.getElementById("img");
+	boxdiv.ondragover = function(event)
+	{ //阻止系统默认事件
+		event.preventDefault();
+	}
+	img.ondragstart = function(event)
+	{ //设置被拖动的数据
+		event.dataTransfer.setData("imgId","img"); //第一个参数指定设置的数据的ID，第二个参数指定当前图片的ID
+	}
+	boxdiv.ondrop = function(event)
+	{ //取到设置的数据，放到所在的点上
+		event.preventDefault(); //阻止系统默认事件,,创建节点
+		var img = document.getElementById(event.dataTransfer.getData("imgId"));//获取数据
+		boxdiv.appendChild(img);//添加到节点中
+	}
+}
+2.在多个区域进行拖动
+如果html中有多个可供拖动到的区域(div)，可用event.target代替区域
+}}}
+# HTML5拖放本地资源
+{{{
+var container;
+window.onload = function(){
+	container = document.getElementById("container");
+	container.ondragover = function(event){
+		event.preventDefault();
+	}
+	container.ondrop = function(event){
+		event.preventDefault();
+		var f = event.dataTransfer.files[0]; //创建一个文件对象
+		var fileReader = new FileReader(); //读取信息
+		fileReader.onload = function(event){ //监听事件
+			container.innerHTML = "<img src=\""+fileReader.result+"\">"; //将拖拽的资源添加到container的div标签中
+		}
+		fileReader.readAsDataURL(f); //读取f的地址
+	}
+}
+}}}
+# Canvas标签
+	* canvas只是一个容器，需要通过js来编写里面的内容
+	* 在html中创建canvas
+{{{
+<canvas class="mycanvas" height="200px" width="200px"></canvas>;
+}}}
+	* 在js中创建canvas
+{{{
+function creatCanvas(){
+	document.body.innerHTML = "<canvas id='mycanvas' width='200px' height='200px'></canvas>";
+}
+}}}
+# 绘制图形
+	* developer.mozilla.org其中有htmlAPI
+{{{
+function drawCanvas(){
+    ctx.fillStyle = "green";
+	ctx.fillRect(0,0,100,100);
+}
+}}}
+# 绘制图片
+{{{
+function drawImage(){
+    var img = new Image();
+	img.onload = function (){
+		ctx.drawImage(img,0,0);
+	}
+	img.src = "hello.jpg";
+}
+}}}
+= css =
+=== 选择器 ===
+# 选择器
+{{{
+selector{
+	property:value;
+}
+}}}
+	* 属性大于一的时候，属性之间用分号隔开。
+	* 值大于一，要用加上引号。
+{{{
+p{
+	font-family:"sans serif";
+}
+}}}
+# 选择器分组
+{{{
+h1,h2,h3{color:red;}
+}}}
+# 继承
+	* 未被定义样式的标签，会引用body的属性样式
+{{
+body{color:red;}
+}}
+# 派生选择器
+	* 通过依据元素在其位置的上下文关系来定义样式
+	* 两个标签之间用空格隔开
+{{{
+p a{
+	color: red;
+}
+}}}
+# id选择器
+	* 可为标有id的元素指定样式
+	* 以#id{}来定义
+		- 在html中
+{{{
+<..div id=”divid”>div标签<../div>
+}}}
+		- 在.css文件中
+{{
+#divid{
+	color: red;
+}
+}}
+	* id选择器和派生选择器一起使用
+		- 在html中
+{{{
+<p id="pid">the web of baidu<a href="www.baidu.com">baidu</a></p>
+}}}
+		- 在.css中
+{{{
+#pid a{
+	color: red;
+}
+}}}
+# 类选择器
+	* 可为标有class的元素指定样式
+	* 以#class{}来定义
+		- 在html中
+{{{
+<p class="pclass">
+	p label
+	<p>hi p</p>
+</p>
+}}}
+		- 在.css中
+{{{
+.pclass{
+	color: red;
+}
+}}}
+# 属性选择器
+	* 对带有指定属性的元素设置样式
+		- html
+{{
+<p title="p">hello css</p>
+}}
+		- css
+{{{
+[title]{
+	color: #67ffaa;
+}
+}}}
+	* 属性和值选择器
+		- html
+{{
+<p title="pp">hello css</p>
+}}
+		- css
+{{{
+[title=pp]{
+	color: #67ffaa;
+}
+}}}
+=== 背景 ===
+# 背景
+	* background-color:背景颜色
+{{{
+body{
+	background-color: red;
+}
+}}}
+	* background-image:背景图片
+{{{
+body{
+	background-image: url("html5.jpg"); 添加背景图片
+	background-repeat: no-repeat; 设置背景图片是否可以重复
+	background-position: right top; 第一个位置表示背景图片在页面的位置,二表示从图片的那个地方开始显示
+	background-position: 0px 0px; 从页面的某个坐标开始显示
+	background-attachment: fixed; 设置背景图片是否随着滚动条滚动
+	background-size: 100px 100px; 设置背景图片的大小
+}
+}}}
+=== 文本 ===
+# text-transform设置文本中的字母
+{{{
+#p1{
+	text-transform: capitalize; 文本中的字母首字母是大写
+	text-transform: lowercase; 文本中的字母全部是小写
+	text-transform: uppercase; 文本中的字母全部是大写
+}
+}}}
+# text-shadow设置文本阴影
+{{{
+p{
+	text-shadow: 5px 5px 1px red;
+}
+}}}
+	* ：阴影在文本的右，距离
+	* ：阴影在文本的下，距离
+	* ：清晰度
+	* : 阴影颜色
+# text-wrap换行
+{{{
+p{
+	width: 116px;
+	text-wrap: normal; 自动换行，正常。
+}
+}}}
+# text-align对齐方式
+{{{
+p{
+	text-align: center;
+}
+}}}
+# text-indent首行缩进
+{{{
+p{
+	text-indent: 2em; 首行缩进两个字符
+}
+}}}
+=== 字体 ===
+# 设置字体
+{{{
+@font-face {
+	font-family: myfont; 自命名字体名称
+	src: url(XXX); 字体路径
+}
+p{
+	font-family: myfont; 使用字体系列
+	font-size: 20px; 设置字体大小
+	font-style: oblique; 设置字体风格
+	font-weight; 设置字体粗细
+}
+}}}
+=== 链接 ===
+# a:link 未被访问的链接
+# a:visited 用户已经访问的链接
+# a:hover 鼠标指针位于链接的上方
+# a:active 链接被点击的时刻
+{{{
+a:link{
+	color: red;
+	text-decoration: none; 设置下划线为无
+	background-color: #b86263; 设置背景颜色
+}
+}}}
+=== 列表 ===
+{{{
+li{
+	list-style-type: lower-latin; 设置列表项标志类型
+	list-style-image: url("html5.jpg"); 用图片作为列表项标志类型
+	list-style-position: outside; 设置列表项位置，outside靠页面外侧，inside靠页面内侧
+}
+}}}
+=== 表格 ===
+{{{
+table,td,th{ 设置外边框，表格单元，表头单元的属性
+	border: 1px solid blue;	 1px solid表示1px粗细的边框；blue表示颜色
+	border-collapse: collapse; 所要设置的元素进行边框折叠
+}
+table{ 设置table（最外层边框）的长宽为400px
+	width: 400px;
+	height: 400px;
+	text-align: center; 设置table中文字居中
+	background-color; 设置table的背景颜色
+}
+}}}
+=== 轮廓 ===
+# 轮廓主要是用来突出元素的作用
+{{{
+p{
+	outline-style: dashed; 设置轮廓样式
+	outline-color: crimson; 设置轮廓颜色
+	outline-width: 5px; 设置轮廓的宽度，粗细
+}
+}}}
+=== 盒子模型 ===
+# 简介
+	* 内容content
+	* 高height
+	* 宽width
+	* 内边距padding
+	* 边框border
+	* 外边距margin
+# 内边距
+	* 内边距在content外，border内
+{{{
+<table border="1px">
+	<tr>
+		<td>内容</td>
+	</tr>
+</table>
+在.css中写入
+td{
+	padding: 100px;
+}
+以上设置所有的内边距为100px
+也可以分别设置
+padding-bottom:		下内边距
+padding-left:		左内边距
+padding-right:		右内边距
+padding-top:		上内边距
+}}}
+# 边框
+	* border-style定义了10种不同的样式
+	* border-XX-style边框的单边样式 top bottom left right
+	* border-width边框的宽度
+	* border-XX-width边框的单边宽度
+	* border-color边框的颜色
+	* border-XX-color边框的单边颜色
+{{{
+p{
+	border-radius: 10px; 设置圆角弧度
+	border: 1px solid; 设置边框
+}
+
+p{
+	box-shadow: 2px 5px 5px red; 边框阴影与text-shadow同样用法
+}
+}}}
+# 外边距
+	* 外边距为border外的部分，外边距默认为透明区域
+	* margin: 全部外边距
+	* margin-bottom: 下外边距
+	* margin-left: 左外边距
+	* margin-right: 右外边距
+	* margin-top: 上外边距
+# 用div标签设置盒子模型
+{{{
+\<div class="top">
+	\<div class="top_content">\</div\>
+\</div\>
+\<div class="content">
+	\<div class="content_top">\</div\>
+	\<div class="content_tip">\</div\>
+	\<div class="content_con">\</div\>
+	\<div class="content_bottom">\</div\>
+	\<div class="content_bottom_bottom">\</div\>
+	\</div\>
+\</div\>
+}}}
+# 外边距合并就是外边距叠加
+=== 定位 ===
+# 定位属性
+	* :top设置元素向上的偏移量,类似left、right、bottom
+	* :z-index设置元素的堆叠顺序,后面的值为数字，数字大的把数字小的压住，即数字大的距离用户近
+{{{
+	#position{
+	z-index: 1;
+}
+}}}
+	* :overflow设置元素溢出其区域发生的事情
+	* :clip设置元素显示的形状
+	* :vertical-align设置元素垂直对齐方式
+	* :position存放元素的位置
+	* :static静态的,布局效果和相对布局一样，只是偏移量、z-indez不再起作用
+	* :relative相对的(默认)	,此元素与其他元素是相对的，此元素位置改变以后其他元素位置不变
+	* :absolute绝对的,此元素在页面中的位置并不影响其他元素在页面中的位置，似乎页面有好几层，此元素在其他层面上
+	* :fixed固定的,此元素在页面中的位置并不影响其他元素在页面中的位置，并且此元素不随着滚动条的滚动而滚动
+{{{
+#position{
+	width: 100px;
+	height: 100px;
+	background-color: crimson;
+	position: absolute;
+}
+}}}
+=== 浮动 ===
+# float浮动
+# left向左浮动 right、none、inherit从父级继承浮动属性
+# clear去掉浮动属性
+# left去掉向左浮动 right、inherit、both左右两侧均去掉浮动
+=== 对齐 ===
+# 使用margin属性进行水平对齐
+# 使用position属性进行水平对齐
+# 使用float属性进行水平对齐
+=== 尺寸的操作 ===
+# line-height: normal; 设置行高为正常
+# line-height: 200%; 设置行高为正常的200%
+# max-height、min-height、max-width、min-width 设置最大、最小高度、宽度
+=== 分类的操作 ===
+# cursor 设置当指向某元素之上时显示的指针类型
+# display 设置是否及如何显示元素
+# visibility 设置元素是否可见
+=== 导航栏 ===
+# 垂直导航栏
+	* 导航栏用列表表示
+{{{
+<ul>
+	<li>
+		\<div\><a href="#">导航1</a>\</div\>
+	</li>
+	<li>
+		\<div\><a href="#">导航2</a>\</div\>
+	</li>
+	<li>
+		\<div\><a href="#">导航3</a>\</div\>
+	</li>
+	<li>
+		\<div\><a href="#">导航4</a>\</div\>
+	</li>
+</ul>
+li{
+	list-style-type: none; 设置列表标记类型为无
+}
+a:link{
+	text-decoration: none; 设置链接文本无下划线
+}
+}}}
+	* 水平导航栏
+{{{
+li,div{
+	display: inline;
+}
+以横向显示
+}}}
+=== 图片 ===
+{{{
+image{
+	opacity: 0.5; 透明度，从0-1,1是完全不透明
+}
+div{
+	border: 1px solid;
+	float: left; 如果设置了float属性，边框将会自动适应。
+}
+}}}
+=== 2D、3D转换 ===
+# translate（）转换
+{{{
+div{
+-webkit-transform: translate(100px, 100px); 添加浏览器支持，chrome
+-moz-transform: translate(100px, 100px); firefox
+-ms-transform: translate(100px, 100px);	 IE
+-o-transform: translate(100px, 100px); opera
+transform: translate(100px, 100px); translate()中两个参数，分别是坐标
+}
+}}}
+# rotate()旋转
+{{{
+transform: rotate(30deg); 其中参数为旋转的角度
+}}}
+# scale()缩放
+{{{
+transform: scale(1, 2);	 宽、高的缩放比例倍数
+}}}
+# skew()倾斜
+{{{
+transform: skew(20deg, 20deg); 分别围绕x轴y轴倾斜的角度
+}}}
+# rotate()3D旋转
+{{{
+transform: rotateX(50deg); 延x轴旋转度数
+transform: rotateY(50deg); 延y轴旋转度数
+}}}
+=== 过渡 ===
+# 对宽度进行动画过渡
+{{{
+div
+{
+	width:100px;
+	height:100px;
+	background:blue;
+	transition:width 2s; 对宽度进行动画过渡，时间为2s
+	-moz-transition:width 2s;
+	-webkit-transition:width 2s;
+	-o-transition:width 2s;
+}
+div:hover 当鼠标指到div元素上时触发动画
+{
+	width:300px; 宽度变为300px
+} 其中可以添加一些动画效果
+}}}
+# 语法
+	* 语法：transition: property duration timing-function delay;
+	* transition-property 规定设置过渡效果的 CSS 属性的名称
+	* Transition-duration 规定完成过渡效果需要多少秒或毫秒
+	* transition-timing-function 规定速度效果的速度曲线
+	* Transition-delay 定义过渡效果何时开始
+	* 也可单独设置其中的值
+=== 动画 ===
+{{{
+div{
+	position: relative; 相对布局
+	-webkit-animation: anim 5s; 添加浏览器支持
+	-o-animation: anim 5s;
+	animation: anim 5s; 执行动画名字为anim的动画5s
+}
+@keyframes anim{ 编辑动画名字为anim的动画
+	0%{background: red;left: 0px;top: 0px} 在初始时刻样式
+	25%{background: #a841b8;left: 200px;top: 200px}	1/4
+	50%{background: #3fff7d;left: 200px;top: 0px}	1/2
+	75%{background: #cbff87;left: 0px;top: 200px}	3/4
+	100%{background: #fffbaf;left: 0px;top: 0px}	4/4
+}
+@-webkit-keyframes anim{ 添加浏览器支持
+	0%{background: red;left: 0px;top: 0px}
+	25%{background: #a841b8;left: 200px;top: 200px}
+	50%{background: #3fff7d;left: 200px;top: 0px}
+	75%{background: #cbff87;left: 0px;top: 200px}
+	100%{background: #fffbaf;left: 0px;top: 0px}
+}
+
+	animation: anim 5s infinite alternate; 动画无限次执行
+}}}
+=== 多列 ===
+{{{
+div{
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	column-count: 3; 将元素分成3列
+
+	-webkit-column-gap: 50px;
+	-moz-column-gap: 50px;
+	column-gap: 50px; 相邻两列间距50px
+
+	-webkit-column-rule: 1px solid red;
+	-moz-column-rule: 1px solid red;
+	column-rule: 1px solid red; 间隔线宽度，和颜色
+}
+}}}
+=== 瀑布流 ===
+{{{
+\<div class="container">
+	\<div\><img src="image/1.jpg" alt="1"/>\</div\>
+	…
+\</div\>
+
+.container{ 对container进行编辑
+	-webkit-column-width: 220px; 设置多列的宽度统一为220px
+	-moz-column-width: 220px;
+	column-width: 220px;
+
+	-webkit-column-gap: 5px; 设置每列之间的间距为5px
+	-moz-column-gap: 5px;
+	column-gap: 5px;
+}
+.container div{ 对每张图片进行编辑
+	width: 220px; 宽度为220px
+	margin: 20px 0;
+}
+}}}
+= JavaScript =
+== 文档输出  ==
+# 用JavaScript输出文本
+{{{
+<script>
+	document.write("<p>hello javascript</p>");
+</script>
+}}}
+== 常识 ==
+# 标识符必须以字母、下划线或美元符号开始；关键字不能使用
+# JavaScript对大小写非常敏感
+# js会忽略多余的空格
+== 变量 ==
+# var对变量进行声明
+{{{
+<script>
+	var i=10;
+	var j=15;
+	var m=i+j;
+	document.write(m);
+</script>
+}}}
+== 数据类型 ==
+# 字符串string
+	* var i="hello";
+# 数字number
+	* var i=20;
+# 布尔boolean
+	* var i=true;
+# 数组array
+{{{
+var i=[1,2,3,4]; 以[]定义数组
+var i=new Array("aa","b","c"); 以Array函数来定义数组
+var i=new Array();
+	i[0]=1;
+	i[1]=2; 动态定义数组
+}}}
+# 空null
+{{{
+var i=null; 输出的时候显示文本“null”
+var i=10;
+i=null;	 赋值为null，覆盖之前的值
+}}}
+== 运算符 ==
+# 算数运算符
+# 赋值运算符
+# 字符串操作
+{{{
+var i="www.";
+var j="baidu.com";
+var m=i+j;
+document.write(m); 输出为www.baidu.com
+任何类型与字符串 运算 都会被转化成字符串类型
+}}}
+# 比较运算符
+{{{
+var i="10";
+var j=10;
+document.write(i==j); 输出为true，如果错误输出false
+document.write(i===j); 输出为false，三等是绝对相等
+用法和!= !== 类似；
+}}}
+# 逻辑运算符
+# 条件运算符
+{{{
+var i=10;
+document.write(i>10?"AA":"BB");	 一个三目运算符
+}}}
+== 条件语句 ==
+# if...else
+# switch
+== 循环语句 ==
+# for循环 for in
+{{{
+var i[1,2,3,4,5,6];
+for(var j in i) 输出结果与 for(var j=0;j<6;j++) 一样
+{
+	document.write(i[j]);
+}
+}}}
+# while循环，do while
+== 跳转语句 ==
+# break语句，与continue语句
+	* break跳出当前循环
+	* continue跳出本次循环
+== 函数 ==
+# alert()函数
+	* 弹出一个对话框
+# function demo(a,b) 定义一个函数
+{{{
+{
+	var sum=a+b;
+	return sum;
+}
+alert(demo(10,20)) //调用一个函数
+}}}
+# 定义函数
+{{{
+function 函数名(){
+	函数体；(代码块)
+}
+}}}
+# 调用函数
+	* 直接调用
+	* 通过heml标签调用
+{{{
+<script>
+function demo()
+{
+	var a = 1;
+	var b = 2;
+	var sum=a+b;
+	alert(sum);
+}
+</script>
+<button onclick="demo()">按钮</button> //点击按钮将会弹出框
+}}}
+# 带参数的函数
+	* function demo(a,b){}
+# 带返回值的函数
+{{{
+<p id="pid"></p>
+
+<script>
+	function demo()
+	{
+		var a = 1;
+		var b = 2;
+		var sum=a+b;
+		return sum;
+	}
+	document.getElementById("pid").innerHTML = demo();
+</script>
+}}}
+== 异常捕获 ==
+# 异常：当代码执行时，发生了错误，导致程序停止运行
+# 异常抛出：异常产生时，会生成一个错误信息
+# 异常捕获：
+{{{
+try
+{
+	alert(sum); //写入出现错误的代码块
+}catch (err) //捕获错误
+{
+	alert(err); //弹出捕获到的错误
+}
+}}}
+# 创建自定义错误
+{{{
+<form> 创建一个表单
+	<input type="text" id="tet"/> 文本框
+	<input type="button" onclick="demo()" value="按钮"/> 按钮，点击时触发demo函数
+</form>
+<script>
+	function demo() //定义一个名为demo函数
+	{
+		try //捕获异常
+		{
+			e=document.getElementById("tet").value;	 //将文本框中的值赋给e
+			if(e=="")
+			{
+				throw "请输入"; //自定义异常
+			}
+		}catch (err) //获取异常
+		{
+			alert(err); //弹出异常
+		}
+	}
+</script>
+}}}
+== DOM ==
+# 事件
+	* onClick单击事件
+	* onMouseOver鼠标经过事件
+	* onMouseOut鼠标移出事件
+	* onChange文本内容改变事件
+	* onSelect文本框选中事件
+	* onFocus光标聚集事件
+	* onBlur移开光标事件
+	* onLoad网页加载完成事件
+	* onUnload关闭网页事件
+# DOM文档对象模型
+	* 网页被加载时，浏览器会创建一个文档对象模型
+	* 改变输出流,注意：不要在文档加载完之后，使用document.write()。会覆盖掉整个文档。
+{{{
+<script>
+	document.write("hello");
+</script>
+}}}
+	* 寻找元素
+{{{
+<script>
+	var e = document.getElementById("pid"); //通过id寻找
+	var e = document.getElementsByTagName("p"); //通过标签名寻找，相同元素的第一个
+	e.innerHTML="world"; //改变元素
+</script>
+}}}
+# DOM操作css
+	* 改变id为div的标签的属性。
+{{{
+document.getElementById("divid").style.backgroundColor="blue";
+}}}
+# DOM EventListener
+	* addEventLIstener()向指定元素添加事件句柄
+{{{
+var x=document.getElementById("btid"); //捕获id
+x.addEventListener("click",hello); //添加句柄，参数一，为事件；二为函数
+function hello() //添加一个函数
+{
+	alert("hello");
+}
+}}}
+	* 移出句柄
+{{{
+x.removeEventListener("click",hello);
+}}}
+# 事件处理
+	* HTML事件处理
+	* DOM0级事件处理
+	* DOM2级事件处理
+	* IE事件处理程序
+	* attachEvent
+	* detachEvent
+== 对象 ==
+# 事件对象
+	* 触发DOM事件的时候都会产生一个对象
+{{{
+document.getElementById("btid").addEventListener("click",showType);
+function showType(event)
+{
+	alert(event.type); //获取事件的类型
+	event.stopPropagation(); //阻止事件冒泡
+}
+}}}
+	* 事件对象event
+	* type获取事件类型
+	* target获取事件目标
+	* stopPropagation阻止事件冒泡
+	* preventDefault阻止事件默认行为；例如a标签，将不跳转
+# js内置对象
+	* js中所有事物都是对象，每个对象都带有属性和方法
+{{{
+people = new Object(); //创建一个名字为people的对象
+people.name = "hello"; //对对象进行初始化
+document.write(people.name); //打印对象数据
+people = {name:"hello",age:"20"}; //另外一种方法创建对象
+document.write(people.name);
+function people(name,age) //利用函数创建对象
+{											
+	this.name = name;
+	this.age = age;
+}
+x = new people("hello",20); //为函数附初值
+document.write(x.name+ x.age); //打印
+}}}
+# 字符串对象
+	* var str = "helloworld";
+	* document.write(str.length); //打印字符串长度
+	* document.write(str.indexOf("hello"));	//在字符串中查找字符串,如果存在，返回当前位置；不存在返回-1
+	* 内容匹配match(),如果有，将字符串打印出来；如果不匹配，返回null
+	* 字符串替换replace(),replace(“A”,”B”)；将A替换为B，如果没有A，则无效
+	* 字符串大小写转换toUpperCase()/toLowerCase(),转换成大写/转换成小写
+	* 字符串转换成数组
+{{{
+var str = "ni,hao,ma";
+var s = str.split(","); //填写分隔符
+document.write(s[0]);
+}}}
+# 日期对象
+{{{
+var da = new Date(); //获取当前日期
+document.write(da); //打印当前日期
+getFullYear()获取年份
+getTime()获取毫秒
+setFullYear()设置具体日期setFullYear(2015,1,1)
+getDay()获取星期几
+}}}
+# 数组对象
+{{{
+var c = a.concat(b);将b数组链接到a数组并赋值给c数组
+a.sort(
+	function(a,b){
+		return b-a; //规定降序排列
+	}
+)
+push()末尾追加元素
+a.push(“c”); //在a数组后面追加一个元素为c
+reverse()数组元素翻转
+}}}
+# math对象
+	* 执行常见的算数任务
+	* round()四舍五入
+	* document.write(Math.round(3.1)); //打印3.1的四舍五入数值
+	* random()返回0-1之间的随机数
+	* math.random()*100 返回0-100之间的随机数
+	* parseInt(Math.random()*100)将数值转化成int类型
+	* max()/min()返回最大值/最小值
+	* abs()返回绝对值
+# DOM对象控制HTML
+	* getElementsByName()通过名字获取标签
+	* getElementsById()通过id获取标签
+	* getElementsByTagName()通过标签名字获取标签
+	* getAttribute()获取元素的属性
+{{{
+<a href="www.baidu.com" id="aid" title="this is a table" name="ana">hellobaidu.com</a>
+var a = document.getElementById("aid"); //获取id为aid的标签
+var aAttribute = a.getAttribute("title"); //获取aid标签的title属性
+document.write(aAttribute); //打印属性
+}}}
+	* setAttribute()设置元素的属性
+{{{
+var aid = document.getElementById("aid"); //通过id获取标签
+aid.setAttribute("href","www.hao123.com");
+}}}
+	* childNodes()访问子节点
+{{{
+var child = document.getElementById("ulid").childNodes;
+alert(child[3].innerHTML);
+}}}
+	* parentNodes()访问父节点
+	* createElement()创建元素节点
+{{{
+var x = document.body; //创建一个body变量
+var i = document.createElement("input"); //创建一个input节点
+i.type = "button"; //input节点的类型时button
+i.value = "anniu"; //input节点的值是anniu
+x.appendChild(i); //将i添加到x中；即将input添加到body中
+}}}
+	* insertBefore插入节点
+{{{
+var div = document.getElementById("divid"); //获取div标签
+var pid = document.getElementById("pid"); //获取div的子标签p标签
+var newNode = document.createElement("p"); //创建一个新的p标签
+newNode.innerHTML = "Hello the P Node";	 //写入p标签内容
+div.insertBefore(newNode,pid); //在div中的p标签前面插入一个新的p标签
+}}}
+	* removeChild删除节点
+	* offsetHeight网页尺寸；不包含滚动条
+	* scrollHeight网页尺寸；包含滚动条
+{{{
+var width = document.documentElement.offsetWidth;
+var width = document.body.offsetWidth;
+}}}
+# window对象
+	* window.innerWidth浏览器窗口内部的宽度
+	* window.innerHeight浏览器窗口内部的高度
+	* document.write(window.innerWidth); //输出window的宽度
+	* window.open()打开新窗口
+	* window.close()关闭当前窗口
+# 计时器
+{{{
+\<div id="divid">\</div\> //用div标签承载计时器
+var theTime = setInterval(gettime,1000); //间隔1000毫秒不停地执行gettime
+function gettime()
+{
+	var d = new Date(); //创建Date对象
+	var t = d.toLocaleTimeString(); //获取Date的时间部分
+	document.getElementById("divid").innerHTML = t; //改变div标签的内容
+}
+}}}
+	* clearInterval(theTime);取消执行代码
+	* setTimeout()设置延时执行
+	* clearTimeout()停止延时执行函数
+# History对象
+	* window.history对象包含浏览器的历史（url）的集合
+	* history.back()与在浏览器点击后退按钮相同
+	* history.forward()与在浏览器点击前进按钮相同
+	* history.go()跳转到历史界面，当前页面时零
+	* history.go(-1)跳转到上一个界面
+# Location对象
+	* window.location获得当前页面的地址(url)，并把浏览器重新定向到新的页面
+	* location.hostname返回web主机的域名
+	* location.pathname返回当前页面的路径和文件名
+	* location.port返回web主机的端口
+	* location.protocol返回所用的web协议
+	* location.href返回当前页面的url
+	* location.assign()加载新的文档
+	* location.assign("http:/www.baidu.com");
+# screen对象
+	* window.screen包含有关用户屏幕的信息
+	* screen.availWidth可用的屏幕宽度
+	* screen.availHeight可用的屏幕高度
+	* screen.height屏幕高度
+	* screen.width屏幕宽度
+# 使用函数构造器构造对象
+{{{
+function People() //声明一个名字为People的函数
+{
+
+}
+People.prototype = 	//使用原形量指定属性
+{
+	name: "biaomd", //name属性等，属性间隔用逗号
+	age: 22,
+	eat:function() //指定一个函数作为eat属性的量
+	{
+		alert("吃");
+	}
+}
+var p = new People(); //使用new创建一个名字为p的People对象
+p.name;	 //通过p调用name属性
+}}}
+# js面向对象
+	* 使用function模拟类的概念
+{{{
+function People() //创建一个类
+{
+
+}
+//书写类中的属性和方法
+People.prototype.hello = function() //给People类的一个属性hello创建一个方法
+{
+	alert("hello");
+}
+function Student() //创建一个类
+{
+					
+}
+Student.prototype = new People(); //类Student继承类People
+var s = new Student(); //创建一个对象
+s.hello(); //调用父类的hello方法
+}}}
+		- 如果Student中也有一个名为hello的方法，则当s调用hello方法时，调用的时子类的hello。叫做复写父类的方法。
+== createjs应用 ==
+# [[http://www.creatjs.com ]]
+{{{
+window.onload = function(){
+    var canvas = document.getElementById("canvas");
+	var text = new createjs.Text("The time is:", "20px Arial", "#ff7700"); //创建text
+	var stage = new createjs.Stage(canvas); //创建stage
+	stage.addChild(text); //将text添加到stage中
+	createjs.Ticker.addEventListener("tick",stage);	 //添加一个监听事件
+}
+}}}
+# 创建动态text
+{{{
+var canvas,text,stage,count = 0;
+window.onload = function(){
+	canvas = document.getElementById("canvas");
+	text = new createjs.Text("The time is:", "20px Arial", "#ff7700"); //创建text
+	stage = new createjs.Stage(canvas);	 //创建stage
+	stage.addChild(text); //将text添加到stage中
+	createjs.Ticker.setFPS(1); //设置更新频率
+	createjs.Ticker.addEventListener("tick",tickstage); //添加一个监听事件
+}
+function tickstage(e){
+	count++;
+	text.text = "The time is:"+count;
+	stage.update();	 //设置更新
+}
+}}}

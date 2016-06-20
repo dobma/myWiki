@@ -1,0 +1,192 @@
+ls:list
+cd:Change Directory
+su:switch user
+pwd:print work directory
+ps:process status
+rmdir:Remove Directory
+rm:Remove
+cat:concatenate
+ln:Link files
+ln -s:link -soft
+mkdir:Make Directory
+man:Manual
+cd:Change directory
+ps:Process Status
+mkfs:Make file system
+fsck:File system check
+uname:Unix name
+lsmod:List modules
+mv:Move file
+cp:Copy file
+fg:Foreground
+bg:Background
+chown:Change owner
+chgrp:Change group
+chmod:Change mode
+chsh:CHange SHell
+umount:Unmount
+dd:Convert an copy
+tar:Tape archive
+ldd:List dynamic dependencies
+insmod:Install module
+rmmod:Remove module
+lsmod:List module
+*.rc:Resource configuration
+*.a:Archive,static library
+*.so:Shared object,dynamically linked library
+*.o:Object file,complied result of C/C++ source file
+rpm:Red hat package manager
+dpkg:Debian package manager
+apt:Advanced package tool
+bin:BINaries
+/dev:DEVices
+/etc:ETCetera
+/lib:LIBrary
+/proc:PROCesses
+/sbin:Superuser BINaries
+/tmp:TeMPorary
+/usr:Unix Shared Resources 
+/var:VARiable
+/boot:boot
+FIFO:First In, First Out
+GRUB:GRand Unified Bootloader
+IFS:Internal Field Seperators
+LILO:LInux LOader
+PS:Prompt String
+Perl:Pratical Extraction and Report Language=Pathologically Eclectic Rubbish Lister
+Tcl:Tool Command Language
+Tk:ToolKit
+VT:Video Terminal
+YaST:Yet Another Setup Tool
+apache:a patchy server
+ar:archiver
+as:assembler
+awk:Aho Weiberger and Kernighan
+bash:Bourne Again SHell
+bc:Basic(Better)Calculator
+bg:BackGround
+cal:CALendar
+cat:CATenate
+cmp:compare
+cobra:Common Object Request Broker Architecture
+comm:common
+cpio:CoPy In and Out
+cpp:C Pre Processor
+cron:Chronos
+cups:Common Unix Printing System
+cvs:Current Version System
+daemon:Disk And Execution MONitor
+dc:Desk Calculator
+dd:Disk Dump
+df:Disk Free
+diff:DIFFerence
+dmesg:diagnostic message
+du:Disk Usage
+ed：editor
+egrep:Extended GREP
+elf:Extensible Linking Format
+elm:ELectronic Mail
+emacs:Editor MACroS
+eval:EVALuate
+ex:EXtended
+exec:EXECute
+fd:file descriptors
+fgrep:Fixed GREP
+fmt:format
+fsck:File System ChecK
+fstab:FileSystem TABle
+fvwm :F Virtual Window Manager
+gawk:GNU AWK
+gpg = GNU Privacy Guard
+groff = GNU troff
+hal = Hardware Abstraction Layer
+joe = Joe's Own Editor
+ksh = Korn SHell
+lame = Lame Ain't an MP3 Encoder
+lex = LEXical analyser
+lisp = LISt Processing = Lots of Irritating Superfluous Parentheses
+ln = LiNk
+lpr = Line PRint
+ls = list
+lsof = LiSt Open Files
+m4 = Macro processor Version 4
+man = MANual pages
+mawk = Mike Brennan's AWK
+mc = Midnight Commander
+mkfs = MaKe FileSystem
+mknod = MaKe NODe
+motd = Message of The Day
+mozilla = MOsaic GodZILLa
+mtab = Mount TABle
+mv = MoVe
+nano = Nano's ANOther editor
+nawk = New AWK
+nl = Number of Lines
+nm = names
+nohup = No HangUP
+nroff = New ROFF
+od = Octal Dump
+passwd = PASSWorD
+pg = pager
+pico = PIne's message COmposition editor
+pine = "Program for Internet News & Email" = "Pine is not Elm"
+ping = 拟声 又 = Packet InterNet Grouper
+pirntcap = PRINTer CAPability
+popd = POP Directory
+pr = pre
+printf = PRINT Formatted
+ps = Processes Status
+pty = pseudo tty
+pushd = PUSH Directory
+pwd = Print Working Directory
+rc = runcom = run command, rc还是plan9的shell
+rev = REVerse
+rm = ReMove
+rn = Read News
+roff = RunOFF
+rpm = RPM Package Manager = RedHat Package Manager
+rsh, rlogin, rvim中的r = Remote
+rxvt = ouR XVT
+seamoneky = 我
+sed = Stream EDitor
+seq = SEQuence
+shar = SHell ARchive
+slrn = S-Lang rn
+ssh = Secure SHell
+ssl = Secure Sockets Layer
+stty = Set TTY
+su = Substitute User
+svn = SubVersioN
+tar = Tape ARchive
+tcsh = TENEX C shell
+tee = T (T形水管接口)
+telnet = TEminaL over Network
+termcap = terminal capability
+terminfo = terminal information
+tex = τέχνη的缩写，希腊文art
+tr = traslate
+troff = Typesetter new ROFF
+tsort = Topological SORT
+tty = TeleTypewriter
+twm = Tom's Window Manager
+tz = TimeZone
+udev = Userspace DEV
+ulimit = User's LIMIT
+umask = User's MASK
+uniq = UNIQue
+vi = VIsual = Very Inconvenient
+vim = Vi IMproved
+wall = write all
+wc = Word Count
+wine = WINE Is Not an Emulator
+xargs = eXtended ARGuments
+xdm = X Display Manager
+xlfd = X Logical Font Description
+xmms = X Multimedia System
+xrdb = X Resources DataBase
+xwd = X Window Dump
+yacc = yet another compiler compiler
+Fish = the Friendly Interactive SHell
+su = Switch User
+MIME = Multipurpose Internet Mail Extensions
+ECMA = European Computer Manufacturers Association

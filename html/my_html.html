@@ -1,0 +1,2582 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>DobMa's tml</title>
+<link href="./image/logo.ico" rel="shortcut icon"/>
+<link rel="stylesheet" type="text/css" href="style/main.css" />
+<link type="text/css" rel="stylesheet" href="style/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="style/shCoreRDark.css"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--For code highlighting-->
+<script type="text/javascript" src="js/shCore.js"></script>
+<script type="text/javascript" src="js/shBrushPlain.js"></script>
+<script type="text/javascript" src="js/shBrushVim.js"></script>
+<script type="text/javascript" src="js/shBrushBash.js"></script>
+<script type="text/javascript" src="js/shBrushCss.js"></script>
+<script type="text/javascript" src="js/shBrushJava.js"></script>
+<script type="text/javascript" src="js/shBrushJScript.js"></script>
+<script type="text/javascript" src="js/shBrushPython.js"></script>
+<script type="text/javascript" src="js/shBrushSql.js"></script>
+<script type="text/javascript" src="js/shBrushXml.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+		SyntaxHighlighter.all();
+		if (window.innerWidth >= 460) {
+		var toggler = $('<div class="toggler" title="Toggle Table Of Content">Table Of Content</div>');
+		toc = $('.toc');
+		toc.wrap('<div class="tocWrap">');
+
+		$('.tocWrap').prepend(toggler)
+		.delay(500)
+		.fadeTo(500, '0.7')
+		.hover(function() {
+			$(this).stop().fadeTo(300, '0.9');
+			}, function() {
+			$(this).stop().fadeTo(300, '0.7');
+			});
+
+		$('html').keypress(function(e) {
+			if (e.shiftKey && (e.charCode || e.keyCode) == '90') {
+			e.preventDefault();
+			$('div.tocWrap').toggle(200);
+			}
+			});
+
+		toggler.click(function() {
+				$('div.toc').slideToggle(300);
+				});
+		}
+
+		$("a,h1,h2,h3,h4,h5,h6").filter(function(index){
+			return $(this).text()=='!Important!';
+				}).addClass("importantMarker");
+
+		
+
+});
+
+
+
+</script>
+</head>
+<body >
+<header id="header">
+<div id="logo" style="font-size: 22pt;text-align:center;">
+<a href="index.html">DobMa's Personal Page</a>
+</div>
+</header>
+<div id="wrap">
+<div id="content">
+
+<div id="Contents" class="toc"><h1 id="Contents">Contents</h1></div>
+<ul>
+<li>
+<a href="my_html.html#html">html</a>
+
+<ul>
+<li>
+<a href="my_html.html#html-样式">样式</a>
+
+<li>
+<a href="my_html.html#html-链接">链接</a>
+
+<li>
+<a href="my_html.html#html-表">表</a>
+
+<li>
+<a href="my_html.html#html-块">块</a>
+
+<li>
+<a href="my_html.html#html-布局">布局</a>
+
+<li>
+<a href="my_html.html#html-表单">表单</a>
+
+<li>
+<a href="my_html.html#html-框架">框架</a>
+
+<li>
+<a href="my_html.html#html-html5">html5</a>
+
+</ul>
+<li>
+<a href="my_html.html#css">css</a>
+
+<ul>
+<li>
+<a href="my_html.html#css-选择器">选择器</a>
+
+<li>
+<a href="my_html.html#css-背景">背景</a>
+
+<li>
+<a href="my_html.html#css-文本">文本</a>
+
+<li>
+<a href="my_html.html#css-字体">字体</a>
+
+<li>
+<a href="my_html.html#css-链接">链接</a>
+
+<li>
+<a href="my_html.html#css-列表">列表</a>
+
+<li>
+<a href="my_html.html#css-表格">表格</a>
+
+<li>
+<a href="my_html.html#css-轮廓">轮廓</a>
+
+<li>
+<a href="my_html.html#css-盒子模型">盒子模型</a>
+
+<li>
+<a href="my_html.html#css-定位">定位</a>
+
+<li>
+<a href="my_html.html#css-浮动">浮动</a>
+
+<li>
+<a href="my_html.html#css-对齐">对齐</a>
+
+<li>
+<a href="my_html.html#css-尺寸的操作">尺寸的操作</a>
+
+<li>
+<a href="my_html.html#css-分类的操作">分类的操作</a>
+
+<li>
+<a href="my_html.html#css-导航栏">导航栏</a>
+
+<li>
+<a href="my_html.html#css-图片">图片</a>
+
+<li>
+<a href="my_html.html#css-2D、3D转换">2D、3D转换</a>
+
+<li>
+<a href="my_html.html#css-过渡">过渡</a>
+
+<li>
+<a href="my_html.html#css-动画">动画</a>
+
+<li>
+<a href="my_html.html#css-多列">多列</a>
+
+<li>
+<a href="my_html.html#css-瀑布流">瀑布流</a>
+
+</ul>
+<li>
+<a href="my_html.html#JavaScript">JavaScript</a>
+
+<ul>
+<li>
+<a href="my_html.html#JavaScript-文档输出">文档输出</a>
+
+<li>
+<a href="my_html.html#JavaScript-常识">常识</a>
+
+<li>
+<a href="my_html.html#JavaScript-变量">变量</a>
+
+<li>
+<a href="my_html.html#JavaScript-数据类型">数据类型</a>
+
+<li>
+<a href="my_html.html#JavaScript-运算符">运算符</a>
+
+<li>
+<a href="my_html.html#JavaScript-条件语句">条件语句</a>
+
+<li>
+<a href="my_html.html#JavaScript-循环语句">循环语句</a>
+
+<li>
+<a href="my_html.html#JavaScript-跳转语句">跳转语句</a>
+
+<li>
+<a href="my_html.html#JavaScript-函数">函数</a>
+
+<li>
+<a href="my_html.html#JavaScript-异常捕获">异常捕获</a>
+
+<li>
+<a href="my_html.html#JavaScript-DOM">DOM</a>
+
+<li>
+<a href="my_html.html#JavaScript-对象">对象</a>
+
+<li>
+<a href="my_html.html#JavaScript-createjs应用">createjs应用</a>
+
+</ul>
+</ul>
+
+<div id="html"><h1 id="html">html</h1></div>
+<ol>
+<li>
+基础标签
+<pre>
+&lt;head&gt; &lt;/head&gt;
+&lt;body&gt; &lt;/body&gt;:bgcolor背景颜色:background背景图片
+&lt;title&gt; &lt;title&gt;设置当前标题
+</pre>
+
+<li>
+标题
+
+<ul>
+<li>
+&lt;h1&gt;~~~&lt;h6&gt;
+
+<li>
+:align对其方式
+
+</ul>
+<li>
+段落
+
+<ul>
+<li>
+标签定义段落
+<pre>
+&lt;p&gt; &lt;/p&gt;
+</pre>
+
+</ul>
+<li>
+链接
+
+<ul>
+<li>
+:href属性指定地址
+
+<li>
+:target规定在何处打开链接。blank打开新的；self当前打开（默认）
+<pre>
+&lt;a&gt; &lt;/a&gt;
+</pre>
+
+</ul>
+<li>
+图像
+
+<ul>
+<li>
+:src属性指定图片地址
+
+<li>
+:width指定图片宽度200px
+
+<li>
+:alt指定图片名字，在图片不能显示的时候，显示指定的名字
+<pre>
+&lt;img&gt; &lt;/img&gt;
+</pre>
+
+</ul>
+<li>
+换行标签
+
+<ul>
+<li>
+换行
+<pre>
+\&lt;br/\&gt;
+</pre>
+
+</ul>
+<li>
+格式化
+
+<ul>
+<li>
+格式化字体
+<pre>
+\&lt;b\&gt; \&lt;/b\&gt;粗体文字                         
+\&lt;i\&gt; \&lt;/i\&gt;斜体字
+&lt;big&gt; &lt;/big&gt;大号字                         
+&lt;small&gt; &lt;/small&gt;小号字
+\&lt;em\&gt; \&lt;/em\&gt;着重字                          
+\&lt;strong\&gt; \&lt;/strong\&gt;加重语气
+\&lt;sub\&gt; \&lt;/sub\&gt;下表字                         
+\&lt;sup\&gt; \&lt;/sup\&gt;上标字
+&lt;ins&gt; &lt;/ins&gt;插入字                         
+&lt;del&gt; &lt;/del&gt;删除字
+</pre>
+
+</ul>
+</ol>
+<div id="html-样式"><h2 id="样式">样式</h2></div>
+<ol>
+<li>
+样式 style
+
+<ul>
+<li>
+外部样式表
+<pre>
+&lt;link rel=”stylesheet”type=”text/css” href=”style.css”&gt;
+</pre>
+
+<ul>
+<li>
+rel:外部引用资源
+
+<li>
+type:文档类型
+
+<li>
+href:具体位置
+
+<li>
+在style.css中写入
+<pre>
+p{
+	color:”XXX”;	
+}
+</pre>
+
+</ul>
+<li>
+内部样式表
+
+<ul>
+<li>
+在&lt;head&gt;中写入
+<pre>
+&lt;style type =”text/css”&gt;
+	p{color:XXX;}
+&lt;/style&gt;
+</pre>
+
+<li>
+在&lt;body&gt;中写入
+<pre>
+&lt;p&gt;hello world&lt;/p&gt;
+</pre>
+
+</ul>
+<li>
+内联样式表
+<pre>
+&lt;p style=”color:XXX”&gt;XXXX&lt;/p&gt;
+</pre>
+
+</ul>
+</ol>
+<div id="html-链接"><h2 id="链接">链接</h2></div>
+<ol>
+<li>
+链接
+
+<ul>
+<li>
+a
+
+<ul>
+<li>
+:herf指向另一个文档的链接
+
+<li>
+:name创建文档内的链接
+
+</ul>
+<li>
+给文本hello world赋予一个名字为XX
+<pre>
+&lt;a name=”XX”&gt;hello world&lt;/a&gt;
+</pre>
+
+<li>
+点击其中的文本可以跳转到XX
+<pre>
+&lt;a href=”#XX”&gt;跳转到hello world&lt;/a&gt;
+</pre>
+
+</ul>
+</ol>
+<div id="html-表"><h2 id="表">表</h2></div>
+<ol>
+<li>
+表格 table
+
+<ul>
+<li>
+属性
+
+<ul>
+<li>
+:border边框
+
+<li>
+:cellpadding指定单元格边距
+
+<li>
+:cellspacing指定单元格间距
+
+<li>
+:bgcolor添加背景颜色
+
+<li>
+:background添加背景图片
+
+</ul>
+<li>
+子标签
+
+<ul>
+<li>
+&lt;table&gt;定义表格
+
+<li>
+&lt;caption&gt;定义表格标题(包含在table中)
+
+<li>
+&lt;tr&gt;定义表格的行
+
+<li>
+&lt;th&gt;定义表格的表头(包含在tr中)
+
+<li>
+&lt;td&gt;定义表格的单元(包含在tr中)
+<pre>
+&lt;table border="1"&gt;
+	&lt;caption&gt;Monthly savings&lt;/caption&gt;
+    &lt;tr&gt;
+		&lt;th&gt;Month&lt;/th&gt;
+		&lt;th&gt;Savings&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;January&lt;/td&gt;
+		&lt;td&gt;$100&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<li>
+&lt;thead&gt;定义表格的页眉
+
+<li>
+&lt;tbody&gt;定义表格的主体
+
+<li>
+&lt;tfoot&gt;定义表格的页脚
+<pre>
+&lt;table border="1"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;Month&lt;/th&gt;
+			&lt;th&gt;Savings&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+
+	&lt;tfoot&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Sum&lt;/td&gt;
+			&lt;td&gt;$180&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tfoot&gt;
+
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;January&lt;/td&gt;
+			&lt;td&gt;$100&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;February&lt;/td&gt;
+			&lt;td&gt;$80&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+
+<li>
+&lt;col&gt;定义表格的列属性
+
+<li>
+以下代码为表格中的三个列定义属性
+<pre>
+&lt;table width="100%" border="1"&gt;
+	&lt;col align="right" /&gt;
+	&lt;col align="left" /&gt;
+	&lt;col align="left" /&gt;
+	...
+	...
+</pre>
+
+</ul>
+</ul>
+<li>
+列表
+
+<ul>
+<li>
+无序列表 &lt;ul&gt; &lt;/ul&gt;
+
+<ul>
+<li>
+:type属性
+
+</ul>
+<li>
+有序列表 &lt;ol&gt; &lt;/ol&gt;
+
+<ul>
+<li>
+:type属性
+
+<li>
+:start属性，可以从某个数字开始
+
+</ul>
+</ul>
+<li>
+嵌套列表
+
+<ul>
+<li>
+&lt;ul&gt; &lt;li&gt; &lt;ol&gt;嵌套使用
+
+</ul>
+<li>
+自定义列表
+<pre>
+&lt;dl&gt;
+	&lt;dt&gt;XX&lt;/dt&gt;
+		&lt;dd&gt;XXX&lt;/dd&gt;
+	&lt;dt&gt;XX&lt;/dt&gt;
+		&lt;dd&gt;XXX&lt;/dd&gt;
+&lt;/dl&gt;
+</pre>
+
+</ol>
+<div id="html-块"><h2 id="块">块</h2></div>
+<ol>
+<li>
+块元素
+
+<ul>
+<li>
+通常以新行开始
+
+<li>
+&lt;h1&gt; &lt;p&gt; &lt;ul&gt;
+
+</ul>
+<li>
+内联元素
+
+<ul>
+<li>
+不会以新行开始
+
+<li>
+\&lt;b\&gt; &lt;a&gt; &lt;img&gt; 
+
+</ul>
+<li>
+\&lt;div\&gt;元素
+
+<ul>
+<li>
+被成为块元素，组合HTML元素的容器
+
+<li>
+配合一些样式来使用
+
+</ul>
+<li>
+&lt;span&gt;元素
+
+<ul>
+<li>
+是内联元素，作为文本的容器，用在\&lt;div\&gt;内部
+
+</ul>
+</ol>
+<div id="html-布局"><h2 id="布局">布局</h2></div>
+<ol>
+<li>
+\&lt;div\&gt;元素布局
+
+<ul>
+<li>
+&lt;body&gt;中写入N个&lt;..div id=”XX”&gt;嵌套，并且对每个div设置一个ID
+
+<li>
+&lt;head&gt;中对每个div进行设置
+<pre>
+&lt;style type=”text/css”&gt;
+	body{
+		margin 0px;充满全屏，白边去掉
+	}
+	#XX{
+		width: 100%;
+		height: 950px;
+		background-color:
+		float: left;从左向右排列
+		clear: left;清除从左向右排列
+	}
+	……
+&lt;/style&gt;
+</pre>
+
+<li>
+对N个div进行布局。将style写入.css中也可以
+
+</ul>
+<li>
+&lt;table&gt;元素布局
+
+<ul>
+<li>
+&lt;td&gt;:colspan合并单元格，其中数字为需要合并的单元格数目
+<pre>
+&lt;body marginheight="0px" marginwidth="0px"&gt;
+&lt;table width="100%" height="950px" style="background-color: darkgrey"&gt;
+	&lt;tr&gt;
+		&lt;td colspan="2" width="100%" height="10%" style="background-color:coral"&gt;这是头部&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td height="80%" width="20%" style="background-color: chartreuse"&gt;这是索引&lt;/td&gt;
+	&lt;td height="80%" width="80%" style="background-color: cadetblue"&gt;这是内容&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+	&lt;td colspan="2" width="100%" height="10%" style="background-color:crimson"&gt;这是底部&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+</pre>
+
+</ul>
+</ol>
+<div id="html-表单"><h2 id="表单">表单</h2></div>
+<ol>
+<li>
+&lt;form&gt;表单
+
+<ul>
+<li>
+&lt;input&gt;输入域
+
+<li>
+&lt;textarea&gt;文本域
+
+<li>
+&lt;label&gt;控制标签
+
+<li>
+&lt;fieldset&gt;定义域
+
+<li>
+&lt;legend&gt;域的标题
+
+<li>
+&lt;select&gt;选择列表
+
+<li>
+&lt;optgroup&gt;选项组
+
+<li>
+&lt;button&gt;按钮
+
+<li>
+&lt;option&gt;下拉列表中的项
+<pre>
+&lt;form&gt; 表单
+
+	&lt;input type="text"/&gt; 输入域的文本类型
+	&lt;input type="password"/&gt; 输入域的密码类型
+
+	&lt;input type="checkbox"/&gt;1&lt;..br/&gt; 输入域的复选框类型
+	&lt;input type="checkbox"/&gt;2&lt;..br/&gt;
+	&lt;input type="checkbox"/&gt;3&lt;..br/&gt;
+
+	&lt;input type="radio" name="name"&gt;1 输入域的单选框类型(name定义了组)
+	&lt;input type="radio" name="name"&gt;2
+
+	&lt;select&gt; 下拉列表
+		&lt;option&gt;1&lt;/option&gt; 下拉列表中的项
+		&lt;option&gt;2&lt;/option&gt;
+		&lt;option&gt;3&lt;/option&gt;
+	&lt;/select&gt;
+
+	&lt;textarea cols="30" rows="10"&gt;请输入信息&lt;/textarea&gt;	文本域
+
+	&lt;button&gt;按钮&lt;/button&gt; 按钮
+	&lt;input type="button"&gt; 默认按钮
+	&lt;input type="button" value="按钮"&gt; 按钮上有"按钮"两个字
+	&lt;input type="submit" value="提交"&gt; 按钮上有“提交"两个字
+&lt;/form&gt;
+</pre>
+
+</ul>
+<li>
+PHP与表单交互
+<pre>
+&lt;form action="http://localhost/sever/severice.php" method="post"&gt;
+	用户名：&lt;input type="text" name="name"&gt;&lt;..br/&gt;
+	密  码：&lt;input type="password" name="passward"&gt;&lt;..br/&gt;
+	&lt;input type="submit" value="提交"&gt;
+&lt;/form&gt;
+</pre>
+
+</ol>
+<div id="html-框架"><h2 id="框架">框架</h2></div>
+<ol>
+<li>
+&lt;iframe&gt;
+<pre>
+&lt;iframe src="framea.html" frameborder="0"&gt;&lt;/iframe&gt;
+</pre>
+
+<li>
+内联框架&lt;iframe&gt;
+
+<ul>
+<li>
+对于使用内联框架时，&lt;a&gt;标签sref属性的使用
+
+<li>
+_self在当前框架内打开链接(默认)
+
+<li>
+_blank在另外一个新的网页打开链接
+
+<li>
+_parent在承载当前框架的父框架内打开链接
+
+<li>
+_top在承载当前框架的最高级框架内打开链接
+
+</ul>
+<li>
+背景
+
+<ul>
+<li>
+:background背景标签，可以添加一些图片
+
+<li>
+:bgcolor背景颜色，设置背景的颜色
+
+</ul>
+<li>
+实体
+
+<ul>
+<li>
+将关键字或者html语言中的符号展示到页面中，则需要用实体代替
+<pre>
+结果
+描述
+实体名称
+实体编号
+"
+quotation mark
+&amp;quot;
+"
+'
+apostrophe
+&amp;apos;
+'
+&amp;
+ampersand
+&amp;amp;
+&amp;
+&lt;
+less-than
+&amp;lt;
+&lt;
+&gt;
+greater-than
+&amp;gt;
+&gt;
+</pre>
+
+</ul>
+</ol>
+<div id="html-html5"><h2 id="html5">html5</h2></div>
+<ol>
+<li>
+HTML5音频播放
+<pre>
+audio音频
+control控制器，使用默認控件
+&lt;audio id="au" src="audio/1.mp3" controls="controls"&gt;您的瀏覽器不支持音頻&lt;/audio&gt;
+
+自己添加控件
+&lt;button id="aubtn" onclick="aubt()"&gt;播放/暫停&lt;/button&gt;
+&lt;audio id="au" src="audio/1.mp3"&gt;您的瀏覽器不支持音頻&lt;/audio&gt;
+&lt;script&gt;function aubt()
+{
+	var au = document.getElementById("au");
+	if(au.paused)
+	{
+		au.play();
+	}else
+	{
+		au.pause();
+	}
+}
+&lt;/script&gt;
+</pre>
+
+<li>
+编解码工具
+
+<ul>
+<li>
+ffmpeg.org转码工具
+
+<li>
+firefox和safair支持ogg格式的视频文件
+
+</ul>
+<li>
+HTML5的视频播放
+<pre>
+&lt;video controls="controls"&gt;
+    &lt;source src="1.mp4"&gt;
+	&lt;source src="1.ogg"&gt;
+&lt;/video&gt;
+添加多个视频源
+</pre>
+
+<li>
+HTML5拖放
+
+<ul>
+<li>
+拖动开始
+		-ondragstart调用一个函数drag(event)规定了被拖动的数据
+
+<li>
+设置拖动数据
+		-setData()设置被拖动数据的类型和值
+
+<li>
+放入位置
+
+<ul>
+<li>
+ondragover规定在何处防止被拖动的数据
+
+</ul>
+<li>
+放置
+
+<ul>
+<li>
+ondrop当放置被拖数据时，会发生drop事件
+
+</ul>
+<li>
+code
+<pre>
+1.在一个区域拖动
+var boxdiv,img;
+window.onload = function(){
+	boxdiv = document.getElementById("box1");
+	msgdiv = document.getElementById("msg");
+	img = document.getElementById("img");
+	boxdiv.ondragover = function(event)
+	{ //阻止系统默认事件
+		event.preventDefault();
+	}
+	img.ondragstart = function(event)
+	{ //设置被拖动的数据
+		event.dataTransfer.setData("imgId","img"); //第一个参数指定设置的数据的ID，第二个参数指定当前图片的ID
+	}
+	boxdiv.ondrop = function(event)
+	{ //取到设置的数据，放到所在的点上
+		event.preventDefault(); //阻止系统默认事件,,创建节点
+		var img = document.getElementById(event.dataTransfer.getData("imgId"));//获取数据
+		boxdiv.appendChild(img);//添加到节点中
+	}
+}
+2.在多个区域进行拖动
+如果html中有多个可供拖动到的区域(div)，可用event.target代替区域
+</pre>
+
+</ul>
+<li>
+HTML5拖放本地资源
+<pre>
+var container;
+window.onload = function(){
+	container = document.getElementById("container");
+	container.ondragover = function(event){
+		event.preventDefault();
+	}
+	container.ondrop = function(event){
+		event.preventDefault();
+		var f = event.dataTransfer.files[0]; //创建一个文件对象
+		var fileReader = new FileReader(); //读取信息
+		fileReader.onload = function(event){ //监听事件
+			container.innerHTML = "&lt;img src=\""+fileReader.result+"\"&gt;"; //将拖拽的资源添加到container的div标签中
+		}
+		fileReader.readAsDataURL(f); //读取f的地址
+	}
+}
+</pre>
+
+<li>
+Canvas标签
+
+<ul>
+<li>
+canvas只是一个容器，需要通过js来编写里面的内容
+
+<li>
+在html中创建canvas
+<pre>
+&lt;canvas class="mycanvas" height="200px" width="200px"&gt;&lt;/canvas&gt;;
+</pre>
+
+<li>
+在js中创建canvas
+<pre>
+function creatCanvas(){
+	document.body.innerHTML = "&lt;canvas id='mycanvas' width='200px' height='200px'&gt;&lt;/canvas&gt;";
+}
+</pre>
+
+</ul>
+<li>
+绘制图形
+
+<ul>
+<li>
+developer.mozilla.org其中有htmlAPI
+<pre>
+function drawCanvas(){
+    ctx.fillStyle = "green";
+	ctx.fillRect(0,0,100,100);
+}
+</pre>
+
+</ul>
+<li>
+绘制图片
+<pre>
+function drawImage(){
+    var img = new Image();
+	img.onload = function (){
+		ctx.drawImage(img,0,0);
+	}
+	img.src = "hello.jpg";
+}
+</pre>
+
+</ol>
+<div id="css"><h1 id="css">css</h1></div>
+<div id="css-选择器"><h3 id="选择器">选择器</h3></div>
+<ol>
+<li>
+选择器
+<pre>
+selector{
+	property:value;
+}
+</pre>
+
+<ul>
+<li>
+属性大于一的时候，属性之间用分号隔开。
+
+<li>
+值大于一，要用加上引号。
+<pre>
+p{
+	font-family:"sans serif";
+}
+</pre>
+
+</ul>
+<li>
+选择器分组
+<pre>
+h1,h2,h3{color:red;}
+</pre>
+
+<li>
+继承
+
+<ul>
+<li>
+未被定义样式的标签，会引用body的属性样式
+
+</ul>
+</ol>
+<p>
+{{
+body{color:red;}
+}}
+</p>
+<ol>
+<li>
+派生选择器
+
+<ul>
+<li>
+通过依据元素在其位置的上下文关系来定义样式
+
+<li>
+两个标签之间用空格隔开
+<pre>
+p a{
+	color: red;
+}
+</pre>
+
+</ul>
+<li>
+id选择器
+
+<ul>
+<li>
+可为标有id的元素指定样式
+
+<li>
+以#id{}来定义
+
+<ul>
+<li>
+在html中
+<pre>
+&lt;..div id=”divid”&gt;div标签&lt;../div&gt;
+</pre>
+
+<li>
+在.css文件中
+
+</ul>
+</ul>
+</ol>
+<p>
+{{
+#divid{
+	color: red;
+}
+}}
+</p>
+<ul>
+<li>
+id选择器和派生选择器一起使用
+
+<ul>
+<li>
+在html中
+<pre>
+&lt;p id="pid"&gt;the web of baidu&lt;a href="www.baidu.com"&gt;baidu&lt;/a&gt;&lt;/p&gt;
+</pre>
+
+<li>
+在.css中
+<pre>
+#pid a{
+	color: red;
+}
+</pre>
+
+</ul>
+</ul>
+<li>
+类选择器
+
+<ul>
+<li>
+可为标有class的元素指定样式
+
+<li>
+以#class{}来定义
+
+<ul>
+<li>
+在html中
+<pre>
+&lt;p class="pclass"&gt;
+	p label
+	&lt;p&gt;hi p&lt;/p&gt;
+&lt;/p&gt;
+</pre>
+
+<li>
+在.css中
+<pre>
+.pclass{
+	color: red;
+}
+</pre>
+
+</ul>
+</ul>
+<li>
+属性选择器
+
+<ul>
+<li>
+对带有指定属性的元素设置样式
+
+<ul>
+<li>
+html
+
+</ul>
+</ul>
+<p>
+{{
+&lt;p title="p"&gt;hello css&lt;/p&gt;
+}}
+</p>
+<ul>
+<li>
+css
+<pre>
+[title]{
+	color: #67ffaa;
+}
+</pre>
+
+</ul>
+<li>
+属性和值选择器
+
+<ul>
+<li>
+html
+
+</ul>
+<p>
+{{
+&lt;p title="pp"&gt;hello css&lt;/p&gt;
+}}
+</p>
+<ul>
+<li>
+css
+<pre>
+[title=pp]{
+	color: #67ffaa;
+}
+</pre>
+
+</ul>
+<div id="css-背景"><h3 id="背景">背景</h3></div>
+<ol>
+<li>
+背景
+
+<ul>
+<li>
+background-color:背景颜色
+<pre>
+body{
+	background-color: red;
+}
+</pre>
+
+<li>
+background-image:背景图片
+<pre>
+body{
+	background-image: url("html5.jpg"); 添加背景图片
+	background-repeat: no-repeat; 设置背景图片是否可以重复
+	background-position: right top; 第一个位置表示背景图片在页面的位置,二表示从图片的那个地方开始显示
+	background-position: 0px 0px; 从页面的某个坐标开始显示
+	background-attachment: fixed; 设置背景图片是否随着滚动条滚动
+	background-size: 100px 100px; 设置背景图片的大小
+}
+</pre>
+
+</ul>
+</ol>
+<div id="css-文本"><h3 id="文本">文本</h3></div>
+<ol>
+<li>
+text-transform设置文本中的字母
+<pre>
+#p1{
+	text-transform: capitalize; 文本中的字母首字母是大写
+	text-transform: lowercase; 文本中的字母全部是小写
+	text-transform: uppercase; 文本中的字母全部是大写
+}
+</pre>
+
+<li>
+text-shadow设置文本阴影
+<pre>
+p{
+	text-shadow: 5px 5px 1px red;
+}
+</pre>
+
+<ul>
+<li>
+：阴影在文本的右，距离
+
+<li>
+：阴影在文本的下，距离
+
+<li>
+：清晰度
+
+<li>
+: 阴影颜色
+
+</ul>
+<li>
+text-wrap换行
+<pre>
+p{
+	width: 116px;
+	text-wrap: normal; 自动换行，正常。
+}
+</pre>
+
+<li>
+text-align对齐方式
+<pre>
+p{
+	text-align: center;
+}
+</pre>
+
+<li>
+text-indent首行缩进
+<pre>
+p{
+	text-indent: 2em; 首行缩进两个字符
+}
+</pre>
+
+</ol>
+<div id="css-字体"><h3 id="字体">字体</h3></div>
+<ol>
+<li>
+设置字体
+<pre>
+@font-face {
+	font-family: myfont; 自命名字体名称
+	src: url(XXX); 字体路径
+}
+p{
+	font-family: myfont; 使用字体系列
+	font-size: 20px; 设置字体大小
+	font-style: oblique; 设置字体风格
+	font-weight; 设置字体粗细
+}
+</pre>
+
+</ol>
+<div id="css-链接"><h3 id="链接">链接</h3></div>
+<ol>
+<li>
+a:link 未被访问的链接
+
+<li>
+a:visited 用户已经访问的链接
+
+<li>
+a:hover 鼠标指针位于链接的上方
+
+<li>
+a:active 链接被点击的时刻
+<pre>
+a:link{
+	color: red;
+	text-decoration: none; 设置下划线为无
+	background-color: #b86263; 设置背景颜色
+}
+</pre>
+
+</ol>
+<div id="css-列表"><h3 id="列表">列表</h3></div>
+<pre>
+li{
+	list-style-type: lower-latin; 设置列表项标志类型
+	list-style-image: url("html5.jpg"); 用图片作为列表项标志类型
+	list-style-position: outside; 设置列表项位置，outside靠页面外侧，inside靠页面内侧
+}
+</pre>
+<div id="css-表格"><h3 id="表格">表格</h3></div>
+<pre>
+table,td,th{ 设置外边框，表格单元，表头单元的属性
+	border: 1px solid blue;	 1px solid表示1px粗细的边框；blue表示颜色
+	border-collapse: collapse; 所要设置的元素进行边框折叠
+}
+table{ 设置table（最外层边框）的长宽为400px
+	width: 400px;
+	height: 400px;
+	text-align: center; 设置table中文字居中
+	background-color; 设置table的背景颜色
+}
+</pre>
+<div id="css-轮廓"><h3 id="轮廓">轮廓</h3></div>
+<ol>
+<li>
+轮廓主要是用来突出元素的作用
+<pre>
+p{
+	outline-style: dashed; 设置轮廓样式
+	outline-color: crimson; 设置轮廓颜色
+	outline-width: 5px; 设置轮廓的宽度，粗细
+}
+</pre>
+
+</ol>
+<div id="css-盒子模型"><h3 id="盒子模型">盒子模型</h3></div>
+<ol>
+<li>
+简介
+
+<ul>
+<li>
+内容content
+
+<li>
+高height
+
+<li>
+宽width
+
+<li>
+内边距padding
+
+<li>
+边框border
+
+<li>
+外边距margin
+
+</ul>
+<li>
+内边距
+
+<ul>
+<li>
+内边距在content外，border内
+<pre>
+&lt;table border="1px"&gt;
+	&lt;tr&gt;
+		&lt;td&gt;内容&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+在.css中写入
+td{
+	padding: 100px;
+}
+以上设置所有的内边距为100px
+也可以分别设置
+padding-bottom:		下内边距
+padding-left:		左内边距
+padding-right:		右内边距
+padding-top:		上内边距
+</pre>
+
+</ul>
+<li>
+边框
+
+<ul>
+<li>
+border-style定义了10种不同的样式
+
+<li>
+border-XX-style边框的单边样式 top bottom left right
+
+<li>
+border-width边框的宽度
+
+<li>
+border-XX-width边框的单边宽度
+
+<li>
+border-color边框的颜色
+
+<li>
+border-XX-color边框的单边颜色
+<pre>
+p{
+	border-radius: 10px; 设置圆角弧度
+	border: 1px solid; 设置边框
+}
+
+p{
+	box-shadow: 2px 5px 5px red; 边框阴影与text-shadow同样用法
+}
+</pre>
+
+</ul>
+<li>
+外边距
+
+<ul>
+<li>
+外边距为border外的部分，外边距默认为透明区域
+
+<li>
+margin: 全部外边距
+
+<li>
+margin-bottom: 下外边距
+
+<li>
+margin-left: 左外边距
+
+<li>
+margin-right: 右外边距
+
+<li>
+margin-top: 上外边距
+
+</ul>
+<li>
+用div标签设置盒子模型
+<pre>
+\&lt;div class="top"&gt;
+	\&lt;div class="top_content"&gt;\&lt;/div\&gt;
+\&lt;/div\&gt;
+\&lt;div class="content"&gt;
+	\&lt;div class="content_top"&gt;\&lt;/div\&gt;
+	\&lt;div class="content_tip"&gt;\&lt;/div\&gt;
+	\&lt;div class="content_con"&gt;\&lt;/div\&gt;
+	\&lt;div class="content_bottom"&gt;\&lt;/div\&gt;
+	\&lt;div class="content_bottom_bottom"&gt;\&lt;/div\&gt;
+	\&lt;/div\&gt;
+\&lt;/div\&gt;
+</pre>
+
+<li>
+外边距合并就是外边距叠加
+
+</ol>
+<div id="css-定位"><h3 id="定位">定位</h3></div>
+<ol>
+<li>
+定位属性
+
+<ul>
+<li>
+:top设置元素向上的偏移量,类似left、right、bottom
+
+<li>
+:z-index设置元素的堆叠顺序,后面的值为数字，数字大的把数字小的压住，即数字大的距离用户近
+<pre>
+	#position{
+	z-index: 1;
+}
+</pre>
+
+<li>
+:overflow设置元素溢出其区域发生的事情
+
+<li>
+:clip设置元素显示的形状
+
+<li>
+:vertical-align设置元素垂直对齐方式
+
+<li>
+:position存放元素的位置
+
+<li>
+:static静态的,布局效果和相对布局一样，只是偏移量、z-indez不再起作用
+
+<li>
+:relative相对的(默认)	,此元素与其他元素是相对的，此元素位置改变以后其他元素位置不变
+
+<li>
+:absolute绝对的,此元素在页面中的位置并不影响其他元素在页面中的位置，似乎页面有好几层，此元素在其他层面上
+
+<li>
+:fixed固定的,此元素在页面中的位置并不影响其他元素在页面中的位置，并且此元素不随着滚动条的滚动而滚动
+<pre>
+#position{
+	width: 100px;
+	height: 100px;
+	background-color: crimson;
+	position: absolute;
+}
+</pre>
+
+</ul>
+</ol>
+<div id="css-浮动"><h3 id="浮动">浮动</h3></div>
+<ol>
+<li>
+float浮动
+
+<li>
+left向左浮动 right、none、inherit从父级继承浮动属性
+
+<li>
+clear去掉浮动属性
+
+<li>
+left去掉向左浮动 right、inherit、both左右两侧均去掉浮动
+
+</ol>
+<div id="css-对齐"><h3 id="对齐">对齐</h3></div>
+<ol>
+<li>
+使用margin属性进行水平对齐
+
+<li>
+使用position属性进行水平对齐
+
+<li>
+使用float属性进行水平对齐
+
+</ol>
+<div id="css-尺寸的操作"><h3 id="尺寸的操作">尺寸的操作</h3></div>
+<ol>
+<li>
+line-height: normal; 设置行高为正常
+
+<li>
+line-height: 200%; 设置行高为正常的200%
+
+<li>
+max-height、min-height、max-width、min-width 设置最大、最小高度、宽度
+
+</ol>
+<div id="css-分类的操作"><h3 id="分类的操作">分类的操作</h3></div>
+<ol>
+<li>
+cursor 设置当指向某元素之上时显示的指针类型
+
+<li>
+display 设置是否及如何显示元素
+
+<li>
+visibility 设置元素是否可见
+
+</ol>
+<div id="css-导航栏"><h3 id="导航栏">导航栏</h3></div>
+<ol>
+<li>
+垂直导航栏
+
+<ul>
+<li>
+导航栏用列表表示
+<pre>
+&lt;ul&gt;
+	&lt;li&gt;
+		\&lt;div\&gt;&lt;a href="#"&gt;导航1&lt;/a&gt;\&lt;/div\&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		\&lt;div\&gt;&lt;a href="#"&gt;导航2&lt;/a&gt;\&lt;/div\&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		\&lt;div\&gt;&lt;a href="#"&gt;导航3&lt;/a&gt;\&lt;/div\&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		\&lt;div\&gt;&lt;a href="#"&gt;导航4&lt;/a&gt;\&lt;/div\&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+li{
+	list-style-type: none; 设置列表标记类型为无
+}
+a:link{
+	text-decoration: none; 设置链接文本无下划线
+}
+</pre>
+
+<li>
+水平导航栏
+<pre>
+li,div{
+	display: inline;
+}
+以横向显示
+</pre>
+
+</ul>
+</ol>
+<div id="css-图片"><h3 id="图片">图片</h3></div>
+<pre>
+image{
+	opacity: 0.5; 透明度，从0-1,1是完全不透明
+}
+div{
+	border: 1px solid;
+	float: left; 如果设置了float属性，边框将会自动适应。
+}
+</pre>
+<div id="css-2D、3D转换"><h3 id="2D、3D转换">2D、3D转换</h3></div>
+<ol>
+<li>
+translate（）转换
+<pre>
+div{
+-webkit-transform: translate(100px, 100px); 添加浏览器支持，chrome
+-moz-transform: translate(100px, 100px); firefox
+-ms-transform: translate(100px, 100px);	 IE
+-o-transform: translate(100px, 100px); opera
+transform: translate(100px, 100px); translate()中两个参数，分别是坐标
+}
+</pre>
+
+<li>
+rotate()旋转
+<pre>
+transform: rotate(30deg); 其中参数为旋转的角度
+</pre>
+
+<li>
+scale()缩放
+<pre>
+transform: scale(1, 2);	 宽、高的缩放比例倍数
+</pre>
+
+<li>
+skew()倾斜
+<pre>
+transform: skew(20deg, 20deg); 分别围绕x轴y轴倾斜的角度
+</pre>
+
+<li>
+rotate()3D旋转
+<pre>
+transform: rotateX(50deg); 延x轴旋转度数
+transform: rotateY(50deg); 延y轴旋转度数
+</pre>
+
+</ol>
+<div id="css-过渡"><h3 id="过渡">过渡</h3></div>
+<ol>
+<li>
+对宽度进行动画过渡
+<pre>
+div
+{
+	width:100px;
+	height:100px;
+	background:blue;
+	transition:width 2s; 对宽度进行动画过渡，时间为2s
+	-moz-transition:width 2s;
+	-webkit-transition:width 2s;
+	-o-transition:width 2s;
+}
+div:hover 当鼠标指到div元素上时触发动画
+{
+	width:300px; 宽度变为300px
+} 其中可以添加一些动画效果
+</pre>
+
+<li>
+语法
+
+<ul>
+<li>
+语法：transition: property duration timing-function delay;
+
+<li>
+transition-property 规定设置过渡效果的 CSS 属性的名称
+
+<li>
+Transition-duration 规定完成过渡效果需要多少秒或毫秒
+
+<li>
+transition-timing-function 规定速度效果的速度曲线
+
+<li>
+Transition-delay 定义过渡效果何时开始
+
+<li>
+也可单独设置其中的值
+
+</ul>
+</ol>
+<div id="css-动画"><h3 id="动画">动画</h3></div>
+<pre>
+div{
+	position: relative; 相对布局
+	-webkit-animation: anim 5s; 添加浏览器支持
+	-o-animation: anim 5s;
+	animation: anim 5s; 执行动画名字为anim的动画5s
+}
+@keyframes anim{ 编辑动画名字为anim的动画
+	0%{background: red;left: 0px;top: 0px} 在初始时刻样式
+	25%{background: #a841b8;left: 200px;top: 200px}	1/4
+	50%{background: #3fff7d;left: 200px;top: 0px}	1/2
+	75%{background: #cbff87;left: 0px;top: 200px}	3/4
+	100%{background: #fffbaf;left: 0px;top: 0px}	4/4
+}
+@-webkit-keyframes anim{ 添加浏览器支持
+	0%{background: red;left: 0px;top: 0px}
+	25%{background: #a841b8;left: 200px;top: 200px}
+	50%{background: #3fff7d;left: 200px;top: 0px}
+	75%{background: #cbff87;left: 0px;top: 200px}
+	100%{background: #fffbaf;left: 0px;top: 0px}
+}
+
+	animation: anim 5s infinite alternate; 动画无限次执行
+</pre>
+<div id="css-多列"><h3 id="多列">多列</h3></div>
+<pre>
+div{
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	column-count: 3; 将元素分成3列
+
+	-webkit-column-gap: 50px;
+	-moz-column-gap: 50px;
+	column-gap: 50px; 相邻两列间距50px
+
+	-webkit-column-rule: 1px solid red;
+	-moz-column-rule: 1px solid red;
+	column-rule: 1px solid red; 间隔线宽度，和颜色
+}
+</pre>
+<div id="css-瀑布流"><h3 id="瀑布流">瀑布流</h3></div>
+<pre>
+\&lt;div class="container"&gt;
+	\&lt;div\&gt;&lt;img src="image/1.jpg" alt="1"/&gt;\&lt;/div\&gt;
+	…
+\&lt;/div\&gt;
+
+.container{ 对container进行编辑
+	-webkit-column-width: 220px; 设置多列的宽度统一为220px
+	-moz-column-width: 220px;
+	column-width: 220px;
+
+	-webkit-column-gap: 5px; 设置每列之间的间距为5px
+	-moz-column-gap: 5px;
+	column-gap: 5px;
+}
+.container div{ 对每张图片进行编辑
+	width: 220px; 宽度为220px
+	margin: 20px 0;
+}
+</pre>
+<div id="JavaScript"><h1 id="JavaScript">JavaScript</h1></div>
+<div id="JavaScript-文档输出"><h2 id="文档输出">文档输出</h2></div>
+<ol>
+<li>
+用JavaScript输出文本
+<pre>
+&lt;script&gt;
+	document.write("&lt;p&gt;hello javascript&lt;/p&gt;");
+&lt;/script&gt;
+</pre>
+
+</ol>
+<div id="JavaScript-常识"><h2 id="常识">常识</h2></div>
+<ol>
+<li>
+标识符必须以字母、下划线或美元符号开始；关键字不能使用
+
+<li>
+JavaScript对大小写非常敏感
+
+<li>
+js会忽略多余的空格
+
+</ol>
+<div id="JavaScript-变量"><h2 id="变量">变量</h2></div>
+<ol>
+<li>
+var对变量进行声明
+<pre>
+&lt;script&gt;
+	var i=10;
+	var j=15;
+	var m=i+j;
+	document.write(m);
+&lt;/script&gt;
+</pre>
+
+</ol>
+<div id="JavaScript-数据类型"><h2 id="数据类型">数据类型</h2></div>
+<ol>
+<li>
+字符串string
+
+<ul>
+<li>
+var i="hello";
+
+</ul>
+<li>
+数字number
+
+<ul>
+<li>
+var i=20;
+
+</ul>
+<li>
+布尔boolean
+
+<ul>
+<li>
+var i=true;
+
+</ul>
+<li>
+数组array
+<pre>
+var i=[1,2,3,4]; 以[]定义数组
+var i=new Array("aa","b","c"); 以Array函数来定义数组
+var i=new Array();
+	i[0]=1;
+	i[1]=2; 动态定义数组
+</pre>
+
+<li>
+空null
+<pre>
+var i=null; 输出的时候显示文本“null”
+var i=10;
+i=null;	 赋值为null，覆盖之前的值
+</pre>
+
+</ol>
+<div id="JavaScript-运算符"><h2 id="运算符">运算符</h2></div>
+<ol>
+<li>
+算数运算符
+
+<li>
+赋值运算符
+
+<li>
+字符串操作
+<pre>
+var i="www.";
+var j="baidu.com";
+var m=i+j;
+document.write(m); 输出为www.baidu.com
+任何类型与字符串 运算 都会被转化成字符串类型
+</pre>
+
+<li>
+比较运算符
+<pre>
+var i="10";
+var j=10;
+document.write(i==j); 输出为true，如果错误输出false
+document.write(i===j); 输出为false，三等是绝对相等
+用法和!= !== 类似；
+</pre>
+
+<li>
+逻辑运算符
+
+<li>
+条件运算符
+<pre>
+var i=10;
+document.write(i&gt;10?"AA":"BB");	 一个三目运算符
+</pre>
+
+</ol>
+<div id="JavaScript-条件语句"><h2 id="条件语句">条件语句</h2></div>
+<ol>
+<li>
+if...else
+
+<li>
+switch
+
+</ol>
+<div id="JavaScript-循环语句"><h2 id="循环语句">循环语句</h2></div>
+<ol>
+<li>
+for循环 for in
+<pre>
+var i[1,2,3,4,5,6];
+for(var j in i) 输出结果与 for(var j=0;j&lt;6;j++) 一样
+{
+	document.write(i[j]);
+}
+</pre>
+
+<li>
+while循环，do while
+
+</ol>
+<div id="JavaScript-跳转语句"><h2 id="跳转语句">跳转语句</h2></div>
+<ol>
+<li>
+break语句，与continue语句
+
+<ul>
+<li>
+break跳出当前循环
+
+<li>
+continue跳出本次循环
+
+</ul>
+</ol>
+<div id="JavaScript-函数"><h2 id="函数">函数</h2></div>
+<ol>
+<li>
+alert()函数
+
+<ul>
+<li>
+弹出一个对话框
+
+</ul>
+<li>
+function demo(a,b) 定义一个函数
+<pre>
+{
+	var sum=a+b;
+	return sum;
+}
+alert(demo(10,20)) //调用一个函数
+</pre>
+
+<li>
+定义函数
+<pre>
+function 函数名(){
+	函数体；(代码块)
+}
+</pre>
+
+<li>
+调用函数
+
+<ul>
+<li>
+直接调用
+
+<li>
+通过heml标签调用
+<pre>
+&lt;script&gt;
+function demo()
+{
+	var a = 1;
+	var b = 2;
+	var sum=a+b;
+	alert(sum);
+}
+&lt;/script&gt;
+&lt;button onclick="demo()"&gt;按钮&lt;/button&gt; //点击按钮将会弹出框
+</pre>
+
+</ul>
+<li>
+带参数的函数
+
+<ul>
+<li>
+function demo(a,b){}
+
+</ul>
+<li>
+带返回值的函数
+<pre>
+&lt;p id="pid"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+	function demo()
+	{
+		var a = 1;
+		var b = 2;
+		var sum=a+b;
+		return sum;
+	}
+	document.getElementById("pid").innerHTML = demo();
+&lt;/script&gt;
+</pre>
+
+</ol>
+<div id="JavaScript-异常捕获"><h2 id="异常捕获">异常捕获</h2></div>
+<ol>
+<li>
+异常：当代码执行时，发生了错误，导致程序停止运行
+
+<li>
+异常抛出：异常产生时，会生成一个错误信息
+
+<li>
+异常捕获：
+<pre>
+try
+{
+	alert(sum); //写入出现错误的代码块
+}catch (err) //捕获错误
+{
+	alert(err); //弹出捕获到的错误
+}
+</pre>
+
+<li>
+创建自定义错误
+<pre>
+&lt;form&gt; 创建一个表单
+	&lt;input type="text" id="tet"/&gt; 文本框
+	&lt;input type="button" onclick="demo()" value="按钮"/&gt; 按钮，点击时触发demo函数
+&lt;/form&gt;
+&lt;script&gt;
+	function demo() //定义一个名为demo函数
+	{
+		try //捕获异常
+		{
+			e=document.getElementById("tet").value;	 //将文本框中的值赋给e
+			if(e=="")
+			{
+				throw "请输入"; //自定义异常
+			}
+		}catch (err) //获取异常
+		{
+			alert(err); //弹出异常
+		}
+	}
+&lt;/script&gt;
+</pre>
+
+</ol>
+<div id="JavaScript-DOM"><h2 id="DOM">DOM</h2></div>
+<ol>
+<li>
+事件
+
+<ul>
+<li>
+onClick单击事件
+
+<li>
+onMouseOver鼠标经过事件
+
+<li>
+onMouseOut鼠标移出事件
+
+<li>
+onChange文本内容改变事件
+
+<li>
+onSelect文本框选中事件
+
+<li>
+onFocus光标聚集事件
+
+<li>
+onBlur移开光标事件
+
+<li>
+onLoad网页加载完成事件
+
+<li>
+onUnload关闭网页事件
+
+</ul>
+<li>
+DOM文档对象模型
+
+<ul>
+<li>
+网页被加载时，浏览器会创建一个文档对象模型
+
+<li>
+改变输出流,注意：不要在文档加载完之后，使用document.write()。会覆盖掉整个文档。
+<pre>
+&lt;script&gt;
+	document.write("hello");
+&lt;/script&gt;
+</pre>
+
+<li>
+寻找元素
+<pre>
+&lt;script&gt;
+	var e = document.getElementById("pid"); //通过id寻找
+	var e = document.getElementsByTagName("p"); //通过标签名寻找，相同元素的第一个
+	e.innerHTML="world"; //改变元素
+&lt;/script&gt;
+</pre>
+
+</ul>
+<li>
+DOM操作css
+
+<ul>
+<li>
+改变id为div的标签的属性。
+<pre>
+document.getElementById("divid").style.backgroundColor="blue";
+</pre>
+
+</ul>
+<li>
+DOM EventListener
+
+<ul>
+<li>
+addEventLIstener()向指定元素添加事件句柄
+<pre>
+var x=document.getElementById("btid"); //捕获id
+x.addEventListener("click",hello); //添加句柄，参数一，为事件；二为函数
+function hello() //添加一个函数
+{
+	alert("hello");
+}
+</pre>
+
+<li>
+移出句柄
+<pre>
+x.removeEventListener("click",hello);
+</pre>
+
+</ul>
+<li>
+事件处理
+
+<ul>
+<li>
+HTML事件处理
+
+<li>
+DOM0级事件处理
+
+<li>
+DOM2级事件处理
+
+<li>
+IE事件处理程序
+
+<li>
+attachEvent
+
+<li>
+detachEvent
+
+</ul>
+</ol>
+<div id="JavaScript-对象"><h2 id="对象">对象</h2></div>
+<ol>
+<li>
+事件对象
+
+<ul>
+<li>
+触发DOM事件的时候都会产生一个对象
+<pre>
+document.getElementById("btid").addEventListener("click",showType);
+function showType(event)
+{
+	alert(event.type); //获取事件的类型
+	event.stopPropagation(); //阻止事件冒泡
+}
+</pre>
+
+<li>
+事件对象event
+
+<li>
+type获取事件类型
+
+<li>
+target获取事件目标
+
+<li>
+stopPropagation阻止事件冒泡
+
+<li>
+preventDefault阻止事件默认行为；例如a标签，将不跳转
+
+</ul>
+<li>
+js内置对象
+
+<ul>
+<li>
+js中所有事物都是对象，每个对象都带有属性和方法
+<pre>
+people = new Object(); //创建一个名字为people的对象
+people.name = "hello"; //对对象进行初始化
+document.write(people.name); //打印对象数据
+people = {name:"hello",age:"20"}; //另外一种方法创建对象
+document.write(people.name);
+function people(name,age) //利用函数创建对象
+{											
+	this.name = name;
+	this.age = age;
+}
+x = new people("hello",20); //为函数附初值
+document.write(x.name+ x.age); //打印
+</pre>
+
+</ul>
+<li>
+字符串对象
+
+<ul>
+<li>
+var str = "helloworld";
+
+<li>
+document.write(str.length); //打印字符串长度
+
+<li>
+document.write(str.indexOf("hello"));	//在字符串中查找字符串,如果存在，返回当前位置；不存在返回-1
+
+<li>
+内容匹配match(),如果有，将字符串打印出来；如果不匹配，返回null
+
+<li>
+字符串替换replace(),replace(“A”,”B”)；将A替换为B，如果没有A，则无效
+
+<li>
+字符串大小写转换toUpperCase()/toLowerCase(),转换成大写/转换成小写
+
+<li>
+字符串转换成数组
+<pre>
+var str = "ni,hao,ma";
+var s = str.split(","); //填写分隔符
+document.write(s[0]);
+</pre>
+
+</ul>
+<li>
+日期对象
+<pre>
+var da = new Date(); //获取当前日期
+document.write(da); //打印当前日期
+getFullYear()获取年份
+getTime()获取毫秒
+setFullYear()设置具体日期setFullYear(2015,1,1)
+getDay()获取星期几
+</pre>
+
+<li>
+数组对象
+<pre>
+var c = a.concat(b);将b数组链接到a数组并赋值给c数组
+a.sort(
+	function(a,b){
+		return b-a; //规定降序排列
+	}
+)
+push()末尾追加元素
+a.push(“c”); //在a数组后面追加一个元素为c
+reverse()数组元素翻转
+</pre>
+
+<li>
+math对象
+
+<ul>
+<li>
+执行常见的算数任务
+
+<li>
+round()四舍五入
+
+<li>
+document.write(Math.round(3.1)); //打印3.1的四舍五入数值
+
+<li>
+random()返回0-1之间的随机数
+
+<li>
+math.random()*100 返回0-100之间的随机数
+
+<li>
+parseInt(Math.random()*100)将数值转化成int类型
+
+<li>
+max()/min()返回最大值/最小值
+
+<li>
+abs()返回绝对值
+
+</ul>
+<li>
+DOM对象控制HTML
+
+<ul>
+<li>
+getElementsByName()通过名字获取标签
+
+<li>
+getElementsById()通过id获取标签
+
+<li>
+getElementsByTagName()通过标签名字获取标签
+
+<li>
+getAttribute()获取元素的属性
+<pre>
+&lt;a href="www.baidu.com" id="aid" title="this is a table" name="ana"&gt;hellobaidu.com&lt;/a&gt;
+var a = document.getElementById("aid"); //获取id为aid的标签
+var aAttribute = a.getAttribute("title"); //获取aid标签的title属性
+document.write(aAttribute); //打印属性
+</pre>
+
+<li>
+setAttribute()设置元素的属性
+<pre>
+var aid = document.getElementById("aid"); //通过id获取标签
+aid.setAttribute("href","www.hao123.com");
+</pre>
+
+<li>
+childNodes()访问子节点
+<pre>
+var child = document.getElementById("ulid").childNodes;
+alert(child[3].innerHTML);
+</pre>
+
+<li>
+parentNodes()访问父节点
+
+<li>
+createElement()创建元素节点
+<pre>
+var x = document.body; //创建一个body变量
+var i = document.createElement("input"); //创建一个input节点
+i.type = "button"; //input节点的类型时button
+i.value = "anniu"; //input节点的值是anniu
+x.appendChild(i); //将i添加到x中；即将input添加到body中
+</pre>
+
+<li>
+insertBefore插入节点
+<pre>
+var div = document.getElementById("divid"); //获取div标签
+var pid = document.getElementById("pid"); //获取div的子标签p标签
+var newNode = document.createElement("p"); //创建一个新的p标签
+newNode.innerHTML = "Hello the P Node";	 //写入p标签内容
+div.insertBefore(newNode,pid); //在div中的p标签前面插入一个新的p标签
+</pre>
+
+<li>
+removeChild删除节点
+
+<li>
+offsetHeight网页尺寸；不包含滚动条
+
+<li>
+scrollHeight网页尺寸；包含滚动条
+<pre>
+var width = document.documentElement.offsetWidth;
+var width = document.body.offsetWidth;
+</pre>
+
+</ul>
+<li>
+window对象
+
+<ul>
+<li>
+window.innerWidth浏览器窗口内部的宽度
+
+<li>
+window.innerHeight浏览器窗口内部的高度
+
+<li>
+document.write(window.innerWidth); //输出window的宽度
+
+<li>
+window.open()打开新窗口
+
+<li>
+window.close()关闭当前窗口
+
+</ul>
+<li>
+计时器
+<pre>
+\&lt;div id="divid"&gt;\&lt;/div\&gt; //用div标签承载计时器
+var theTime = setInterval(gettime,1000); //间隔1000毫秒不停地执行gettime
+function gettime()
+{
+	var d = new Date(); //创建Date对象
+	var t = d.toLocaleTimeString(); //获取Date的时间部分
+	document.getElementById("divid").innerHTML = t; //改变div标签的内容
+}
+</pre>
+
+<ul>
+<li>
+clearInterval(theTime);取消执行代码
+
+<li>
+setTimeout()设置延时执行
+
+<li>
+clearTimeout()停止延时执行函数
+
+</ul>
+<li>
+History对象
+
+<ul>
+<li>
+window.history对象包含浏览器的历史（url）的集合
+
+<li>
+history.back()与在浏览器点击后退按钮相同
+
+<li>
+history.forward()与在浏览器点击前进按钮相同
+
+<li>
+history.go()跳转到历史界面，当前页面时零
+
+<li>
+history.go(-1)跳转到上一个界面
+
+</ul>
+<li>
+Location对象
+
+<ul>
+<li>
+window.location获得当前页面的地址(url)，并把浏览器重新定向到新的页面
+
+<li>
+location.hostname返回web主机的域名
+
+<li>
+location.pathname返回当前页面的路径和文件名
+
+<li>
+location.port返回web主机的端口
+
+<li>
+location.protocol返回所用的web协议
+
+<li>
+location.href返回当前页面的url
+
+<li>
+location.assign()加载新的文档
+
+<li>
+location.assign("http:/www.baidu.com");
+
+</ul>
+<li>
+screen对象
+
+<ul>
+<li>
+window.screen包含有关用户屏幕的信息
+
+<li>
+screen.availWidth可用的屏幕宽度
+
+<li>
+screen.availHeight可用的屏幕高度
+
+<li>
+screen.height屏幕高度
+
+<li>
+screen.width屏幕宽度
+
+</ul>
+<li>
+使用函数构造器构造对象
+<pre>
+function People() //声明一个名字为People的函数
+{
+
+}
+People.prototype = 	//使用原形量指定属性
+{
+	name: "biaomd", //name属性等，属性间隔用逗号
+	age: 22,
+	eat:function() //指定一个函数作为eat属性的量
+	{
+		alert("吃");
+	}
+}
+var p = new People(); //使用new创建一个名字为p的People对象
+p.name;	 //通过p调用name属性
+</pre>
+
+<li>
+js面向对象
+
+<ul>
+<li>
+使用function模拟类的概念
+<pre>
+function People() //创建一个类
+{
+
+}
+//书写类中的属性和方法
+People.prototype.hello = function() //给People类的一个属性hello创建一个方法
+{
+	alert("hello");
+}
+function Student() //创建一个类
+{
+					
+}
+Student.prototype = new People(); //类Student继承类People
+var s = new Student(); //创建一个对象
+s.hello(); //调用父类的hello方法
+</pre>
+
+<ul>
+<li>
+如果Student中也有一个名为hello的方法，则当s调用hello方法时，调用的时子类的hello。叫做复写父类的方法。
+
+</ul>
+</ul>
+</ol>
+<div id="JavaScript-createjs应用"><h2 id="createjs应用">createjs应用</h2></div>
+<ol>
+<li>
+<a href="http:&#47;&#47;www.creatjs.com ">http://www.creatjs.com </a>
+<pre>
+window.onload = function(){
+    var canvas = document.getElementById("canvas");
+	var text = new createjs.Text("The time is:", "20px Arial", "#ff7700"); //创建text
+	var stage = new createjs.Stage(canvas); //创建stage
+	stage.addChild(text); //将text添加到stage中
+	createjs.Ticker.addEventListener("tick",stage);	 //添加一个监听事件
+}
+</pre>
+
+<li>
+创建动态text
+<pre>
+var canvas,text,stage,count = 0;
+window.onload = function(){
+	canvas = document.getElementById("canvas");
+	text = new createjs.Text("The time is:", "20px Arial", "#ff7700"); //创建text
+	stage = new createjs.Stage(canvas);	 //创建stage
+	stage.addChild(text); //将text添加到stage中
+	createjs.Ticker.setFPS(1); //设置更新频率
+	createjs.Ticker.addEventListener("tick",tickstage); //添加一个监听事件
+}
+function tickstage(e){
+	count++;
+	text.text = "The time is:"+count;
+	stage.update();	 //设置更新
+}
+</pre>
+
+</ol>
+
+</div>
+</div>
+<div id="footer">
+<p>
+Copyright © 2016 DobMa
+</p>
+</div>
+</body>
+</html>
